@@ -5,4 +5,4 @@ Pipelines.Add("Index",
 	WriteFiles(".html"));
 
 Pipelines.Add("Resources",
-	CopyFiles("*").WithoutExtensions(".cshtml", ".md", ".less"));
+	CopyFiles("*"));
