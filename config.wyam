@@ -5,4 +5,5 @@ Pipelines.Add("Index",
 	WriteFiles(".html"));
 
 Pipelines.Add("Resources",
-	CopyFiles("*.css").FromAllDirectories());
+	ReadFiles("*.css"),
+	CopyFiles("*"));
