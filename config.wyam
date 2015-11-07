@@ -3,3 +3,6 @@ Pipelines.Add("Index",
 	FrontMatter(Yaml()),
 	Razor(),
 	WriteFiles(".html"));
+
+Pipelines.Add("Resources",
+	CopyFiles("*").WithoutExtensions(".cshtml", ".md", ".less"));
