@@ -2,4 +2,4 @@ Pipelines.Add("Index",
 	ReadFiles("index.cshtml"),
 	FrontMatter(Yaml()),
 	Razor(),
-	WriteFiles(".html")
+	WriteFiles(".html"));
