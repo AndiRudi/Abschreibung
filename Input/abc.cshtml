@@ -1,0 +1,29 @@
+@{ 
+    System.Data.DataTable dataTable = Model["DataTable"] as System.Data.DataTable;
+
+}
+<h2 class="direct">Meistgesuchte Anlagegegenstände </h2>
+<div id="timespan" class="direct">Letzte Aktualisierung: <span class="date"><strong>20. Februar  2012</strong></span></div>
+<table id="prices">
+    <tbody>
+        <tr class="top">
+            <TH width="2%" class="right">&nbsp;</TH>
+            <TH width="56%">Anlagegut</TH>
+            <TH width="16%" class="right"><div align="center">Nutzungsdauer </div></TH>
+            <TH width="12%" class="right"><div align="center">Tabellen-Nr.</div></TH>
+            <TH width="11%" class="right"><div align="center">Fundstelle</div></TH>
+            <TH width="3%" class="right">&nbsp;</TH>
+        </tr>
+        @foreach (System.Data.DataRow row in dataTable.Rows)
+        {
+            <tr>
+                <td class="right">&nbsp;</td>
+                <td>@row["Anlagegut"]</td>
+                <td class="right"><div align="center">@row["Nutzungsdauer"]</div></td>
+                <td class="right"><div align="center">@row["Tabelle"]</div></td>
+                <td class="right"><div align="center"></div></td>
+                <td class="right">&nbsp;</td>
+            </tr>
+        }
+    </tbody>
+</table>
