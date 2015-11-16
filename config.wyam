@@ -33,3 +33,15 @@ Pipelines.Add("B",
 		.DataTable(),
 	Razor(),
 	WriteFiles("b.html"));
+
+
+
+Pipelines.Add("C",
+	ReadFiles("abc.cshtml"),
+	SqlReader()
+		.Access4(@"Input\data\AFA.mdb")
+		.CommandText("SELECT * FROM [DATEN] WHERE [Anlagegut] LIKE ?")
+		.AddParameter("?", "C%")
+		.DataTable(),
+	Razor(),
+	WriteFiles("c.html"));
