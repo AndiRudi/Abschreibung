@@ -26,7 +26,7 @@ Pipelines.Add("ABC",
 		}))),
 	SqlReader()
 		.Access4(@"Input\data\AFA.mdb")
-		.CommandText("SELECT * FROM [DATEN] WHERE [Anlagegut] LIKE ?")
+		.CommandText("SELECT DISTINCT * FROM [DATEN] WHERE [Anlagegut] LIKE ?")
 		.AddParameter("?", @doc["Character"] + "%")
 		.DataTable(),
 	Razor(),
