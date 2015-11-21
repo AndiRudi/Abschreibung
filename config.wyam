@@ -12,36 +12,23 @@ Pipelines.Add("Index",
 Pipelines.Add("Resources",
 	CopyFiles("*.css"));
 
+Pipelines.Add("Impress",
+	ReadFiles("impressum.cshtml"),
+	Razor(),
+	WriteFiles(".html"));
 
-Pipelines.Add("A",
+Pipelines.Add("ABC",
 	ReadFiles("abc.cshtml"),
+	Execute(
+		@"abcdefghijklmnopqrstuvwxyz".Select(x => @doc.Clone(new Dictionary<string, object>()
+		{ 
+		    { "Character", x }
+		}))),
 	SqlReader()
 		.Access4(@"Input\data\AFA.mdb")
 		.CommandText("SELECT * FROM [DATEN] WHERE [Anlagegut] LIKE ?")
-		.AddParameter("?", "A%")
+		.AddParameter("?", @doc["Character"] + "%")
 		.DataTable(),
 	Razor(),
-	WriteFiles("a.html"));
-	
+	WriteFiles("abc." + @doc["Character"] + ".html"));
 
-Pipelines.Add("B",
-	ReadFiles("abc.cshtml"),
-	SqlReader()
-		.Access4(@"Input\data\AFA.mdb")
-		.CommandText("SELECT * FROM [DATEN] WHERE [Anlagegut] LIKE ?")
-		.AddParameter("?", "B%")
-		.DataTable(),
-	Razor(),
-	WriteFiles("b.html"));
-
-
-
-Pipelines.Add("C",
-	ReadFiles("abc.cshtml"),
-	SqlReader()
-		.Access4(@"Input\data\AFA.mdb")
-		.CommandText("SELECT * FROM [DATEN] WHERE [Anlagegut] LIKE ?")
-		.AddParameter("?", "C%")
-		.DataTable(),
-	Razor(),
-	WriteFiles("c.html"));
