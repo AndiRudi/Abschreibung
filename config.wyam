@@ -1,4 +1,4 @@
-Assemblies
+﻿Assemblies
     .LoadFile(@"lib\Sql.dll");
 
 ===
@@ -26,7 +26,7 @@ Pipelines.Add("ABC",
 		}))),
 	SqlReader()
 		.Access4(@"Input\data\AFA.mdb")
-		.CommandText("SELECT DISTINCT * FROM [DATEN] WHERE [Anlagegut] LIKE ?")
+		.CommandText("SELECT DISTINCT * FROM [Anlagegüter_Suchwörter] WHERE [Wort] LIKE ?")
 		.AddParameter("?", @doc["Character"] + "%")
 		.DataTable(),
 	Razor(),

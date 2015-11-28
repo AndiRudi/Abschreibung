@@ -3,7 +3,7 @@ body {
 	margin: auto;
 	padding: 0px;
 	border: 0px currentColor;
-	width: 835px;
+	width: 840px;
 	color: rgb(44, 44, 44);
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 14px;
@@ -97,7 +97,7 @@ table {
 	background: rgb(204, 204, 204);
 }
 #prices td {
-	margin: 0px; padding: 6px; border: 2px solid rgb(255, 255, 255); white-space: nowrap;
+	margin: 0px; padding: 6px; border: 2px solid rgb(255, 255, 255); white-space: normal;
 }
 #prices .domain {
 	letter-spacing: 1px; font-size: 14px;
@@ -106,7 +106,7 @@ table {
 	font-size: 14px;
 }
 #listy-punkty {
-	padding: 8px 12px; font-size: 14px; cursor: default;
+	padding: 8px 6px; font-size: 14px; cursor: default;
 }
 #listy-punkty a {
 	margin: 0px 3px; cursor: pointer;
