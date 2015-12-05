@@ -1,0 +1,20 @@
+﻿@{ 
+    System.Data.DataTable dataTable = Model["DataTable"] as System.Data.DataTable;
+
+}
+<h2 class="direct">Alle Branchentabellen im Überblick</h2>
+<table id="prices">
+    <tbody>
+        <tr class="top">
+            <th width="80%">Branche</th>
+            <th width="20%" class="right"><div align="center">Tabelle </div></th>
+        </tr>
+        @foreach (System.Data.DataRow row in dataTable.Rows)
+        {
+            <tr>
+                <td><a href="@string.Format("branche_{0}.html", row["Tabelle"])">@row["Text"]</a></td>
+                <td class="right"><div align="center">@row["Id"]</div></td>
+            </tr>
+        }
+    </tbody>
+</table>

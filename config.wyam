@@ -12,10 +12,6 @@ Pipelines.Add("Index",
 Pipelines.Add("Resources",
 	CopyFiles("*.css"));
 
-Pipelines.Add("Impress",
-	ReadFiles("impressum.cshtml"),
-	Razor(),
-	WriteFiles(".html"));
 
 Pipelines.Add("ABC",
 	ReadFiles("abc.cshtml"),
@@ -32,3 +28,43 @@ Pipelines.Add("ABC",
 	Razor(),
 	WriteFiles("abc." + @doc["Character"] + ".html"));
 
+	
+Pipelines.Add("branchentabellen",
+	ReadFiles("branchentabellen.cshtml"),
+	SqlReader()
+		.Access4(@"Input\data\AFA.mdb")
+		.CommandText("SELECT DISTINCT * FROM [Tabellen] Order BY Id ASC")
+		.DataTable(),
+	Razor(),
+	WriteFiles(".html"));
+
+Pipelines.Add("branchenzuordnung",
+	ReadFiles("branchenzuordnung.cshtml"),
+	SqlReader()
+		.Access4(@"Input\data\AFA.mdb")
+		.CommandText("SELECT DISTINCT * FROM [Wirtschaftszweige] Order BY Id ASC")
+		.DataTable(),
+	Razor(),
+	WriteFiles(".html"));
+
+Pipelines.Add("branche",
+	ReadFiles("branche.cshtml"),
+	Execute(
+		@Enumerable.Range(0, 102).Select(x => @doc.Clone(new Dictionary<string, object>()
+		{ 
+		    { "Id", x }
+		}))),
+	SqlReader()
+		.Access4(@"Input\data\AFA.mdb")
+		.CommandText("SELECT DISTINCT * FROM [Vorbemerkungen] WHERE [Tabelle] = ?")
+		.AddParameter("?", @doc["Id"])
+		.DataTable(),
+	Razor(),
+	WriteFiles("branche_" + @doc["Id"] + ".html"));
+
+
+Pipelines.Add("html",
+	ReadFiles(@"static\*.cshtml"),
+	Razor(),
+	Meta("RelativeFilePath", @doc["RelativeFilePath"].ToString().Replace("static\\", "")),
+	WriteFiles(".html"));
