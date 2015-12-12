@@ -56,7 +56,7 @@ Pipelines.Add("branche",
 		}))),
 	SqlReader()
 		.Access4(@"Input\data\AFA.mdb")
-		.CommandText("SELECT DISTINCT * FROM [Vorbemerkungen] WHERE [Tabelle] = ?")
+		.CommandText("SELECT * FROM [Überschriften] WHERE [Tabelle] = ?")
 		.AddParameter("?", @doc["Id"])
 		.DataTable(),
 	Razor(),

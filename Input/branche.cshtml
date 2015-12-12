@@ -5,10 +5,16 @@
    
 @foreach (System.Data.DataRow row in dataTable.Rows)
 {
-    @if (row["Buchstabe"].ToString() == "n")
+    @switch (row["Lfd-Nr"].ToString().Split('.').Length)
     {
-        <h2>@row["Text"]</h2>
+        case 0:
+            <h2>@row["Lfd-Nr"] @row["Text"]</h2>
+            break;
+        case 1:
+            <h3>@row["Lfd-Nr"] @row["Text"]</h3>
+            break;
+        case 2:
+            <h4>@row["Lfd-Nr"] @row["Text"]</h4>
+            break;
     }
-
-    <p>@row["Text"]</p>
 }
