@@ -22,7 +22,7 @@ Pipelines.Add("ABC",
 		}))),
 	SqlReader()
 		.Access4(@"Input\data\AFA.mdb")
-		.CommandText("SELECT DISTINCT * FROM [Anlagegüter_Suchwörter] WHERE [Wort] LIKE ? ORDER BY [Wort]")
+		.CommandText("SELECT DISTINCT * FROM [ABC] WHERE [Text] LIKE ? ORDER BY [Text]")
 		.AddParameter("?", @doc["Character"] + "%")
 		.DataTable(),
 	Razor(),
@@ -33,7 +33,7 @@ Pipelines.Add("branchentabellen",
 	ReadFiles("branchentabellen.cshtml"),
 	SqlReader()
 		.Access4(@"Input\data\AFA.mdb")
-		.CommandText("SELECT DISTINCT * FROM [Tabellen] Order BY Id ASC")
+		.CommandText("SELECT DISTINCT * FROM [Tabellen] Order BY [Text] ASC")
 		.DataTable(),
 	Razor(),
 	WriteFiles(".html"));
@@ -42,7 +42,7 @@ Pipelines.Add("branchenzuordnung",
 	ReadFiles("branchenzuordnung.cshtml"),
 	SqlReader()
 		.Access4(@"Input\data\AFA.mdb")
-		.CommandText("SELECT DISTINCT * FROM [Wirtschaftszweige] Order BY Id ASC")
+		.CommandText("SELECT DISTINCT * FROM [Wirtschaftszweige] ORDER BY [Text] ASC")
 		.DataTable(),
 	Razor(),
 	WriteFiles(".html"));
@@ -61,6 +61,22 @@ Pipelines.Add("branche",
 		.DataTable(),
 	Razor(),
 	WriteFiles("branche_" + @doc["Id"] + ".html"));
+
+	
+Pipelines.Add("vorbemerkung",
+	ReadFiles("vorbemerkung.cshtml"),
+	Execute(
+		@Enumerable.Range(0, 102).Select(x => @doc.Clone(new Dictionary<string, object>()
+		{ 
+		    { "Id", x }
+		}))),
+	SqlReader()
+		.Access4(@"Input\data\AFA.mdb")
+		.CommandText("SELECT DISTINCT * FROM [Vorbemerkungen] WHERE [Tabelle] = ?")
+		.AddParameter("?", @doc["Id"])
+		.DataTable(),
+	Razor(),
+	WriteFiles("vorbemerkung_" + @doc["Id"] + ".html"));
 
 
 Pipelines.Add("html",

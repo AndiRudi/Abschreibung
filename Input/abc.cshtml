@@ -8,17 +8,19 @@
     <tbody>
         <tr class="top">
             <th width="55%">Anlagegut</th>
-            <th width="15%" class="right"><div align="center">Nutzungsdauer </div></th>
-            <th width="15%" class="right"><div align="center">Lin-AfA </div></th>
-            <th width="15%" class="right"><div align="center">Fundstelle</div></th>            
+            <th width="15%" class="right"><div align="center">Nutzungsdauer</div></th>
+            <th width="15%" class="right"><div align="center">Tabelle</div></th>
+            <th width="15%" class="right"><div align="center">Fundstelle</div></th>  
+        
         </tr>
         @foreach (System.Data.DataRow row in dataTable.Rows)
         {
             <tr>
-                <td>@row["Wort"]</td>
+                <td>@row["Text"]</td>
                 <td class="right"><div align="center">@row["Nutzungsdauer"]</div></td>
-                <td class="right"><div align="center">@row["LinAfA"]</div></td>
-                <td class="right"><div align="center">@row["LfdNr"]</div></td>
+                <td class="right"><div align="center">@row["Tabelle"]</div></td>
+                <td class="right"><div align="center">@row["LdfNr"]</div></td>
+               
             </tr>
         }
     </tbody>

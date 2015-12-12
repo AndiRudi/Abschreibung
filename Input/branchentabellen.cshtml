@@ -6,15 +6,56 @@
 <table id="prices">
     <tbody>
         <tr class="top">
-            <th width="80%">Branche</th>
+            <th width="75%">Branche</th>
             <th width="20%" class="right"><div align="center">Tabelle </div></th>
+            <th width="5%"></th>
         </tr>
         @foreach (System.Data.DataRow row in dataTable.Rows)
         {
             <tr>
                 <td><a href="@string.Format("branche_{0}.html", row["Id"])">@row["Text"]</a></td>
                 <td class="right"><div align="center">@row["Id"]</div></td>
+                <td><a href="#" data-target="#myModal" data-url="@string.Format("vorbemerkung_{0}.html", row["Id"])"><i class="fa fa-info-circle"></i></a></td>
             </tr>
         }
     </tbody>
 </table>
+
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Vorbemerkungen</h4>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Schließen</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+
+        $("#myModal").modal('hide');
+
+        $('a[data-target="#myModal"]').click(function (event) {
+            event.preventDefault();
+
+            var myModal = $('#myModal');
+            var url = $(this).data("url");
+            console.log(url);
+            modalBody = myModal.find('.modal-body');
+            modalBody.load(url, function (result) {
+                $('#myModal').modal('show');
+            });
+        });
+
+    });
+</script>
