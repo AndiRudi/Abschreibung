@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "";
+    System.Data.DataTable dataTable = Model["DataTable"] as System.Data.DataTable;
+}
+   
+@foreach (System.Data.DataRow row in dataTable.Rows)
+{
+    @if (row["Buchstabe"].ToString() == "n")
+    {
+        <h2>@row["Text"]</h2>
+    }
+
+    <p>@row["Text"]</p>
+}
