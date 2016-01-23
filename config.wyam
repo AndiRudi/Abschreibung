@@ -23,7 +23,7 @@ Pipelines.Add("ABC",
 		}))),
 	SqlReader()
 		.Access4(@"Input\data\AFA.mdb")
-		.CommandText("SELECT DISTINCT [ABC].[Text] AS [Text], [ABC].[Nutzungsdauer] AS [Nutzungsdauer], [ABC].[Tabelle] AS [Tabelle], [ABC].[LdfNr] AS [LdfNr], [Anlagegüter].[Anlagegut] AS [Anlagegut] FROM [ABC] INNER JOIN [Anlagegüter] ON [ABC].[Anlagegut] = [Anlagegüter].[Id] WHERE [ABC].[Text] LIKE ? ORDER BY [ABC].[Text]")
+		.CommandText("SELECT DISTINCT [ABC].[Text] AS [Text], [ABC].[Nutzungsdauer] AS [Nutzungsdauer], [ABC].[Tabelle] AS [Tabelle], [ABC].[LfdNr] AS [LfdNr], [Anlagegüter].[Anlagegut] AS [Anlagegut] FROM [ABC] INNER JOIN [Anlagegüter] ON [ABC].[Tabelle] = [Anlagegüter].[Tabelle] AND [ABC].[LfdNr] = [Anlagegüter].[Lfd-Nr] WHERE [ABC].[Text] LIKE ? ORDER BY [ABC].[Text]")
 		.AddParameter("?", @doc["Character"] + "%")
 		.DataTable(),
 	Razor(),
