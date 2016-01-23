@@ -10,10 +10,12 @@
     <title>AfA-Tabellen.de —&nbsp;Abschreibungstabellen</title>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+    <script src="scripts/augment.min.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/app.js"></script>
 </head>
 
-<body onLoad="document.searchform.n.focus();">
+<body>
     <div id="head">
         <div id="container">
             <div id="title">
@@ -61,24 +63,22 @@
                 <p></p>
             </div>
         </div>
-        <form method="get" name="searchform" action="search.php">
+        <form id="searchForm">
             <div class="menu">
                 <div id="listy" class="search">
                     <div id="searchtext">
                         Anlagegegenstand:
-                        <input id="s-nazwa" name="n" type="text"
-                               autocomplete="off">
+                        <input id="searchTxt" name="searchTxt" type="text" autocomplete="off">
                     </div>
-                    <input value="Suchen" type="submit">
+                    <button type="submit">Suchen</button>
                 </div>
             </div>
         </form>
+
     </div>
 
     <div id="content">
         
-<h2 class="direct">Alle Anlagengüter beginnend mit </h2>
-<div id="timespan" class="direct">Letzte Aktualisierung: <span class="date"><strong>12/12/2015</strong></span></div>
 <table id="prices">
     <tbody>
         <tr class="top">
@@ -89,2485 +89,4264 @@
         
         </tr>
             <tr>
-                <td>Vakuumaggregate</td>
+                <td>
+                    Vakuumaggregate
+
+                        <br/><small>
+                            (siehe Vakuumaggregate und Trockenpressen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">30</div></td>
                 <td class="right"><div align="center">3.2.2</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumanlagen</td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">79</div></td>
-                <td class="right"><div align="center">31</div></td>
-               
-            </tr>
-            <tr>
-                <td>Vakuumanlagen</td>
+                <td>
+                    Vakuumanlagen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">4.9</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumanlagen</td>
+                <td>
+                    Vakuumanlagen
+
+                        <br/><small>
+                            (siehe Kompressoren und Vakuumanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">93</div></td>
                 <td class="right"><div align="center">4</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumapparate</td>
+                <td>
+                    Vakuumanlagen
+
+                </td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">79</div></td>
+                <td class="right"><div align="center">31</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Vakuumapparate
+
+                        <br/><small>
+                            (siehe Druckluft-, Kompressoren mit Druckkessel, Vakuumapparat)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">44</div></td>
                 <td class="right"><div align="center">21.3</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumbedampfungsanlagen</td>
+                <td>
+                    Vakuumbedampfungsanlagen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">36</div></td>
                 <td class="right"><div align="center">2.3.29</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumbedampfungsanlagen</td>
+                <td>
+                    Vakuumbedampfungsanlagen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">42</div></td>
                 <td class="right"><div align="center">3.24</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumdampfeinrichtungen</td>
+                <td>
+                    Vakuumdampfeinrichtungen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">45</div></td>
                 <td class="right"><div align="center">3.1.5.8</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumdestillationsanlagen</td>
+                <td>
+                    Vakuumdestillationsanlagen
+
+                        <br/><small>
+                            (siehe Destillationsanlagen (Druck-, atmosph&#228;rische und Vakuumdestillation))
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">1.2</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumformmaschinen</td>
+                <td>
+                    Vakuumformmaschinen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">1.5.3</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumgie&#223;anlagen</td>
+                <td>
+                    Vakuumgie&#223;anlagen
+
+                        <br/><small>
+                            (siehe Andere Maschinen zur Verarbeitung von Reaktionsharzen (z.B. Epoxide, Faserharz-Spritzanlagen, Vakuumgie&#223;anlagen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">2.9</div></td>
                
             </tr>
             <tr>
-                <td>Vakuum-Knetanlagen</td>
+                <td>
+                    Vakuum-Knetanlagen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">2.5.4</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumkochmaschinen</td>
+                <td>
+                    Vakuumkochmaschinen
+
+                        <br/><small>
+                            (siehe Vakuum-Kochmaschinen (auch kontinuierliche))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">68</div></td>
                 <td class="right"><div align="center">2.13</div></td>
                
             </tr>
             <tr>
-                <td>Vakuum-Kolbenpumpen</td>
+                <td>
+                    Vakuum-Kolbenpumpen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">1.4.25</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumpfannen</td>
+                <td>
+                    Vakuumpfannen
+
+                        <br/><small>
+                            (siehe Vakuumpfannen (Kochkessel))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">8.27</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumpressen</td>
+                <td>
+                    Vakuumpressen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">32</div></td>
                 <td class="right"><div align="center">1.14</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumpumpen</td>
-                <td class="right"><div align="center">6</div></td>
-                <td class="right"><div align="center">81</div></td>
+                <td>
+                    Vakuumpumpen
+
+                        <br/><small>
+                            (siehe Schraubenverdichter, Vakuumpumpen, K&#252;hlanlagen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">5</div></td>
+                <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">4.8</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumpumpen</td>
+                <td>
+                    Vakuumpumpen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">1.6.27</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumpumpen</td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center">46</div></td>
+                <td>
+                    Vakuumpumpen
+
+                </td>
+                <td class="right"><div align="center">6</div></td>
+                <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">4.8</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumtankwagen</td>
+                <td>
+                    Vakuumtankwagen
+
+                        <br/><small>
+                            (siehe Vakuum- und Pumpentankwagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2.6.27</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumtrockner</td>
+                <td>
+                    Vakuumtrockner
+
+                        <br/><small>
+                            (siehe Dreietagen- und Vakuumtrockner)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">78</div></td>
                 <td class="right"><div align="center">1.1.1</div></td>
                
             </tr>
             <tr>
-                <td>Vakuumtrommelfilter</td>
+                <td>
+                    Vakuumtrommelfilter
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">2.4</div></td>
                
             </tr>
             <tr>
-                <td>Ventilatoren</td>
-                <td class="right"><div align="center">14</div></td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">3.1.8</div></td>
-               
-            </tr>
-            <tr>
-                <td>Ventilatoren</td>
+                <td>
+                    Ventilatoren
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">2.1.17</div></td>
                
             </tr>
             <tr>
-                <td>Ventilatoren</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">40</div></td>
-                <td class="right"><div align="center">1.5.7</div></td>
+                <td>
+                    Ventilatoren
+
+                        <br/><small>
+                            (siehe Hei&#223;luft-, K&#228;lteanlagen, Kompressoren, Ventilatoren usw.)
+                        </small>
+                </td>
+                <td class="right"><div align="center">14</div></td>
+                <td class="right"><div align="center">0</div></td>
+                <td class="right"><div align="center">3.1.8</div></td>
                
             </tr>
             <tr>
-                <td>Ventilatoren (bei Rauchgasen)</td>
+                <td>
+                    Ventilatoren (bei Rauchgasen)
+
+                </td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">30</div></td>
                 <td class="right"><div align="center">4.5</div></td>
                
             </tr>
             <tr>
-                <td>Ventilatoren (bewegl.)</td>
+                <td>
+                    Ventilatoren (bewegl.)
+
+                        <br/><small>
+                            (siehe beweglich)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">39</div></td>
                 <td class="right"><div align="center">13.2</div></td>
                
             </tr>
             <tr>
-                <td>Ventilatoren (ortsfest)</td>
+                <td>
+                    Ventilatoren (ortsfest)
+
+                        <br/><small>
+                            (siehe ortsfest)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">39</div></td>
                 <td class="right"><div align="center">13.1</div></td>
                
             </tr>
             <tr>
-                <td>Ventilatoren (unter chem. u. therm. Einfl&#252;ssen)</td>
+                <td>
+                    Ventilatoren (unter chem. u. therm. Einfl&#252;ssen)
+
+                        <br/><small>
+                            (siehe unter chemischen und thermischen Einfl&#252;ssen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">1.5.7.1</div></td>
                
             </tr>
             <tr>
-                <td>Ventilatoren, Darr-</td>
+                <td>
+                    Ventilatoren, Darr-
+
+                        <br/><small>
+                            (siehe Darren (Darrumh&#252;llungen, Darrwender, Darrhorden, Darrventilatoren, Darrheizungsanlagen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">12.11</div></td>
                
             </tr>
             <tr>
-                <td>Ventilatoren, Gruben-</td>
+                <td>
+                    Ventilatoren, Gruben-
+
+                        <br/><small>
+                            (siehe Grubenventilatoren)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">1.12.1</div></td>
                
             </tr>
             <tr>
-                <td>Ventilatoren, Keller-</td>
+                <td>
+                    Ventilatoren, Keller-
+
+                        <br/><small>
+                            (siehe Entl&#252;ftungsanlagen (Kellerventilatoren))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">67</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Ventilbodenleger</td>
+                <td>
+                    Ventilbodenleger
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">51</div></td>
                 <td class="right"><div align="center">111</div></td>
                
             </tr>
             <tr>
-                <td>Verarbeitungsanlagen, Baustoff-</td>
+                <td>
+                    Verarbeitungsanlagen, Baustoff-
+
+                        <br/><small>
+                            (siehe Baustoff&#246;rderanlagen und Baustoffverarbeitungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">1.18.14</div></td>
                
             </tr>
             <tr>
-                <td>Verarbeitungseinheiten</td>
+                <td>
+                    Verarbeitungseinheiten
+
+                        <br/><small>
+                            (siehe Fotosetzverbundsysteme (Erfassungs-, Verarbeitungs- und Ausgabeeinheiten))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">1.3.3</div></td>
                
             </tr>
             <tr>
-                <td>Verarbeitungsger&#228;te, Flexklischee-</td>
+                <td>
+                    Verarbeitungsger&#228;te, Flexklischee-
+
+                        <br/><small>
+                            (siehe Gummi- und Flexklischeeverarbeitungsger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">4.1.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Verarbeitungsger&#228;te, Gummi-</td>
+                <td>
+                    Verarbeitungsger&#228;te, Gummi-
+
+                        <br/><small>
+                            (siehe Gummi- und Flexklischeeverarbeitungsger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">4.1.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Verbindemaschinen, Ecken-</td>
+                <td>
+                    Verbindemaschinen, Ecken-
+
+                        <br/><small>
+                            (siehe Eckenabsto&#223;- und -verbindemaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">51</div></td>
                 <td class="right"><div align="center">28</div></td>
                
             </tr>
             <tr>
-                <td>Verbindungsanlagen, thermisch</td>
+                <td>
+                    Verbindungsanlagen, thermisch
+
+                        <br/><small>
+                            (siehe Thermische Verbindungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">4.12</div></td>
                
             </tr>
             <tr>
-                <td>Verbindungsgleise (fest verlegt)</td>
+                <td>
+                    Verbindungsgleise (fest verlegt)
+
+                        <br/><small>
+                            (siehe Verbindungsgleise, Weichen, Aufz&#252;ge u. Bremsbahnen (fest verlegt))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">19</div></td>
                 <td class="right"><div align="center">5.3</div></td>
                
             </tr>
             <tr>
-                <td>Verbindungsmaschinen, Papierecken-</td>
+                <td>
+                    Verbindungsmaschinen, Papierecken-
+
+                        <br/><small>
+                            (siehe Papiereckenverbindungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">45</div></td>
                 <td class="right"><div align="center">2.17</div></td>
                
             </tr>
             <tr>
-                <td>Verbrennungsanlagen, Ablaugen-</td>
+                <td>
+                    Verbrennungsanlagen, Ablaugen-
+
+                        <br/><small>
+                            (siehe Ablaugenverbrennungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.7.3</div></td>
                
             </tr>
             <tr>
-                <td>Verbrennungsanlagen, Stroh-</td>
+                <td>
+                    Verbrennungsanlagen, Stroh-
+
+                        <br/><small>
+                            (siehe Strohverbrennungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2.6.26</div></td>
                
             </tr>
             <tr>
-                <td>Verbrennungskessel</td>
+                <td>
+                    Verbrennungskessel
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.2.5</div></td>
                
             </tr>
             <tr>
-                <td>Verbundglas (Maschinen z. Herst. v.)</td>
+                <td>
+                    Verbundglas (Maschinen z. Herst. v.)
+
+                        <br/><small>
+                            (siehe Maschinen zur Herstellung von Verbundglas)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">33</div></td>
                 <td class="right"><div align="center">2.14.5</div></td>
                
             </tr>
             <tr>
-                <td>Verbundlokomotiven</td>
+                <td>
+                    Verbundlokomotiven
+
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">1.7.4</div></td>
                
             </tr>
             <tr>
-                <td>Verbundsysteme, Fotosetz-</td>
+                <td>
+                    Verbundsysteme, Fotosetz-
+
+                        <br/><small>
+                            (siehe Fotosetzverbundsysteme (Erfassungs-, Verarbeitungs- und Ausgabeeinheiten))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">1.3.3</div></td>
                
             </tr>
             <tr>
-                <td>Verchromungsanlagen</td>
+                <td>
+                    Verchromungsanlagen
+
+                        <br/><small>
+                            (siehe Anlagen zum Vernickeln, Besamten, Verchromen, Eloxieren)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">1.4.9</div></td>
                
             </tr>
             <tr>
-                <td>Verchromungsanlagen</td>
+                <td>
+                    Verchromungsanlagen
+
+                        <br/><small>
+                            (siehe Ver- und Entchromungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">4.3.13</div></td>
                
             </tr>
             <tr>
-                <td>Verchromungsanlagen</td>
+                <td>
+                    Verchromungsanlagen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">4.1.1.11</div></td>
                
             </tr>
             <tr>
-                <td>Verdampfer</td>
+                <td>
+                    Verdampfer
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">10.7</div></td>
                
             </tr>
             <tr>
-                <td>Verdampfer</td>
+                <td>
+                    Verdampfer
+
+                </td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">1.4.26</div></td>
                
             </tr>
             <tr>
-                <td>Verdampfer, Berieselungs-</td>
+                <td>
+                    Verdampfer, Berieselungs-
+
+                        <br/><small>
+                            (siehe Berieselungs-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">7.6.3</div></td>
                
             </tr>
             <tr>
-                <td>Verdampfer, B&#252;ndelrohr-</td>
+                <td>
+                    Verdampfer, B&#252;ndelrohr-
+
+                        <br/><small>
+                            (siehe B&#252;ndelrohr-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">7.6.4</div></td>
                
             </tr>
             <tr>
-                <td>Verdampfer, Chlor-</td>
+                <td>
+                    Verdampfer, Chlor-
+
+                        <br/><small>
+                            (siehe Chlorverdampfer)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.5.5.3</div></td>
                
             </tr>
             <tr>
-                <td>Verdampfer, Gegenstrom-</td>
+                <td>
+                    Verdampfer, Gegenstrom-
+
+                        <br/><small>
+                            (siehe Gegenstrom-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">7.6.2</div></td>
                
             </tr>
             <tr>
-                <td>Verdampfer, Lamellen-</td>
+                <td>
+                    Verdampfer, Lamellen-
+
+                        <br/><small>
+                            (siehe Lamellen-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">7.6.5</div></td>
                
             </tr>
             <tr>
-                <td>Verdampfer, Sole-</td>
+                <td>
+                    Verdampfer, Sole-
+
+                        <br/><small>
+                            (siehe Soleverdampfer)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">7.5</div></td>
                
             </tr>
             <tr>
-                <td>Verdampfer, Tauch-</td>
+                <td>
+                    Verdampfer, Tauch-
+
+                        <br/><small>
+                            (siehe Tauch-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">7.6.1</div></td>
                
             </tr>
             <tr>
-                <td>Verdichter</td>
+                <td>
+                    Verdichter
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">2.1.18</div></td>
                
             </tr>
             <tr>
-                <td>Verdichter, Abfall- (auf Deponien)</td>
+                <td>
+                    Verdichter, Abfall- (auf Deponien)
+
+                        <br/><small>
+                            (siehe Abfallverdichter (auf Deponien))
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">96</div></td>
                 <td class="right"><div align="center">1.7</div></td>
                
             </tr>
             <tr>
-                <td>Verdichter, Br&#252;den-</td>
+                <td>
+                    Verdichter, Br&#252;den-
+
+                        <br/><small>
+                            (siehe Br&#252;denverdichter, Au&#223;en- und Innenkocher, Pfannendunstkondensatoren)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">2.2</div></td>
                
             </tr>
             <tr>
-                <td>Verdichter, Kolben-</td>
+                <td>
+                    Verdichter, Kolben-
+
+                        <br/><small>
+                            (siehe Kolbenverdichter und Luftkessel)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">11.1.1</div></td>
                
             </tr>
             <tr>
-                <td>Verdichter, Schrauben-</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">73</div></td>
-                <td class="right"><div align="center">11.1.2</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verdichter, Schrauben-</td>
+                <td>
+                    Verdichter, Schrauben-
+
+                        <br/><small>
+                            (siehe Schraubenverdichter, Vakuumpumpen, K&#252;hlanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">4.8</div></td>
                
             </tr>
             <tr>
-                <td>Verdichter, Turbo-</td>
+                <td>
+                    Verdichter, Schrauben-
+
+                        <br/><small>
+                            (siehe Schrauben- und Turboverdichter)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">11.1.2</div></td>
                
             </tr>
             <tr>
-                <td>Verdichtung, Br&#252;den- (therm.)</td>
+                <td>
+                    Verdichter, Turbo-
+
+                        <br/><small>
+                            (siehe Schrauben- und Turboverdichter)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">73</div></td>
+                <td class="right"><div align="center">11.1.2</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verdichtung, Br&#252;den- (therm.)
+
+                        <br/><small>
+                            (siehe thermische Br&#252;denverdichtung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">14.1.1</div></td>
                
             </tr>
             <tr>
-                <td>Verdichtung, B&#252;den- (mechan.)</td>
+                <td>
+                    Verdichtung, B&#252;den- (mechan.)
+
+                        <br/><small>
+                            (siehe mechanische Br&#252;denverdichtung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">14.1.2</div></td>
                
             </tr>
             <tr>
-                <td>Verdrahtmaschinen (F&#252;llstra&#223;e)</td>
+                <td>
+                    Verdrahtmaschinen (F&#252;llstra&#223;e)
+
+                        <br/><small>
+                            (siehe Maschinen der F&#252;llstra&#223;e (Reinigen, F&#252;llen, Verschlie&#223;en, Pasteurisieren, Verdrahten, Entleeren, Verpacken, Ausstatten, Etikettieren) einschl. Erhitzer und R&amp;uuml;ckk&amp;uuml;hler, Impr&#228;gnierpumpen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">67</div></td>
                 <td class="right"><div align="center">2.5</div></td>
                
             </tr>
             <tr>
-                <td>Verdrahtungsmaschinen, Sektflaschen-</td>
+                <td>
+                    Verdrahtungsmaschinen, Sektflaschen-
+
+                        <br/><small>
+                            (siehe Sektflaschenverdrahtungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">74</div></td>
                 <td class="right"><div align="center">3.3.4</div></td>
                
             </tr>
             <tr>
-                <td>Verdunklung</td>
+                <td>
+                    Verdunklung
+
+                        <br/><small>
+                            (siehe Energieschirme, Schattierung, Verdunklung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">15.4.1</div></td>
                
             </tr>
             <tr>
-                <td>Verdunstungskondensatoren</td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">73</div></td>
-                <td class="right"><div align="center">10.4</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verdunstungskondensatoren</td>
+                <td>
+                    Verdunstungskondensatoren
+
+                        <br/><small>
+                            (siehe Verdunstungs-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">7.2.3</div></td>
                
             </tr>
             <tr>
-                <td>Verd&#252;sungsmaschinen</td>
+                <td>
+                    Verdunstungskondensatoren
+
+                        <br/><small>
+                            (siehe Verdunstungs- und Luftkondensatoren)
+                        </small>
+                </td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">73</div></td>
+                <td class="right"><div align="center">10.4</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verd&#252;sungsmaschinen
+
+                        <br/><small>
+                            (siehe Verd&#252;sungsmaschinen (Schaumstoffherstellung))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">17</div></td>
                 <td class="right"><div align="center">3.8</div></td>
                
             </tr>
             <tr>
-                <td>Veredelungsanlagen, Benzin-</td>
+                <td>
+                    Veredelungsanlagen, Benzin-
+
+                        <br/><small>
+                            (siehe Benzinveredelungsanlagen (Reformierung, z.B. Platformer; Polymerisation, Isomerisation Alkylierung, Extraktion))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">1.5</div></td>
                
             </tr>
             <tr>
-                <td>Veredelungsger&#228;te</td>
+                <td>
+                    Veredelungsger&#228;te
+
+                        <br/><small>
+                            (siehe Lackier-, Beflockungsanlagen u.a. Veredelungsger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">3.10</div></td>
                
             </tr>
             <tr>
-                <td>Veredlungsmaschinen (elektron. gest.)</td>
+                <td>
+                    Veredlungsmaschinen (elektron. gest.)
+
+                        <br/><small>
+                            (siehe Beschichtungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">59</div></td>
                 <td class="right"><div align="center">3.5</div></td>
                
             </tr>
             <tr>
-                <td>Veredlungsmaschinen, Nass-</td>
+                <td>
+                    Veredlungsmaschinen, Nass-
+
+                        <br/><small>
+                            (siehe Beiztrockenapparate (f. Schweife u. St&#252;cke))
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">59</div></td>
                 <td class="right"><div align="center">2</div></td>
                
             </tr>
             <tr>
-                <td>Veredlungsmaschinen, Trocken- (einfache)</td>
+                <td>
+                    Veredlungsmaschinen, Trocken- (einfache)
+
+                        <br/><small>
+                            (siehe Rebanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">59</div></td>
                 <td class="right"><div align="center">1.1</div></td>
                
             </tr>
             <tr>
-                <td>Vereinzelungsanlagen</td>
+                <td>
+                    Vereinzelungsanlagen
+
+                        <br/><small>
+                            (siehe Rundholzsortieranlagen und Vereinzelungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">1.17</div></td>
                
             </tr>
             <tr>
-                <td>Verfl&#252;ssiger</td>
+                <td>
+                    Verfl&#252;ssiger
+
+                        <br/><small>
+                            (siehe Luftgek&#252;hlter Verfl&#252;ssiger)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">1.13.2</div></td>
                
             </tr>
             <tr>
-                <td>Verf&#252;llschnecken</td>
+                <td>
+                    Verf&#252;llschnecken
+
+                        <br/><small>
+                            (siehe Verf&#252;llschnecke)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">6.10</div></td>
                
             </tr>
             <tr>
-                <td>Vergoldungsanlagen</td>
+                <td>
+                    Vergoldungsanlagen
+
+                        <br/><small>
+                            (siehe Galvanotechnische Anlagen (z.B. Galvanobadbeh&#228;lter, Galvanogleichrichter, Motor-Dynamoaggregate, S&#228;uren- und Laugenneutralisierungsanlagen, Trockenschleudern, Trocken&#246;fen, Vergoldungsanlagen, Vernickelungsanlagen, Beizanlagen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">4.3</div></td>
                
             </tr>
             <tr>
-                <td>Vergr&#246;&#223;erungsger&#228;te</td>
+                <td>
+                    Vergr&#246;&#223;erungsger&#228;te
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">2.1.7</div></td>
                
             </tr>
             <tr>
-                <td>Verg&#252;tungsanlagen</td>
+                <td>
+                    Verg&#252;tungsanlagen
+
+                        <br/><small>
+                            (siehe Verg&#252;tungs- und Verspiegelungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">2.10</div></td>
                
             </tr>
             <tr>
-                <td>Verkaufsbuden</td>
+                <td>
+                    Verkaufsbuden
+
+                        <br/><small>
+                            (siehe Verkaufsbuden, Verkaufsst&#228;nde)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.17</div></td>
                
             </tr>
             <tr>
-                <td>Verkaufsst&#228;nde</td>
+                <td>
+                    Verkaufsst&#228;nde
+
+                        <br/><small>
+                            (siehe Verkaufsbuden, Verkaufsst&#228;nde)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.17</div></td>
                
             </tr>
             <tr>
-                <td>Verkaufstheken</td>
+                <td>
+                    Verkaufstheken
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.16</div></td>
                
             </tr>
             <tr>
-                <td>Verklebeger&#228;te</td>
+                <td>
+                    Verklebeger&#228;te
+
+                        <br/><small>
+                            (siehe Montagemaschinen, sonstige (z.B. Magnetisierger&#228;te, Verklebeger&#228;te))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">3.4</div></td>
                
             </tr>
             <tr>
-                <td>Verkupferungsanlagen</td>
+                <td>
+                    Verkupferungsanlagen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">4.3.14</div></td>
                
             </tr>
             <tr>
-                <td>Verladeanlagen</td>
+                <td>
+                    Verladeanlagen
+
+                        <br/><small>
+                            (siehe Brech-, Sieb-, Verladeanlagen und Waagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">2.19.1</div></td>
                
             </tr>
             <tr>
-                <td>Verladeanlagen (station&#228;r)</td>
+                <td>
+                    Verladeanlagen (station&#228;r)
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">13</div></td>
                 <td class="right"><div align="center">3.2</div></td>
                
             </tr>
             <tr>
-                <td>Verladeeinrichtungen</td>
+                <td>
+                    Verladeeinrichtungen
+
+                        <br/><small>
+                            (siehe Rohrleitungen, Pumpenst&#228;nde, &#220;bernahme- und Verladeeinrichtungen, Feuerl&#246;schsysteme)
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">84</div></td>
                 <td class="right"><div align="center">1.6.2</div></td>
                
             </tr>
             <tr>
-                <td>Verladeeinrichtungen (f&#252;r Schiene, Stra&#223;e u. Wasser)</td>
+                <td>
+                    Verladeeinrichtungen (f&#252;r Schiene, Stra&#223;e u. Wasser)
+
+                        <br/><small>
+                            (siehe Rohrleitungen bis zum Tankfeld einschl. der Pumpen und Verladeeinrichtungen f&#252;r Schiene, Stra&#223;e und Wasser; Feuerl&#246;schsysteme, Blow-down-Anlagen, Mischanlagen, R&#252;cklauftanks)
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">2.1</div></td>
                
             </tr>
             <tr>
-                <td>Verladeeinrichtungen (mech.)</td>
+                <td>
+                    Verladeeinrichtungen (mech.)
+
+                        <br/><small>
+                            (siehe Mech. Verladeeinrichtungen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">11</div></td>
                 <td class="right"><div align="center">17</div></td>
                
             </tr>
             <tr>
-                <td>Verladeeinrichtungen f&#252;r Roh&#246;l</td>
+                <td>
+                    Verladeeinrichtungen f&#252;r Roh&#246;l
+
+                        <br/><small>
+                            (siehe Transport- und Verladeeinrichtungen f&#252;r Roh&#246;l)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">2.4.1</div></td>
                
             </tr>
             <tr>
-                <td>Verladeeinrichtungen, Zuckerr&#252;ben-</td>
+                <td>
+                    Verladeeinrichtungen, Zuckerr&#252;ben-
+
+                        <br/><small>
+                            (siehe Zuckerr&#252;benverladeeinrichtungen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.7.2.7</div></td>
                
             </tr>
             <tr>
-                <td>Verladeger&#228;te (mot.)</td>
+                <td>
+                    Verladeger&#228;te (mot.)
+
+                        <br/><small>
+                            (siehe Motor, Abtrag- und Stapelger&#228;te, Verladeger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">23</div></td>
                 <td class="right"><div align="center">3.2</div></td>
                
             </tr>
             <tr>
-                <td>Verladekr&#228;ne</td>
+                <td>
+                    Verladekr&#228;ne
+
+                        <br/><small>
+                            (siehe Verladekr&#228;ne auf Schienen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">20</div></td>
                 <td class="right"><div align="center">1.17</div></td>
                
             </tr>
             <tr>
-                <td>Verladesilos, Mischgut-</td>
+                <td>
+                    Verladesilos, Mischgut-
+
+                        <br/><small>
+                            (siehe Mischgutverladesilos)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">5.3</div></td>
                
             </tr>
             <tr>
-                <td>Verladung, Nuss-</td>
+                <td>
+                    Verladung, Nuss-
+
+                        <br/><small>
+                            (siehe Nu&#223;klassierung und -verladung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">2.10</div></td>
                
             </tr>
             <tr>
-                <td>Verlage</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">52</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Verlegemaschinen (f. Verbundsteinpflaster)</td>
+                <td>
+                    Verlegemaschinen (f. Verbundsteinpflaster)
+
+                        <br/><small>
+                            (siehe Verlegemaschinen f&#252;r Verbundsteinpflaster)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">5.7</div></td>
                
             </tr>
             <tr>
-                <td>Verlegemaschinen, Schienen- (sonstige)</td>
+                <td>
+                    Verlegemaschinen, Schienen- (sonstige)
+
+                        <br/><small>
+                            (siehe Sonstige Schienenbearbeitungs- und -verlegemaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">5.29</div></td>
                
             </tr>
             <tr>
-                <td>Verlegemaschinen, Schwellen-</td>
+                <td>
+                    Verlegemaschinen, Schwellen-
+
+                        <br/><small>
+                            (siehe Schwellenbearbeitungs- und -verlegemaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">5.30</div></td>
                
             </tr>
             <tr>
-                <td>Verleimanlagen, Holz-</td>
+                <td>
+                    Verleimanlagen, Holz-
+
+                        <br/><small>
+                            (siehe Holzverleimanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">2.10</div></td>
                
             </tr>
             <tr>
-                <td>Verleimmaschinen, Kanten-</td>
+                <td>
+                    Verleimmaschinen, Kanten-
+
+                        <br/><small>
+                            (siehe Kantenverleihmaschinen und Nachbearbeitungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">6.5</div></td>
                
             </tr>
             <tr>
-                <td>Verleimpressen</td>
+                <td>
+                    Verleimpressen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">3.1.15</div></td>
                
             </tr>
             <tr>
-                <td>Verleseb&#228;nder</td>
+                <td>
+                    Verleseb&#228;nder
+
+                        <br/><small>
+                            (siehe Obstsortiermaschinen und Verleseb&#228;nder)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">12.5</div></td>
                
             </tr>
             <tr>
-                <td>Verleseb&#228;nder</td>
+                <td>
+                    Verleseb&#228;nder
+
+                        <br/><small>
+                            (siehe Transport- und Verleseb&#228;nder)
+                        </small>
+                </td>
+                <td class="right"><div align="center">7</div></td>
+                <td class="right"><div align="center">66</div></td>
+                <td class="right"><div align="center">52</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verleseb&#228;nder
+
+                        <br/><small>
+                            (siehe Kartoffellager- und Kartoffelaufbereitungsmaschinen (Abkippanlagen, F&#246;rderb&#228;nder, Boxenstapler, Teleskopbef&#252;llger&#228;te, Sortiermaschinen, Aufnahmeger&#228;te, Enterder, Verleseb&#228;nder))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.8.2</div></td>
                
             </tr>
             <tr>
-                <td>Verleseb&#228;nder</td>
+                <td>
+                    Verleseb&#228;nder
+
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.7.3.11</div></td>
                
             </tr>
             <tr>
-                <td>Verleseb&#228;nder</td>
-                <td class="right"><div align="center">7</div></td>
-                <td class="right"><div align="center">66</div></td>
-                <td class="right"><div align="center">52</div></td>
-               
-            </tr>
-            <tr>
-                <td>Vermahlungsanlagen, Abfall-</td>
+                <td>
+                    Vermahlungsanlagen, Abfall-
+
+                        <br/><small>
+                            (siehe Abfallvermahlungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">64</div></td>
                 <td class="right"><div align="center">3.1</div></td>
                
             </tr>
             <tr>
-                <td>Vermahlungssysteme (produktspezifisch)</td>
+                <td>
+                    Vermahlungssysteme (produktspezifisch)
+
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">64</div></td>
                 <td class="right"><div align="center">1</div></td>
                
             </tr>
             <tr>
-                <td>Vermessungseinrichtungen, Furnier- (elektron.)</td>
+                <td>
+                    Vermessungseinrichtungen, Furnier- (elektron.)
+
+                        <br/><small>
+                            (siehe Furniervermessungseinrichtungen (elektron.))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">3.14</div></td>
                
             </tr>
             <tr>
-                <td>Vermessungsger&#228;te</td>
+                <td>
+                    Vermessungsger&#228;te
+
+                        <br/><small>
+                            (siehe Transformatoren und elektrische Anlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">31</div></td>
                 <td class="right"><div align="center">44</div></td>
                
             </tr>
             <tr>
-                <td>Vermessungsger&#228;te (elektron.)</td>
+                <td>
+                    Vermessungsger&#228;te (elektron.)
+
+                        <br/><small>
+                            (siehe Leichtmetallger&#252;ste einschl. Rahmentafeln)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">8.8.2</div></td>
                
             </tr>
             <tr>
-                <td>Vermessungsger&#228;te (mechan.)</td>
+                <td>
+                    Vermessungsger&#228;te (mechan.)
+
+                        <br/><small>
+                            (siehe Ger&#252;ste und Fahrger&#252;ste aus Stahl einschl. Rahmentafeln aus Stahl)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">8.8.1</div></td>
                
             </tr>
             <tr>
-                <td>Vermessungsger&#228;te, elektronisch</td>
+                <td>
+                    Vermessungsger&#228;te, elektronisch
+
+                        <br/><small>
+                            (siehe elektronisch)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">3.3.5.1</div></td>
                
             </tr>
             <tr>
-                <td>Vermessungsger&#228;te, mechanisch</td>
+                <td>
+                    Vermessungsger&#228;te, mechanisch
+
+                        <br/><small>
+                            (siehe mechanisch)
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">3.3.5.2</div></td>
                
             </tr>
             <tr>
-                <td>Vermittlungseinrichtungen</td>
+                <td>
+                    Vermittlungseinrichtungen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">89</div></td>
                 <td class="right"><div align="center">2.2</div></td>
                
             </tr>
             <tr>
-                <td>Verm&#246;rtelungsger&#228;te, Boden-</td>
+                <td>
+                    Verm&#246;rtelungsger&#228;te, Boden-
+
+                        <br/><small>
+                            (siehe Bodenverm&#246;rtelungsger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">5.21</div></td>
                
             </tr>
             <tr>
-                <td>Vermuffungsanlagen</td>
+                <td>
+                    Vermuffungsanlagen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">29</div></td>
                 <td class="right"><div align="center">6</div></td>
                
             </tr>
             <tr>
-                <td>Vernickelanlagen</td>
+                <td>
+                    Vernickelanlagen
+
+                        <br/><small>
+                            (siehe Anlagen zum Vernickeln, Besamten, Verchromen, Eloxieren)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">1.4.9</div></td>
                
             </tr>
             <tr>
-                <td>Vernickelungsanlagen</td>
+                <td>
+                    Vernickelungsanlagen
+
+                        <br/><small>
+                            (siehe Galvanotechnische Anlagen (z.B. Galvanobadbeh&#228;lter, Galvanogleichrichter, Motor-Dynamoaggregate, S&#228;uren- und Laugenneutralisierungsanlagen, Trockenschleudern, Trocken&#246;fen, Vergoldungsanlagen, Vernickelungsanlagen, Beizanlagen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">4.3</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsanlagen</td>
+                <td>
+                    Verpackungsanlagen
+
+                        <br/><small>
+                            (siehe Aus- und Verpackungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">3.3.14</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsanlagen</td>
+                <td>
+                    Verpackungsanlagen
+
+                        <br/><small>
+                            (siehe Aus- und Verpackungsanlagen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">6</div></td>
+                <td class="right"><div align="center">74</div></td>
+                <td class="right"><div align="center">3.7</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verpackungsanlagen
+
+                        <br/><small>
+                            (siehe Verpackungsanlagen und Verpackungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">3.4.4</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsanlagen</td>
-                <td class="right"><div align="center">6</div></td>
-                <td class="right"><div align="center">74</div></td>
-                <td class="right"><div align="center">3.7</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verpackungsanlagen, Karton-</td>
+                <td>
+                    Verpackungsanlagen, Karton-
+
+                        <br/><small>
+                            (siehe Kartonverpackungsanlagen (z.B. Kartonfaltmaschinen und Kartonverschlie&#223;maschinen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">8.18</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsautomaten</td>
+                <td>
+                    Verpackungsautomaten
+
+                        <br/><small>
+                            (siehe -automaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">1.5.22.1</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsautomaten</td>
-                <td class="right"><div align="center">6</div></td>
-                <td class="right"><div align="center">44</div></td>
-                <td class="right"><div align="center">54.1</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verpackungsautomaten</td>
+                <td>
+                    Verpackungsautomaten
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">65</div></td>
                 <td class="right"><div align="center">37.1</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsautomaten, Folien-</td>
+                <td>
+                    Verpackungsautomaten
+
+                        <br/><small>
+                            (siehe -automaten)
+                        </small>
+                </td>
+                <td class="right"><div align="center">6</div></td>
+                <td class="right"><div align="center">44</div></td>
+                <td class="right"><div align="center">54.1</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verpackungsautomaten, Folien-
+
+                        <br/><small>
+                            (siehe Folienverpackungsautomaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">8.2.3</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsindustrie (a. Papier u. Pappe)</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">50</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Verpackungsmaschinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">52</div></td>
-                <td class="right"><div align="center">6.79</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verpackungsmaschinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">79</div></td>
-                <td class="right"><div align="center">32</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verpackungsmaschinen</td>
-                <td class="right"><div align="center">6</div></td>
-                <td class="right"><div align="center">40</div></td>
-                <td class="right"><div align="center">1.5.22</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verpackungsmaschinen</td>
-                <td class="right"><div align="center">13</div></td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">5.23</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verpackungsmaschinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">9</div></td>
-                <td class="right"><div align="center">5.8</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verpackungsmaschinen</td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">50</div></td>
-                <td class="right"><div align="center">2.6.4</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verpackungsmaschinen</td>
+                <td>
+                    Verpackungsmaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">9.6</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen</td>
-                <td class="right"><div align="center">7</div></td>
-                <td class="right"><div align="center">71</div></td>
-                <td class="right"><div align="center">85</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verpackungsmaschinen</td>
+                <td>
+                    Verpackungsmaschinen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">3.18</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen</td>
+                <td>
+                    Verpackungsmaschinen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">65</div></td>
                 <td class="right"><div align="center">37.2</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen (Checkwiegler)</td>
+                <td>
+                    Verpackungsmaschinen
+
+                        <br/><small>
+                            (siehe Zwickmaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">7</div></td>
+                <td class="right"><div align="center">71</div></td>
+                <td class="right"><div align="center">85</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verpackungsmaschinen
+
+                        <br/><small>
+                            (siehe Verpackungsmaschinen, Auszeichnungsger&#228;te u.&#228;.)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">9</div></td>
+                <td class="right"><div align="center">5.8</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verpackungsmaschinen
+
+                        <br/><small>
+                            (siehe Verpackungsmaschinen aller Art)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">52</div></td>
+                <td class="right"><div align="center">6.79</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verpackungsmaschinen
+
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">79</div></td>
+                <td class="right"><div align="center">32</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verpackungsmaschinen
+
+                </td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">50</div></td>
+                <td class="right"><div align="center">2.6.4</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verpackungsmaschinen
+
+                        <br/><small>
+                            (siehe Verpackungsmaschinen, Folienschwei&#223;ger&#228;te)
+                        </small>
+                </td>
+                <td class="right"><div align="center">13</div></td>
+                <td class="right"><div align="center">0</div></td>
+                <td class="right"><div align="center">5.23</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verpackungsmaschinen (Checkwiegler)
+
+                        <br/><small>
+                            (siehe Checkwiegler)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">85.1</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen (Codiereinrichtungen)</td>
+                <td>
+                    Verpackungsmaschinen (Codiereinrichtungen)
+
+                        <br/><small>
+                            (siehe Codiereinrichtungen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">85.2</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen (Einlegeautomaten)</td>
+                <td>
+                    Verpackungsmaschinen (Einlegeautomaten)
+
+                        <br/><small>
+                            (siehe Einlegeautomaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">85.3</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen (elektron.)</td>
+                <td>
+                    Verpackungsmaschinen (elektron.)
+
+                        <br/><small>
+                            (siehe elektronische)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">44</div></td>
                 <td class="right"><div align="center">54.2</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen (f. Baumschulen)</td>
+                <td>
+                    Verpackungsmaschinen (f. Baumschulen)
+
+                        <br/><small>
+                            (siehe B&#252;ndel- und Verpackungsmaschinen f&#252;r Baumschulen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">12.6</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen (F&#246;rderb&#228;nder, Gummi, Kunststoff)</td>
+                <td>
+                    Verpackungsmaschinen (F&#246;rderb&#228;nder, Gummi, Kunststoff)
+
+                        <br/><small>
+                            (siehe F&#246;rderb&#228;nder (Gummi, Kunststoff))
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">85.4</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen (Formats&#228;tze)</td>
+                <td>
+                    Verpackungsmaschinen (Formats&#228;tze)
+
+                        <br/><small>
+                            (siehe Formats&#228;tze)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">85.5</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen (F&#252;llstra&#223;e)</td>
+                <td>
+                    Verpackungsmaschinen (F&#252;llstra&#223;e)
+
+                        <br/><small>
+                            (siehe Maschinen der F&#252;llstra&#223;e (Reinigen, F&#252;llen, Verschlie&#223;en, Pasteurisieren, Verdrahten, Entleeren, Verpacken, Ausstatten, Etikettieren) einschl. Erhitzer und R&amp;uuml;ckk&amp;uuml;hler, Impr&#228;gnierpumpen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">67</div></td>
                 <td class="right"><div align="center">2.5</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen, Dosen-</td>
+                <td>
+                    Verpackungsmaschinen, Dosen-
+
+                        <br/><small>
+                            (siehe Dosenverpackungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">75</div></td>
                 <td class="right"><div align="center">6.4</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen, Folien-</td>
-                <td class="right"><div align="center">6</div></td>
-                <td class="right"><div align="center">51</div></td>
-                <td class="right"><div align="center">43</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verpackungsmaschinen, Folien-</td>
+                <td>
+                    Verpackungsmaschinen, Folien-
+
+                        <br/><small>
+                            (siehe Folienverpackungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">2.6</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen, Geld-</td>
+                <td>
+                    Verpackungsmaschinen, Folien-
+
+                        <br/><small>
+                            (siehe Folienverpackungsmaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">6</div></td>
+                <td class="right"><div align="center">51</div></td>
+                <td class="right"><div align="center">43</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verpackungsmaschinen, Geld-
+
+                        <br/><small>
+                            (siehe Geldverpackungsmaschine)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">91</div></td>
                 <td class="right"><div align="center">31</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen, Quark-</td>
+                <td>
+                    Verpackungsmaschinen, Quark-
+
+                        <br/><small>
+                            (siehe Quarkabf&#252;llmaschinen u. -verpackungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">8.32</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmaschinen, Schrumpffolien-</td>
+                <td>
+                    Verpackungsmaschinen, Schrumpffolien-
+
+                        <br/><small>
+                            (siehe Schrumpffolienverpackungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">6.68</div></td>
                
             </tr>
             <tr>
-                <td>Verpackungsmittel (Herst. v.)</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">51</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Verpflanzmaschinen, Baum-</td>
+                <td>
+                    Verpflanzmaschinen, Baum-
+
+                        <br/><small>
+                            (siehe Baum-Verpflanzmaschine)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">10.1</div></td>
                
             </tr>
             <tr>
-                <td>Verpresspumpen (f. Zementm&#246;rtel)</td>
+                <td>
+                    Verpresspumpen (f. Zementm&#246;rtel)
+
+                        <br/><small>
+                            (siehe Verpresspumpen f&#252;r Zementm&#246;rtel)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">2.25</div></td>
                
             </tr>
             <tr>
-                <td>Verputzerei</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">81</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Verputzger&#228;te</td>
+                <td>
+                    Verputzger&#228;te
+
+                        <br/><small>
+                            (siehe M&#246;rtelf&#246;rder- und Verputzger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">2.22</div></td>
                
             </tr>
             <tr>
-                <td>Verrohrungsmaschinen</td>
+                <td>
+                    Verrohrungsmaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">4.14</div></td>
                
             </tr>
             <tr>
-                <td>Verr&#252;hrer, Farb-</td>
+                <td>
+                    Verr&#252;hrer, Farb-
+
+                        <br/><small>
+                            (siehe Farbverr&#252;hrer)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">5.5.7</div></td>
                
             </tr>
             <tr>
-                <td>Verschiebeb&#252;hnen</td>
+                <td>
+                    Verschiebeb&#252;hnen
+
+                        <br/><small>
+                            (siehe Verschiebeb&#252;hnen, Krananlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">2.22</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;apparate, Gl&#228;ser- (Nassbetrieb)</td>
+                <td>
+                    Verschlie&#223;apparate, Gl&#228;ser- (Nassbetrieb)
+
+                        <br/><small>
+                            (siehe im Na&#223;betrieb)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">66</div></td>
                 <td class="right"><div align="center">22.1</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;apparate, Gl&#228;ser- (S&#228;ureeinwirkung)</td>
+                <td>
+                    Verschlie&#223;apparate, Gl&#228;ser- (S&#228;ureeinwirkung)
+
+                        <br/><small>
+                            (siehe bei S&#228;ureeinwirkung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">66</div></td>
                 <td class="right"><div align="center">22.2</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;automaten</td>
+                <td>
+                    Verschlie&#223;automaten
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">42</div></td>
                 <td class="right"><div align="center">2.29</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;maschinen</td>
+                <td>
+                    Verschlie&#223;maschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">42</div></td>
                 <td class="right"><div align="center">2.30</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;maschinen (F&#252;llstra&#223;e)</td>
+                <td>
+                    Verschlie&#223;maschinen (F&#252;llstra&#223;e)
+
+                        <br/><small>
+                            (siehe Maschinen der F&#252;llstra&#223;e (Reinigen, F&#252;llen, Verschlie&#223;en, Pasteurisieren, Verdrahten, Entleeren, Verpacken, Ausstatten, Etikettieren) einschl. Erhitzer und R&amp;uuml;ckk&amp;uuml;hler, Impr&#228;gnierpumpen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">67</div></td>
                 <td class="right"><div align="center">2.5</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;maschinen, Beutel-</td>
+                <td>
+                    Verschlie&#223;maschinen, Beutel-
+
+                        <br/><small>
+                            (siehe Beutelverschlie&#223;maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">76</div></td>
                 <td class="right"><div align="center">1.2</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;maschinen, Dosen (autom.)</td>
+                <td>
+                    Verschlie&#223;maschinen, Dosen (autom.)
+
+                        <br/><small>
+                            (siehe Dosenverschlie&#223;maschinen (automatisch))
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">15</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;maschinen, Dosen- (Nassbetrieb)</td>
+                <td>
+                    Verschlie&#223;maschinen, Dosen- (Nassbetrieb)
+
+                        <br/><small>
+                            (siehe im Na&#223;betrieb)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">66</div></td>
                 <td class="right"><div align="center">13.1</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;maschinen, Dosen- (S&#228;ureeinwirkung)</td>
+                <td>
+                    Verschlie&#223;maschinen, Dosen- (S&#228;ureeinwirkung)
+
+                        <br/><small>
+                            (siehe bei S&#228;ureeinwirkung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">66</div></td>
                 <td class="right"><div align="center">13.2</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;maschinen, Flachbeutel-</td>
+                <td>
+                    Verschlie&#223;maschinen, Flachbeutel-
+
+                        <br/><small>
+                            (siehe Flachbeutelverschlie&#223;maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">76</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;maschinen, Karton-</td>
-                <td class="right"><div align="center">7</div></td>
-                <td class="right"><div align="center">71</div></td>
-                <td class="right"><div align="center">37</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verschlie&#223;maschinen, Karton-</td>
+                <td>
+                    Verschlie&#223;maschinen, Karton-
+
+                        <br/><small>
+                            (siehe Kartonverpackungsanlagen (z.B. Kartonfaltmaschinen und Kartonverschlie&#223;maschinen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">8.18</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;maschinen, Kronenkork-</td>
+                <td>
+                    Verschlie&#223;maschinen, Karton-
+
+                        <br/><small>
+                            (siehe Kartonverschlie&#223;maschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">7</div></td>
+                <td class="right"><div align="center">71</div></td>
+                <td class="right"><div align="center">37</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verschlie&#223;maschinen, Kronenkork-
+
+                        <br/><small>
+                            (siehe Kronenkorkverschlie&#223;maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">75</div></td>
                 <td class="right"><div align="center">7.1</div></td>
                
             </tr>
             <tr>
-                <td>Verschlie&#223;maschinen, Schraub-</td>
+                <td>
+                    Verschlie&#223;maschinen, Schraub-
+
+                        <br/><small>
+                            (siehe Abschraub- und Schraubverschlie&#223;maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">75</div></td>
                 <td class="right"><div align="center">7.2</div></td>
                
             </tr>
             <tr>
-                <td>Verschl&#252;sse, Bohrloch-</td>
+                <td>
+                    Verschl&#252;sse, Bohrloch-
+
+                        <br/><small>
+                            (siehe Bohrlochverschl&#252;sse)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">2.1.3</div></td>
                
             </tr>
             <tr>
-                <td>Verschlussmaschinen</td>
+                <td>
+                    Verschlussmaschinen
+
+                        <br/><small>
+                            (siehe Verschlu&#223;maschine)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">3.3.9</div></td>
                
             </tr>
             <tr>
-                <td>Verschlussmaschinen (Flaschenmilchherstellung)</td>
+                <td>
+                    Verschlussmaschinen (Flaschenmilchherstellung)
+
+                        <br/><small>
+                            (siehe Stanz- u. Verschlu&#223;maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">9.3</div></td>
                
             </tr>
             <tr>
-                <td>Verschlussmaschinen, Beutel-</td>
+                <td>
+                    Verschlussmaschinen, Beutel-
+
+                        <br/><small>
+                            (siehe Beutelf&#252;llmaschinen und Beutelverschlu&#223;maschinen, komb. (S&#228;ure- und Salzeinwirkung))
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">77</div></td>
                 <td class="right"><div align="center">2.11</div></td>
                
             </tr>
             <tr>
-                <td>Verschlussmaschinen, Dosen-</td>
+                <td>
+                    Verschlussmaschinen, Dosen-
+
+                        <br/><small>
+                            (siehe Dosenverschlu&#223;maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">72</div></td>
                 <td class="right"><div align="center">4.2</div></td>
                
             </tr>
             <tr>
-                <td>Verschlussmaschinen, Flaschen-</td>
+                <td>
+                    Verschlussmaschinen, Flaschen-
+
+                        <br/><small>
+                            (siehe Flaschenverschlu&#223;maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">77</div></td>
                 <td class="right"><div align="center">1.6.2</div></td>
                
             </tr>
             <tr>
-                <td>Verschlussmaschinen, Karton-</td>
+                <td>
+                    Verschlussmaschinen, Karton-
+
+                        <br/><small>
+                            (siehe Kartonabf&#252;llmaschinen u. verschlu&#223;maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">10.1</div></td>
                
             </tr>
             <tr>
-                <td>Verschlussmaschinen, Karton- (H-Milch)</td>
+                <td>
+                    Verschlussmaschinen, Karton- (H-Milch)
+
+                        <br/><small>
+                            (siehe Kartonabf&#252;llmaschinen u. Kartonverschlu&#223;maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">12.1</div></td>
                
             </tr>
             <tr>
-                <td>Verschlussmaschinen, Sektstopfen-</td>
+                <td>
+                    Verschlussmaschinen, Sektstopfen-
+
+                        <br/><small>
+                            (siehe Sektstopfenverschlu&#223;maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">74</div></td>
                 <td class="right"><div align="center">3.3.3</div></td>
                
             </tr>
             <tr>
-                <td>Verschlussmaschinen, Tuben-</td>
+                <td>
+                    Verschlussmaschinen, Tuben-
+
+                        <br/><small>
+                            (siehe Tubenabf&#252;llmaschinen und Tubenverschlu&#223;maschinen (S&#228;ure- und Salzeinwirkung))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">77</div></td>
                 <td class="right"><div align="center">2.9</div></td>
                
             </tr>
             <tr>
-                <td>Verschmelzmaschinen (f. Hohlglas)</td>
+                <td>
+                    Verschmelzmaschinen (f. Hohlglas)
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">33</div></td>
                 <td class="right"><div align="center">2.14.2</div></td>
                
             </tr>
             <tr>
-                <td>Verschneidb&#246;cke (autom.)</td>
+                <td>
+                    Verschneidb&#246;cke (autom.)
+
+                        <br/><small>
+                            (siehe automatische)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">5.4.2</div></td>
                
             </tr>
             <tr>
-                <td>Verschneidb&#246;cke (mechanisch)</td>
+                <td>
+                    Verschneidb&#246;cke (mechanisch)
+
+                        <br/><small>
+                            (siehe mechanische)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">5.4.1</div></td>
                
             </tr>
             <tr>
-                <td>Verschn&#252;rmaschinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">52</div></td>
-                <td class="right"><div align="center">6.80</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verschn&#252;rmaschinen</td>
+                <td>
+                    Verschn&#252;rmaschinen
+
+                        <br/><small>
+                            (siehe Verschn&#252;rmaschinen, Bindemaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">3.19</div></td>
                
             </tr>
             <tr>
-                <td>Verschraubungsmaschinen</td>
+                <td>
+                    Verschn&#252;rmaschinen
+
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">52</div></td>
+                <td class="right"><div align="center">6.80</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verschraubungsmaschinen
+
+                        <br/><small>
+                            (siehe Ent- und Verschraubungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">8.13</div></td>
                
             </tr>
             <tr>
-                <td>Versiegelungsmaschinen (f. Minen)</td>
+                <td>
+                    Versiegelungsmaschinen (f. Minen)
+
+                        <br/><small>
+                            (siehe Versiegelungsmaschine f&#252;r Minen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">44</div></td>
                 <td class="right"><div align="center">55</div></td>
                
             </tr>
             <tr>
-                <td>Versorgungsanlagen, Bordstrom- (station&#228;r)</td>
+                <td>
+                    Versorgungsanlagen, Bordstrom- (station&#228;r)
+
+                        <br/><small>
+                            (siehe Bordstromversorgungsanlagen (station&#228;r))
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">88</div></td>
                 <td class="right"><div align="center">3.2</div></td>
                
             </tr>
             <tr>
-                <td>Versorgungsanlagen, Strom-</td>
-                <td class="right"><div align="center">15</div></td>
-                <td class="right"><div align="center">88</div></td>
-                <td class="right"><div align="center">3.1</div></td>
-               
-            </tr>
-            <tr>
-                <td>Versorgungsanlagen, Strom-</td>
+                <td>
+                    Versorgungsanlagen, Strom-
+
+                        <br/><small>
+                            (siehe Stromversorgungsanlagen, Notstromaggregate (beweglich))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">9</div></td>
                 <td class="right"><div align="center">3.13</div></td>
                
             </tr>
             <tr>
-                <td>Versorgungsanlagen, Wasser-</td>
+                <td>
+                    Versorgungsanlagen, Strom-
+
+                        <br/><small>
+                            (siehe Stromversorgungsanlagen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">15</div></td>
+                <td class="right"><div align="center">88</div></td>
+                <td class="right"><div align="center">3.1</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Versorgungsanlagen, Wasser-
+
+                        <br/><small>
+                            (siehe Wasserversorgungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">21</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Versorgungseinrichtungen, Strom- (Beleuchtungstechnik)</td>
+                <td>
+                    Versorgungseinrichtungen, Strom- (Beleuchtungstechnik)
+
+                        <br/><small>
+                            (siehe Stromversorgungsund Verteilereinrichtungen der Beleuchtungstechnik)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">98</div></td>
                 <td class="right"><div align="center">5.18</div></td>
                
             </tr>
             <tr>
-                <td>Versorgungsvorrichtungen, Sauerstoff-</td>
+                <td>
+                    Versorgungsvorrichtungen, Sauerstoff-
+
+                        <br/><small>
+                            (siehe Vorrichtungen zur Durchl&#252;ftung und Sauerstoffversorgung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">9</div></td>
                 <td class="right"><div align="center">3.7</div></td>
                
             </tr>
             <tr>
-                <td>Verspiegelungsanlagen</td>
+                <td>
+                    Verspiegelungsanlagen
+
+                        <br/><small>
+                            (siehe Verg&#252;tungs- und Verspiegelungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">2.10</div></td>
                
             </tr>
             <tr>
-                <td>Verst&#228;rker</td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center">98</div></td>
-                <td class="right"><div align="center">2.2</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verst&#228;rker</td>
+                <td>
+                    Verst&#228;rker
+
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">97</div></td>
                 <td class="right"><div align="center">3.10</div></td>
                
             </tr>
             <tr>
-                <td>Verst&#228;rker</td>
+                <td>
+                    Verst&#228;rker
+
+                        <br/><small>
+                            (siehe Tonregieeinrichtungen einschlie&#223;lich Mischpulte, Verst&#228;rker und Verteileranlagen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">5</div></td>
+                <td class="right"><div align="center">98</div></td>
+                <td class="right"><div align="center">2.2</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verst&#228;rker
+
+                        <br/><small>
+                            (siehe Foto-, Film-, Video- und Audioger&#228;te (Fernseher, CD-Player, Recorder, Lautsprecher, Radios, Verst&#228;rker, Kameras, Monitore u.&#228;.))
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.14.4</div></td>
                
             </tr>
             <tr>
-                <td>Verst&#228;rker, Bild-</td>
+                <td>
+                    Verst&#228;rker, Bild-
+
+                        <br/><small>
+                            (siehe Bildverst&#228;rker)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">12</div></td>
                
             </tr>
             <tr>
-                <td>Verst&#228;rkereinrichtungen</td>
+                <td>
+                    Verst&#228;rkereinrichtungen
+
+                        <br/><small>
+                            (siehe Interne Modulations- und Signalleitungsnetze einschl. Verst&#228;rker und Verteilereinrichtungen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">98</div></td>
                 <td class="right"><div align="center">3.10.1</div></td>
                
             </tr>
             <tr>
-                <td>Verstellger&#228;te</td>
+                <td>
+                    Verstellger&#228;te
+
+                        <br/><small>
+                            (siehe Schalt- und Steuerger&#228;te, &#220;berwachungseinrichtungen, Verstellger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">1.18.20</div></td>
                
             </tr>
             <tr>
-                <td>Verteilanlagen, Brief- (manueller Teil)</td>
+                <td>
+                    Verteilanlagen, Brief- (manueller Teil)
+
+                        <br/><small>
+                            (siehe manueller Teil)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">90</div></td>
                 <td class="right"><div align="center">22.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Verteilanlagen, Brief- (maschineller Teil)</td>
+                <td>
+                    Verteilanlagen, Brief- (maschineller Teil)
+
+                        <br/><small>
+                            (siehe maschineller Teil (einschl. Leseund Codiereinrichtung))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">90</div></td>
                 <td class="right"><div align="center">22.3.1</div></td>
                
             </tr>
             <tr>
-                <td>Verteilanlagen, Paket-</td>
+                <td>
+                    Verteilanlagen, Paket-
+
+                        <br/><small>
+                            (siehe Paketverteilanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">90</div></td>
                 <td class="right"><div align="center">22.5</div></td>
                
             </tr>
             <tr>
-                <td>Verteilanlagen, St&#252;ckbrief-</td>
+                <td>
+                    Verteilanlagen, St&#252;ckbrief-
+
+                        <br/><small>
+                            (siehe St&#252;ckbriefverteilanlagen einschl. Codiereinrichtungen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">90</div></td>
                 <td class="right"><div align="center">22.2</div></td>
                
             </tr>
             <tr>
-                <td>Verteiler, Beton-</td>
+                <td>
+                    Verteiler, Beton-
+
+                        <br/><small>
+                            (siehe Betonverteiler)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">5.15</div></td>
                
             </tr>
             <tr>
-                <td>Verteileranlage, Teleskop- (f&#252;r Heu und Stroh)</td>
+                <td>
+                    Verteileranlage, Teleskop- (f&#252;r Heu und Stroh)
+
+                        <br/><small>
+                            (siehe Teleskopverteileranlagen f&#252;r Heu und Stroh)
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.8.3.12</div></td>
                
             </tr>
             <tr>
-                <td>Verteileranlagen</td>
+                <td>
+                    Verteileranlagen
+
+                        <br/><small>
+                            (siehe Tonregieeinrichtungen einschlie&#223;lich Mischpulte, Verst&#228;rker und Verteileranlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">98</div></td>
                 <td class="right"><div align="center">2.2</div></td>
                
             </tr>
             <tr>
-                <td>Verteileranlagen (Steuerung)</td>
+                <td>
+                    Verteileranlagen (Steuerung)
+
+                        <br/><small>
+                            (siehe Verteileranlage (Steuerung))
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">2.1.5</div></td>
                
             </tr>
             <tr>
-                <td>Verteilereinrichtungen</td>
+                <td>
+                    Verteilereinrichtungen
+
+                        <br/><small>
+                            (siehe Interne Modulations- und Signalleitungsnetze einschl. Verst&#228;rker und Verteilereinrichtungen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">98</div></td>
                 <td class="right"><div align="center">3.10.1</div></td>
                
             </tr>
             <tr>
-                <td>Verteilereinrichtungen, Strom- (Beleuchtungstechnik)</td>
+                <td>
+                    Verteilereinrichtungen, Strom- (Beleuchtungstechnik)
+
+                        <br/><small>
+                            (siehe Stromversorgungsund Verteilereinrichtungen der Beleuchtungstechnik)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">98</div></td>
                 <td class="right"><div align="center">5.18</div></td>
                
             </tr>
             <tr>
-                <td>Verteilermaste, Beton-</td>
+                <td>
+                    Verteilermaste, Beton-
+
+                        <br/><small>
+                            (siehe Betonpumpen und Betonverteilermaste)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">2.19</div></td>
                
             </tr>
             <tr>
-                <td>Verteilungsanlagen (f. chem. Produkte)</td>
+                <td>
+                    Verteilungsanlagen (f. chem. Produkte)
+
+                        <br/><small>
+                            (siehe Wasserversorgungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Verteilungsanlagen (i. Kraftwerk)</td>
-                <td class="right"><div align="center">15</div></td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">1.1.1.9</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verteilungsanlagen (i. Kraftwerk)</td>
-                <td class="right"><div align="center">20</div></td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">1.1.2.9</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verteilungsanlagen (i. Kraftwerk)</td>
+                <td>
+                    Verteilungsanlagen (i. Kraftwerk)
+
+                        <br/><small>
+                            (siehe Kabel-, Verteilungs- und Schaltanlagen im Kraftwerk)
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">1.1.3.19</div></td>
                
             </tr>
             <tr>
-                <td>Verteilungsanlagen, Dampf-</td>
+                <td>
+                    Verteilungsanlagen (i. Kraftwerk)
+
+                        <br/><small>
+                            (siehe Kabel- und Verteilungsanlagen im Kraftwerk)
+                        </small>
+                </td>
+                <td class="right"><div align="center">15</div></td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">1.1.1.9</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verteilungsanlagen (i. Kraftwerk)
+
+                        <br/><small>
+                            (siehe Schalt-, Me&#223;-, Regel-, Steuerungs- und Verteilungsanlagen im Kraftwerksbereich)
+                        </small>
+                </td>
+                <td class="right"><div align="center">20</div></td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">1.1.2.9</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verteilungsanlagen, Dampf-
+
+                        <br/><small>
+                            (siehe Wasserversorgungsanlagen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">15</div></td>
+                <td class="right"><div align="center">14</div></td>
+                <td class="right"><div align="center">2.3</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verteilungsanlagen, Dampf-
+
+                        <br/><small>
+                            (siehe Dampfverteilung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">27</div></td>
                 <td class="right"><div align="center">8.1</div></td>
                
             </tr>
             <tr>
-                <td>Verteilungsanlagen, Dampf-</td>
+                <td>
+                    Verteilungsanlagen, Elektrizit&#228;ts-
+
+                        <br/><small>
+                            (siehe Wasserversorgungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Verteilungsanlagen, Elektrizit&#228;ts-</td>
+                <td>
+                    Verteilungsanlagen, Gas-
+
+                        <br/><small>
+                            (siehe Wasserversorgungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Verteilungsanlagen, Gas-</td>
-                <td class="right"><div align="center">15</div></td>
-                <td class="right"><div align="center">14</div></td>
-                <td class="right"><div align="center">2.3</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verteilungsanlagen, Heiz- (mobil)</td>
+                <td>
+                    Verteilungsanlagen, Heiz- (mobil)
+
+                        <br/><small>
+                            (siehe Mobile Heiz- und W&#228;rmeverteilungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">15.5.2</div></td>
                
             </tr>
             <tr>
-                <td>Verteilungsanlagen, Sole-</td>
+                <td>
+                    Verteilungsanlagen, Sole-
+
+                        <br/><small>
+                            (siehe Wasserversorgungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Verteilungsanlagen, W&#228;rme- (mobil)</td>
+                <td>
+                    Verteilungsanlagen, W&#228;rme- (mobil)
+
+                        <br/><small>
+                            (siehe Mobile Heiz- und W&#228;rmeverteilungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">15.5.2</div></td>
                
             </tr>
             <tr>
-                <td>Verteilungsanlagen, Wasser-</td>
+                <td>
+                    Verteilungsanlagen, Wasser-
+
+                        <br/><small>
+                            (siehe Wasserversorgungsanlagen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">15</div></td>
+                <td class="right"><div align="center">14</div></td>
+                <td class="right"><div align="center">2.3</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Verteilungsanlagen, Wasser-
+
+                        <br/><small>
+                            (siehe Wasserverteilung (z.B. Beh&#228;lter, Pumpen, Leitungen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">27</div></td>
                 <td class="right"><div align="center">8.3</div></td>
                
             </tr>
             <tr>
-                <td>Verteilungsanlagen, Wasser-</td>
-                <td class="right"><div align="center">15</div></td>
-                <td class="right"><div align="center">14</div></td>
-                <td class="right"><div align="center">2.3</div></td>
-               
-            </tr>
-            <tr>
-                <td>Verteilungsanlagen, Wasser- (sonst.)</td>
+                <td>
+                    Verteilungsanlagen, Wasser- (sonst.)
+
+                        <br/><small>
+                            (siehe Sonst. Wasserverteilungs- und Aufbereitungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">8.5</div></td>
                
             </tr>
             <tr>
-                <td>Verteilungsnetze, Energie-</td>
+                <td>
+                    Verteilungsnetze, Energie-
+
+                        <br/><small>
+                            (siehe Unterwasserbetoniereinrichtungen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">20</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">2.26</div></td>
                
             </tr>
             <tr>
-                <td>Vertikalkreiss&#228;gen (Rundmesser)</td>
+                <td>
+                    Vertikalkreiss&#228;gen (Rundmesser)
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">86</div></td>
                
             </tr>
             <tr>
-                <td>Vertikalmesserzuschneidemaschinen</td>
+                <td>
+                    Vertikalmesserzuschneidemaschinen
+
+                        <br/><small>
+                            (siehe Vertikalmesser)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Vertikalschleifmaschinen (Handwerk)</td>
+                <td>
+                    Vertikalschleifmaschinen (Handwerk)
+
+                        <br/><small>
+                            (siehe Handwerk)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">28</div></td>
                 <td class="right"><div align="center">3.2.2</div></td>
                
             </tr>
             <tr>
-                <td>Vertikalschleifmaschinen (Industrie)</td>
+                <td>
+                    Vertikalschleifmaschinen (Industrie)
+
+                        <br/><small>
+                            (siehe Industrie)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">28</div></td>
                 <td class="right"><div align="center">3.2.1</div></td>
                
             </tr>
             <tr>
-                <td>Vertikutierger&#228;te</td>
+                <td>
+                    Vertikutierger&#228;te
+
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">4.17</div></td>
                
             </tr>
             <tr>
-                <td>Vervielf&#228;ltigungsger&#228;te</td>
+                <td>
+                    Vervielf&#228;ltigungsger&#228;te
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.14.10</div></td>
                
             </tr>
             <tr>
-                <td>VerwaltungsGeb&#228;ude</td>
+                <td>
+                    VerwaltungsGeb&#228;ude
+
+                        <br/><small>
+                            (siehe Verwaltungsgeb&#228;ude)
+                        </small>
+                </td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">1.1.3.1</div></td>
                
             </tr>
             <tr>
-                <td>Verwertungsmaschinen, Abfall-</td>
+                <td>
+                    Verwertungsmaschinen, Abfall-
+
+                        <br/><small>
+                            (siehe Abfallverwertungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">54</div></td>
                 <td class="right"><div align="center">2</div></td>
                
             </tr>
             <tr>
-                <td>Verzahnungsmaschinen</td>
+                <td>
+                    Verzahnungsmaschinen
+
+                        <br/><small>
+                            (siehe Gewindeherstellungs- u. Verzahnungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">38</div></td>
                 <td class="right"><div align="center">1.7</div></td>
                
             </tr>
             <tr>
-                <td>Verzinkungsanlagen, Feuer-</td>
+                <td>
+                    Verzinkungsanlagen, Feuer-
+
+                        <br/><small>
+                            (siehe Feuerverzinkungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">36</div></td>
                 <td class="right"><div align="center">2.3.8</div></td>
                
             </tr>
             <tr>
-                <td>Verzinkungsanlagen, Feuer- (Bandverzinkung)</td>
+                <td>
+                    Verzinkungsanlagen, Feuer- (Bandverzinkung)
+
+                        <br/><small>
+                            (siehe Bandverzinkung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">42</div></td>
                 <td class="right"><div align="center">3.8.1</div></td>
                
             </tr>
             <tr>
-                <td>Verzinkungsanlagen, Feuer- (St&#252;ckverzinkung)</td>
+                <td>
+                    Verzinkungsanlagen, Feuer- (St&#252;ckverzinkung)
+
+                        <br/><small>
+                            (siehe St&#252;ckverzinkung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">42</div></td>
                 <td class="right"><div align="center">3.8.2</div></td>
                
             </tr>
             <tr>
-                <td>Verzinnungsanlagen</td>
+                <td>
+                    Verzinnungsanlagen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">36</div></td>
                 <td class="right"><div align="center">2.3.30</div></td>
                
             </tr>
             <tr>
-                <td>Verzinnungsanlagen</td>
+                <td>
+                    Verzinnungsanlagen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">42</div></td>
                 <td class="right"><div align="center">3.25</div></td>
                
             </tr>
             <tr>
-                <td>Veterin&#228;rwesen</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">99</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Vibraclone</td>
+                <td>
+                    Vibraclone
+
+                        <br/><small>
+                            (siehe Reinigungs- und Sortiermaschinen f&#252;r Gerste, Malz und kombiniert (z.B. Aspirateure, Vibraclone, Magnetapparate, Trieure))
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">12.3</div></td>
                
             </tr>
             <tr>
-                <td>Vibrationsaustragungsapparate</td>
+                <td>
+                    Vibrationsaustragungsapparate
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">64</div></td>
                 <td class="right"><div align="center">3.80</div></td>
                
             </tr>
             <tr>
-                <td>Vibrationsb&#228;ren, Elektro-</td>
+                <td>
+                    Vibrationsb&#228;ren, Elektro-
+
+                        <br/><small>
+                            (siehe Elektrovibrationsb&#228;ren, Hydraulikvibrationsb&#228;ren)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">3.16</div></td>
                
             </tr>
             <tr>
-                <td>Vibrationsb&#228;ren, Hydraulik-</td>
+                <td>
+                    Vibrationsb&#228;ren, Hydraulik-
+
+                        <br/><small>
+                            (siehe Elektrovibrationsb&#228;ren, Hydraulikvibrationsb&#228;ren)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">3.16</div></td>
                
             </tr>
             <tr>
-                <td>Vibrationsf&#246;rderer</td>
+                <td>
+                    Vibrationsf&#246;rderer
+
+                        <br/><small>
+                            (siehe F&#246;rderanlagen (z.B. Kastenbeschicker, B&#228;nder, Rutschen, Schnecken, Kettenund Vibrationsf&#246;rderer, Zuteiler))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">29</div></td>
                 <td class="right"><div align="center">2.4</div></td>
                
             </tr>
             <tr>
-                <td>Vibrationsmaschinen (bewegl.)</td>
+                <td>
+                    Vibrationsmaschinen (bewegl.)
+
+                        <br/><small>
+                            (siehe bewegliche Vibrationsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">23</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Vibrationspressen</td>
+                <td>
+                    Vibrationspressen
+
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">27</div></td>
                 <td class="right"><div align="center">4.3</div></td>
                
             </tr>
             <tr>
-                <td>Vibrationssiebe</td>
+                <td>
+                    Vibrationssiebe
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">78</div></td>
                 <td class="right"><div align="center">1.3.4</div></td>
                
             </tr>
             <tr>
-                <td>Vibrationssiebe</td>
+                <td>
+                    Vibrationssiebe
+
+                        <br/><small>
+                            (siehe Hefewaschanlagen (Vibrationssiebe))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">4.3</div></td>
                
             </tr>
             <tr>
-                <td>Vibrationsstampfer</td>
+                <td>
+                    Vibrationsstampfer
+
+                        <br/><small>
+                            (siehe Stampfer (Vibrations-) Explosionsstampfer)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">5.3</div></td>
                
             </tr>
             <tr>
-                <td>Vibrationswalzen</td>
-                <td class="right"><div align="center">4</div></td>
-                <td class="right"><div align="center">81</div></td>
-                <td class="right"><div align="center">3.25</div></td>
-               
-            </tr>
-            <tr>
-                <td>Vibrationswalzen</td>
+                <td>
+                    Vibrationswalzen
+
+                        <br/><small>
+                            (siehe Dynamische Walzen (Vibrationswalzen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">5.5</div></td>
                
             </tr>
             <tr>
-                <td>Vibratoren</td>
+                <td>
+                    Vibrationswalzen
+
+                </td>
+                <td class="right"><div align="center">4</div></td>
+                <td class="right"><div align="center">81</div></td>
+                <td class="right"><div align="center">3.25</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Vibratoren
+
+                        <br/><small>
+                            (siehe Turbinenfr&#228;sger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">31</div></td>
                 <td class="right"><div align="center">45</div></td>
                
             </tr>
             <tr>
-                <td>Vibratoren</td>
+                <td>
+                    Vibratoren
+
+                        <br/><small>
+                            (siehe Schwingf&#246;rderer (Vibratoren))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">36</div></td>
                 <td class="right"><div align="center">2.4.9</div></td>
                
             </tr>
             <tr>
-                <td>Vibratoren</td>
+                <td>
+                    Vibratoren
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">1.6.28</div></td>
                
             </tr>
             <tr>
-                <td>Vibro-Automaten (station&#228;r)</td>
+                <td>
+                    Vibro-Automaten (station&#228;r)
+
+                        <br/><small>
+                            (siehe station&#228;re Vibro-Automaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">23</div></td>
                 <td class="right"><div align="center">2.2</div></td>
                
             </tr>
             <tr>
-                <td>Vibrorinnen</td>
+                <td>
+                    Vibrorinnen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">1.12</div></td>
                
             </tr>
             <tr>
-                <td>Vibrostampfer</td>
+                <td>
+                    Vibrostampfer
+
+                        <br/><small>
+                            (siehe Fl&#228;chenr&#252;ttler, Vibrostampfer, Explosionsstampframmen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">3.21</div></td>
                
             </tr>
             <tr>
-                <td>Videoanlagen</td>
+                <td>
+                    Videoanlagen
+
+                        <br/><small>
+                            (siehe Allgemeine videotechnische Anlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">98</div></td>
                 <td class="right"><div align="center">3.1</div></td>
                
             </tr>
             <tr>
-                <td>Videoautomaten</td>
+                <td>
+                    Videoautomaten
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">7.5.3</div></td>
                
             </tr>
             <tr>
-                <td>Videoger&#228;te</td>
+                <td>
+                    Videoger&#228;te
+
+                        <br/><small>
+                            (siehe Foto-, Film-, Video- und Audioger&#228;te (Fernseher, CD-Player, Recorder, Lautsprecher, Radios, Verst&#228;rker, Kameras, Monitore u.&#228;.))
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.14.4</div></td>
                
             </tr>
             <tr>
-                <td>Video-&#220;bertragungsger&#228;te</td>
+                <td>
+                    Video-&#220;bertragungsger&#228;te
+
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">92</div></td>
                 <td class="right"><div align="center">48</div></td>
                
             </tr>
             <tr>
-                <td>Viehtransporter (oh. Antrieb)</td>
+                <td>
+                    Viehtransporter (oh. Antrieb)
+
+                        <br/><small>
+                            (siehe Viehtransporter (o. Antrieb))
+                        </small>
+                </td>
                 <td class="right"><div align="center">20</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2.6.28</div></td>
                
             </tr>
             <tr>
-                <td>Vielblatts&#228;gen</td>
+                <td>
+                    Vielblatts&#228;gen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">2.1.19</div></td>
                
             </tr>
             <tr>
-                <td>Vielschnittdrehmaschinen</td>
+                <td>
+                    Vielschnittdrehmaschinen
+
+                        <br/><small>
+                            (siehe Vielschnitt-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">1.1.4.9</div></td>
                
             </tr>
             <tr>
-                <td>Vielstahldrehb&#228;nke</td>
+                <td>
+                    Vielstahldrehb&#228;nke
+
+                        <br/><small>
+                            (siehe Revolver- Vielstahl-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">37</div></td>
                 <td class="right"><div align="center">8.1</div></td>
                
             </tr>
             <tr>
-                <td>Vielzweckschneider</td>
+                <td>
+                    Vielzweckschneider
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">87</div></td>
                
             </tr>
             <tr>
-                <td>Virgin-Trocknungsanlagen</td>
+                <td>
+                    Virgin-Trocknungsanlagen
+
+                        <br/><small>
+                            (siehe Typ Bulk Cuiring Anlagen (Virgin-Trocknungsanlagen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">1</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Virolagemaschinen</td>
+                <td>
+                    Virolagemaschinen
+
+                        <br/><small>
+                            (siehe Montage- und F&#252;gemaschinen, spezielle (z.B. Steinsetzmaschinen, Stiftsetzmaschinen, Pitoniermaschinen, Virolagemaschinen, Zeigersetzmaschinen, Uhrenaufzugmaschinen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">3.3</div></td>
                
             </tr>
             <tr>
-                <td>Visitenkartenautomaten</td>
+                <td>
+                    Visitenkartenautomaten
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">7.4.5</div></td>
                
             </tr>
             <tr>
-                <td>Viskosiebe</td>
+                <td>
+                    Viskosiebe
+
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">32</div></td>
                 <td class="right"><div align="center">1.15</div></td>
                
             </tr>
             <tr>
-                <td>Viskosit&#228;tssteuerger&#228;te</td>
+                <td>
+                    Viskosit&#228;tssteuerger&#228;te
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">5.3.9</div></td>
                
             </tr>
             <tr>
-                <td>Vitrinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">92</div></td>
-                <td class="right"><div align="center">9</div></td>
-               
-            </tr>
-            <tr>
-                <td>Vitrinen</td>
+                <td>
+                    Vitrinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">85</div></td>
                 <td class="right"><div align="center">12</div></td>
                
             </tr>
             <tr>
-                <td>Vitrinen</td>
+                <td>
+                    Vitrinen
+
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">92</div></td>
+                <td class="right"><div align="center">9</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Vitrinen
+
+                        <br/><small>
+                            (siehe Schauk&#228;sten, Vitrinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">9</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">3.9</div></td>
                
             </tr>
             <tr>
-                <td>Vollautomaten</td>
+                <td>
+                    Vollautomaten
+
+                        <br/><small>
+                            (siehe B&#252;rsten-, Voll- und Halbautomaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">7.2.1</div></td>
                
             </tr>
             <tr>
-                <td>Vollautomaten (Legemaschinen)</td>
+                <td>
+                    Vollautomaten (Legemaschinen)
+
+                        <br/><small>
+                            (siehe Vollautomaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">1.3</div></td>
                
             </tr>
             <tr>
-                <td>Vollautomaten (Zuschneideanlagen)</td>
+                <td>
+                    Vollautomaten (Zuschneideanlagen)
+
+                        <br/><small>
+                            (siehe Vollautomaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">3.2</div></td>
                
             </tr>
             <tr>
-                <td>Vollerntemaschinen (Kartoffeln, R&#252;ben) einreihig</td>
+                <td>
+                    Vollerntemaschinen (Kartoffeln, R&#252;ben) einreihig
+
+                        <br/><small>
+                            (siehe einreihig)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.7.2.6.1</div></td>
                
             </tr>
             <tr>
-                <td>Vollerntemaschinen (Kartoffeln, R&#252;ben) mehrreihig</td>
+                <td>
+                    Vollerntemaschinen (Kartoffeln, R&#252;ben) mehrreihig
+
+                        <br/><small>
+                            (siehe mehrreihig)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.7.2.6.2</div></td>
                
             </tr>
             <tr>
-                <td>Vollernter f&#252;r Blumenkohl</td>
+                <td>
+                    Vollernter f&#252;r Blumenkohl
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.7.3.8</div></td>
                
             </tr>
             <tr>
-                <td>Vollernter, Buschbohnen-</td>
+                <td>
+                    Vollernter, Buschbohnen-
+
+                        <br/><small>
+                            (siehe Buschbohnenvollernter)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.7.3.1</div></td>
                
             </tr>
             <tr>
-                <td>Vollernter, Erbsen-</td>
+                <td>
+                    Vollernter, Erbsen-
+
+                        <br/><small>
+                            (siehe Erbsenvollernter)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.7.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Vollernter, M&#246;hren-</td>
+                <td>
+                    Vollernter, M&#246;hren-
+
+                        <br/><small>
+                            (siehe M&#246;hrenvollernter)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.7.3.10</div></td>
                
             </tr>
             <tr>
-                <td>Vollernter, Trauben-</td>
+                <td>
+                    Vollernter, Trauben-
+
+                        <br/><small>
+                            (siehe Traubenvollernter)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">1.10.1</div></td>
                
             </tr>
             <tr>
-                <td>Vollgatter</td>
+                <td>
+                    Vollgatter
+
+                        <br/><small>
+                            (siehe sonstige (z.B. Voll-, Trenn-, Spaltgatter))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">1.10.4</div></td>
                
             </tr>
             <tr>
-                <td>Vollgatter</td>
+                <td>
+                    Vollgatter
+
+                        <br/><small>
+                            (siehe sonstige (z.B. Voll-, Trenn-, Spaltgatter))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">2.1.9.4</div></td>
                
             </tr>
             <tr>
-                <td>Vollgutkontrollanlagen</td>
+                <td>
+                    Vollgutkontrollanlagen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">8.23</div></td>
                
             </tr>
             <tr>
-                <td>Vorback&#246;fen</td>
+                <td>
+                    Vorback&#246;fen
+
+                        <br/><small>
+                            (siehe Vorback- u. Gerstel&#246;fen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">65</div></td>
                 <td class="right"><div align="center">2.5</div></td>
                
             </tr>
             <tr>
-                <td>Vorbereitungsanlagen, Druck-</td>
+                <td>
+                    Vorbereitungsanlagen, Druck-
+
+                        <br/><small>
+                            (siehe )
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">43</div></td>
                 <td class="right"><div align="center">5.3</div></td>
                
             </tr>
             <tr>
-                <td>Vorbereitungsmaschinen, Boden- (sonstige)</td>
+                <td>
+                    Vorbereitungsmaschinen, Boden- (sonstige)
+
+                        <br/><small>
+                            (siehe Sonstige)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">4.2.3</div></td>
                
             </tr>
             <tr>
-                <td>Vorderkappenauftragmaschinen</td>
+                <td>
+                    Vorderkappenauftragmaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">3.2.23</div></td>
                
             </tr>
             <tr>
-                <td>Vorderkipper</td>
+                <td>
+                    Vorderkipper
+
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">2.38</div></td>
                
             </tr>
             <tr>
-                <td>Vorderteilumwendeapparate</td>
+                <td>
+                    Vorderteilumwendeapparate
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">3.2.24</div></td>
                
             </tr>
             <tr>
-                <td>Vorfeldbeleuchtung (im Abfertigungsbereich)</td>
+                <td>
+                    Vorfeldbeleuchtung (im Abfertigungsbereich)
+
+                        <br/><small>
+                            (siehe Vorfeldbeleuchtung im Abfertigungsbereich)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">88</div></td>
                 <td class="right"><div align="center">3.7</div></td>
                
             </tr>
             <tr>
-                <td>Vorf&#252;hrger&#228;te</td>
+                <td>
+                    Vorf&#252;hrger&#228;te
+
+                        <br/><small>
+                            (siehe Projektoren, Vorf&#252;hrger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">98</div></td>
                 <td class="right"><div align="center">5.15</div></td>
                
             </tr>
             <tr>
-                <td>Vorgelege</td>
+                <td>
+                    Vorgelege
+
+                        <br/><small>
+                            (siehe Vorgelege/Antriebsgruppe)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">1.3</div></td>
                
             </tr>
             <tr>
-                <td>Vorh&#228;nge, B&#252;hnen-</td>
+                <td>
+                    Vorh&#228;nge, B&#252;hnen-
+
+                        <br/><small>
+                            (siehe B&#252;hnenvorh&#228;nge)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">97</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Vorh&#228;nge, B&#252;hnen-</td>
+                <td>
+                    Vorh&#228;nge, B&#252;hnen-
+
+                        <br/><small>
+                            (siehe B&#252;hnenvorh&#228;nge)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">92</div></td>
                 <td class="right"><div align="center">8</div></td>
                
             </tr>
             <tr>
-                <td>Vorkarden</td>
+                <td>
+                    Vorkarden
+
+                        <br/><small>
+                            (siehe Vorkarden, Wickelmaschinen und Feinkarden)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">56</div></td>
                 <td class="right"><div align="center">4.5</div></td>
                
             </tr>
             <tr>
-                <td>Vorkarden (einfach)</td>
+                <td>
+                    Vorkarden (einfach)
+
+                        <br/><small>
+                            (siehe einfache)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">56</div></td>
                 <td class="right"><div align="center">5.4.1</div></td>
                
             </tr>
             <tr>
-                <td>Vorkl&#228;ranlagen (Beton)</td>
+                <td>
+                    Vorkl&#228;ranlagen (Beton)
+
+                        <br/><small>
+                            (siehe Beton)
+                        </small>
+                </td>
                 <td class="right"><div align="center">20</div></td>
                 <td class="right"><div align="center">9</div></td>
                 <td class="right"><div align="center">1.9.1</div></td>
                
             </tr>
             <tr>
-                <td>Vorkl&#228;ranlagen (Holz, Kunststoff)</td>
+                <td>
+                    Vorkl&#228;ranlagen (Holz, Kunststoff)
+
+                        <br/><small>
+                            (siehe Holz, Kunststoff)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">9</div></td>
                 <td class="right"><div align="center">1.9.2</div></td>
                
             </tr>
             <tr>
-                <td>Vorklassierung</td>
+                <td>
+                    Vorklassierung
+
+                </td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">2.7</div></td>
                
             </tr>
             <tr>
-                <td>Vorkocher</td>
+                <td>
+                    Vorkocher
+
+                        <br/><small>
+                            (siehe Vorkocher (Sterilisatoren))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">78</div></td>
                 <td class="right"><div align="center">2.13</div></td>
                
             </tr>
             <tr>
-                <td>Vorkopfaustr&#228;ge</td>
+                <td>
+                    Vorkopfaustr&#228;ge
+
+                        <br/><small>
+                            (siehe Strebausr&#252;stungen (Gleitkappen, Gleitkappenz&#252;ge, Blasw&#228;nde, Vorkopfaustr&#228;ge))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">1.18.15</div></td>
                
             </tr>
             <tr>
-                <td>Vorlagen</td>
+                <td>
+                    Vorlagen
+
+                </td>
                 <td class="right"><div align="center">20</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">1.4.27</div></td>
                
             </tr>
             <tr>
-                <td>Vorlaufgef&#228;&#223;e</td>
+                <td>
+                    Vorlaufgef&#228;&#223;e
+
+                        <br/><small>
+                            (siehe Sudhauseinrichtungen (Vormaischer, Maischbottiche, Maischpfannen, L&#228;uterbottiche, Strainmaster, Vorlaufgef&#228;&#223;e, W&#252;rzepfannen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">2.1</div></td>
                
             </tr>
             <tr>
-                <td>Vormaischer</td>
+                <td>
+                    Vormaischer
+
+                        <br/><small>
+                            (siehe Sudhauseinrichtungen (Vormaischer, Maischbottiche, Maischpfannen, L&#228;uterbottiche, Strainmaster, Vorlaufgef&#228;&#223;e, W&#252;rzepfannen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">2.1</div></td>
                
             </tr>
             <tr>
-                <td>Vorratsbeh&#228;lter</td>
+                <td>
+                    Vorratsbeh&#228;lter
+
+                        <br/><small>
+                            (siehe Vorrats- und Lagerbeh&#228;lter im Produktionsbereich (soweit branchetypisch))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">17</div></td>
                 <td class="right"><div align="center">7</div></td>
                
             </tr>
             <tr>
-                <td>Vorratsbeh&#228;lter (im Produktionsbereich)</td>
+                <td>
+                    Vorratsbeh&#228;lter (im Produktionsbereich)
+
+                        <br/><small>
+                            (siehe Brecher)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">2.1</div></td>
                
             </tr>
             <tr>
-                <td>Vorratsbeh&#228;lter, Hopfen-</td>
+                <td>
+                    Vorratsbeh&#228;lter, Hopfen-
+
+                        <br/><small>
+                            (siehe Hopfenvorratsbeh&#228;lter)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">6.4</div></td>
                
             </tr>
             <tr>
-                <td>Vorratsbeh&#228;lter, Mischfutter-</td>
+                <td>
+                    Vorratsbeh&#228;lter, Mischfutter-
+
+                        <br/><small>
+                            (siehe Mischfuttervorratsbeh&#228;lter)
+                        </small>
+                </td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2.6.11</div></td>
                
             </tr>
             <tr>
-                <td>Vorratstanks</td>
+                <td>
+                    Vorratstanks
+
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">68</div></td>
                 <td class="right"><div align="center">4.19</div></td>
                
             </tr>
             <tr>
-                <td>Vorreinigungsbeh&#228;lter</td>
+                <td>
+                    Vorreinigungsbeh&#228;lter
+
+                        <br/><small>
+                            (siehe Vorreinigung und Spaltung: Beh&#228;lter, Pumpen, Rohrleitungen, Reinigungsk&#228;sten usw.)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">1.3.4</div></td>
                
             </tr>
             <tr>
-                <td>Vorsatzklebemaschinen</td>
+                <td>
+                    Vorsatzklebemaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">6.81</div></td>
                
             </tr>
             <tr>
-                <td>Vorschermaschinen</td>
+                <td>
+                    Vorschermaschinen
+
+                        <br/><small>
+                            (siehe Schermaschinen (Vor- u. Nachschermaschinen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">63</div></td>
                 <td class="right"><div align="center">1.19</div></td>
                
             </tr>
             <tr>
-                <td>Vorschneideger&#228;te</td>
+                <td>
+                    Vorschneideger&#228;te
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.9.4</div></td>
                
             </tr>
             <tr>
-                <td>Vorspinnmaschinen</td>
+                <td>
+                    Vorspinnmaschinen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">56</div></td>
                 <td class="right"><div align="center">3.7</div></td>
                
             </tr>
             <tr>
-                <td>Vorspinn-Maschinen</td>
+                <td>
+                    Vorspinn-Maschinen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">56</div></td>
                 <td class="right"><div align="center">4.10</div></td>
                
             </tr>
             <tr>
-                <td>Vorstapelbeh&#228;lter (Alu, oh. R&#252;hrwerk)</td>
+                <td>
+                    Vorstapelbeh&#228;lter (Alu, oh. R&#252;hrwerk)
+
+                        <br/><small>
+                            (siehe Alu)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">3.1.1</div></td>
                
             </tr>
             <tr>
-                <td>Vorstapelbeh&#228;lter (Fe, oh. R&#252;hrwerk)</td>
+                <td>
+                    Vorstapelbeh&#228;lter (Fe, oh. R&#252;hrwerk)
+
+                        <br/><small>
+                            (siehe Fe)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">3.1.2</div></td>
                
             </tr>
             <tr>
-                <td>Vorstapelbeh&#228;lter (Kunststoff, oh. R&#252;hrwerk)</td>
+                <td>
+                    Vorstapelbeh&#228;lter (Kunststoff, oh. R&#252;hrwerk)
+
+                        <br/><small>
+                            (siehe Kunststoff)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">3.1.4</div></td>
                
             </tr>
             <tr>
-                <td>Vorstapelbeh&#228;lter (V2A, oh. R&#252;hrwerk)</td>
+                <td>
+                    Vorstapelbeh&#228;lter (V2A, oh. R&#252;hrwerk)
+
+                        <br/><small>
+                            (siehe V2A)
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">3.1.3</div></td>
                
             </tr>
             <tr>
-                <td>Vortriebpressen</td>
+                <td>
+                    Vortriebpressen
+
+                        <br/><small>
+                            (siehe Rohrgeh&#228;nge, Rohrpressger&#228;te mit Vortriebspressen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">2.28</div></td>
                
             </tr>
             <tr>
-                <td>Vortriebsmaschinen, Strecken-</td>
+                <td>
+                    Vortriebsmaschinen, Strecken-
+
+                        <br/><small>
+                            (siehe Streckenvortriebsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">1.8.1</div></td>
                
             </tr>
             <tr>
-                <td>Vorwalzwerke</td>
+                <td>
+                    Vorwalzwerke
+
+                        <br/><small>
+                            (siehe Vor- und Feinwalzwerke (einschl. Reversier- und Waschwalzwerke))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">43</div></td>
                 <td class="right"><div align="center">1.2.1.1</div></td>
                
             </tr>
             <tr>
-                <td>Vorw&#228;rmeanlagen</td>
+                <td>
+                    Vorw&#228;rmeanlagen
+
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">1.1.3.16</div></td>
                
             </tr>
             <tr>
-                <td>Vorw&#228;rmeger&#228;te (f. Thermoplaste u. Pressmassen)</td>
+                <td>
+                    Vorw&#228;rmeger&#228;te (f. Thermoplaste u. Pressmassen)
+
+                        <br/><small>
+                            (siehe Vorw&#228;rmeger&#228;te (f. Thermoplaste u. Pre&#223;massen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">1.10</div></td>
                
             </tr>
             <tr>
-                <td>Vorw&#228;rmer</td>
+                <td>
+                    Vorw&#228;rmer
+
+                        <br/><small>
+                            (siehe Vorw&#228;rmer 1))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">29</div></td>
                 <td class="right"><div align="center">5.3</div></td>
                
             </tr>
             <tr>
-                <td>Vorw&#228;rmer, Lack- (elektr.)</td>
+                <td>
+                    Vorw&#228;rmer, Lack- (elektr.)
+
+                        <br/><small>
+                            (siehe Lackvorw&#228;rmer (elektr.))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">3.3.7</div></td>
                
             </tr>
             <tr>
-                <td>Vorw&#228;rmer, Wasser-</td>
+                <td>
+                    Vorw&#228;rmer, Wasser-
+
+                        <br/><small>
+                            (siehe Wasserbeh&#228;lter und -reserven (Hei&#223;wasser) und Vorw&#228;rmer)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">11.8</div></td>
                
             </tr>
             <tr>
-                <td>Vorw&#228;rmeranlagen</td>
+                <td>
+                    Vorw&#228;rmeranlagen
+
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">1.1.1.8</div></td>
                
             </tr>
             <tr>
-                <td>Vorw&#228;rm&#246;fen</td>
-                <td class="right"><div align="center">6</div></td>
-                <td class="right"><div align="center">31</div></td>
-                <td class="right"><div align="center">30.4</div></td>
-               
-            </tr>
-            <tr>
-                <td>Vorw&#228;rmschr&#228;nke</td>
+                <td>
+                    Vorw&#228;rmschr&#228;nke
+
+                        <br/><small>
+                            (siehe Trockeneinrichtungen (z.B. Vorw&#228;rmschr&#228;nke, Trockenkammern, Trockenmaschinen, Trockenschr&#228;nke))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">17</div></td>
                 <td class="right"><div align="center">1.7</div></td>
                
             </tr>
             <tr>
-                <td>Vorw&#228;rmwerke</td>
+                <td>
+                    Vorw&#228;rmwerke
+
+                        <br/><small>
+                            (siehe Vorw&#228;rm- und Ausschneidewerke)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">17</div></td>
                 <td class="right"><div align="center">2.17</div></td>
                
             </tr>
             <tr>
-                <td>Vorweichen</td>
+                <td>
+                    Vorweichen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">12.8.1</div></td>
                
             </tr>
             <tr>
-                <td>Vorziehpressen</td>
+                <td>
+                    Vorziehpressen
+
+                        <br/><small>
+                            (siehe Mischer, Kollerg&#228;nge, Siebkneter, Rundbeschicker, Vorziehpressen, Abschneider)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">29</div></td>
                 <td class="right"><div align="center">2.5.1</div></td>
                
             </tr>
             <tr>
-                <td>Vulkanisierbetriebe</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">18</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Vulkanisierger&#228;te</td>
+                <td>
+                    Vulkanisierger&#228;te
+
+                        <br/><small>
+                            (siehe Tauch- und Vulkanisierger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">17</div></td>
                 <td class="right"><div align="center">3.7</div></td>
                
             </tr>
             <tr>
-                <td>Vulkanisierkessel</td>
+                <td>
+                    Vulkanisierkessel
+
+                        <br/><small>
+                            (siehe Heiz- und Vulkanisierkessel)
+                        </small>
+                </td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">17</div></td>
                 <td class="right"><div align="center">4.6</div></td>
                
             </tr>
             <tr>
-                <td>Vulkanisiermaschinen</td>
+                <td>
+                    Vulkanisiermaschinen
+
+                        <br/><small>
+                            (siehe )
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">43</div></td>
                 <td class="right"><div align="center">5.3</div></td>
                
             </tr>
             <tr>
-                <td>Vulkanisierpressen</td>
+                <td>
+                    Vulkanisierpressen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">8.1.8</div></td>
                
             </tr>
             <tr>
-                <td>Vulkanisierpressen</td>
+                <td>
+                    Vulkanisierpressen
+
+                        <br/><small>
+                            (siehe Pr&#228;ge- und Vulkanisierpressen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">4.1.3.3</div></td>

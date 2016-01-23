@@ -10,10 +10,12 @@
     <title>AfA-Tabellen.de —&nbsp;Abschreibungstabellen</title>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+    <script src="scripts/augment.min.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/app.js"></script>
 </head>
 
-<body onLoad="document.searchform.n.focus();">
+<body>
     <div id="head">
         <div id="container">
             <div id="title">
@@ -61,24 +63,22 @@
                 <p></p>
             </div>
         </div>
-        <form method="get" name="searchform" action="search.php">
+        <form id="searchForm">
             <div class="menu">
                 <div id="listy" class="search">
                     <div id="searchtext">
                         Anlagegegenstand:
-                        <input id="s-nazwa" name="n" type="text"
-                               autocomplete="off">
+                        <input id="searchTxt" name="searchTxt" type="text" autocomplete="off">
                     </div>
-                    <input value="Suchen" type="submit">
+                    <button type="submit">Suchen</button>
                 </div>
             </div>
         </form>
+
     </div>
 
     <div id="content">
         
-<h2 class="direct">Alle Anlagengüter beginnend mit </h2>
-<div id="timespan" class="direct">Letzte Aktualisierung: <span class="date"><strong>12/12/2015</strong></span></div>
 <table id="prices">
     <tbody>
         <tr class="top">
@@ -89,1855 +89,3050 @@
         
         </tr>
             <tr>
-                <td>Zackenschneidmaschinen</td>
+                <td>
+                    Zackenschneidmaschinen
+
+                </td>
+                <td class="right"><div align="center">5</div></td>
+                <td class="right"><div align="center">54</div></td>
+                <td class="right"><div align="center">83</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zackenschneidmaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">8.3.8</div></td>
                
             </tr>
             <tr>
-                <td>Zackenschneidmaschinen</td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center">54</div></td>
-                <td class="right"><div align="center">83</div></td>
-               
-            </tr>
-            <tr>
-                <td>Z&#228;hler</td>
+                <td>
+                    Z&#228;hler
+
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">1.2.19</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hler, Gas-</td>
+                <td>
+                    Z&#228;hler, Gas-
+
+                        <br/><small>
+                            (siehe Gasz&#228;hler)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">2.7</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hler, Ovalrad-</td>
+                <td>
+                    Z&#228;hler, Ovalrad-
+
+                        <br/><small>
+                            (siehe W&#252;rzemengenme&#223;ger&#228;te (z.B. Ringkolben- oder Ovalradz&#228;hler))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">3.1</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hler, Ringkolben-</td>
+                <td>
+                    Z&#228;hler, Ringkolben-
+
+                        <br/><small>
+                            (siehe W&#252;rzemengenme&#223;ger&#228;te (z.B. Ringkolben- oder Ovalradz&#228;hler))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">3.1</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hler, Wasser-</td>
+                <td>
+                    Z&#228;hler, Wasser-
+
+                        <br/><small>
+                            (siehe Wasserz&#228;hler)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">4.12</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hlger&#228;te</td>
+                <td>
+                    Z&#228;hlger&#228;te
+
+                        <br/><small>
+                            (siehe Z&#228;hlger&#228;te (Auswertungsger&#228;te))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">90</div></td>
                 <td class="right"><div align="center">15</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hlger&#228;te, Flaschen-</td>
+                <td>
+                    Z&#228;hlger&#228;te, Flaschen-
+
+                        <br/><small>
+                            (siehe Pr&#252;f- und Kontrollanlagen (z.B. elektronische Flaschenausleuchtung, Flaschen- und Kastenz&#228;hlger&#228;te, H&#246;henf&#252;llmengenme&#223;ger&#228;te, ph-&#220;berwachungsger&#228;te, Leerflascheninspektoren)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">8.11</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hlger&#228;te, Geld-</td>
+                <td>
+                    Z&#228;hlger&#228;te, Geld-
+
+                        <br/><small>
+                            (siehe Geldz&#228;hlger&#228;t)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">91</div></td>
                 <td class="right"><div align="center">29</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hlger&#228;te, Geld-</td>
+                <td>
+                    Z&#228;hlger&#228;te, Geld-
+
+                        <br/><small>
+                            (siehe Geldpr&#252;fger&#228;te, Geldsortierger&#228;te, Geldwechselger&#228;te und Geldz&#228;hlger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.14.12</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hlger&#228;te, Kasten-</td>
+                <td>
+                    Z&#228;hlger&#228;te, Kasten-
+
+                        <br/><small>
+                            (siehe Pr&#252;f- und Kontrollanlagen (z.B. elektronische Flaschenausleuchtung, Flaschen- und Kastenz&#228;hlger&#228;te, H&#246;henf&#252;llmengenme&#223;ger&#228;te, ph-&#220;berwachungsger&#228;te, Leerflascheninspektoren)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">8.11</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hlmaschinen</td>
+                <td>
+                    Z&#228;hlmaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">6.82</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hlmaschinen (Verpackungsautomaten)</td>
+                <td>
+                    Z&#228;hlmaschinen (Verpackungsautomaten)
+
+                        <br/><small>
+                            (siehe Verpackungsautomaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">65</div></td>
                 <td class="right"><div align="center">37.1</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hlmaschinen (Verpackungsmaschinen)</td>
+                <td>
+                    Z&#228;hlmaschinen (Verpackungsmaschinen)
+
+                        <br/><small>
+                            (siehe Verpackungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">65</div></td>
                 <td class="right"><div align="center">37.2</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hlmaschinen, Banknoten-</td>
+                <td>
+                    Z&#228;hlmaschinen, Banknoten-
+
+                        <br/><small>
+                            (siehe Banknotenz&#228;hlmaschine)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">91</div></td>
                 <td class="right"><div align="center">30</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;hlmaschinen, Papier-</td>
+                <td>
+                    Z&#228;hlmaschinen, Papier-
+
+                        <br/><small>
+                            (siehe Papierz&#228;hlmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">51</div></td>
                 <td class="right"><div align="center">74</div></td>
                
             </tr>
             <tr>
-                <td>Zahltische, Kassen-</td>
+                <td>
+                    Zahltische, Kassen-
+
+                        <br/><small>
+                            (siehe Kassenzahltisch, Tagestresor)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">91</div></td>
                 <td class="right"><div align="center">11</div></td>
                
             </tr>
             <tr>
-                <td>Zahnarztpraxen</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">99</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Zahnradautomaten</td>
+                <td>
+                    Zahnradautomaten
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">45</div></td>
                 <td class="right"><div align="center">3.1.5.9</div></td>
                
             </tr>
             <tr>
-                <td>Zahnradfr&#228;smaschinen</td>
+                <td>
+                    Zahnradfr&#228;smaschinen
+
+                        <br/><small>
+                            (siehe Zahnrad-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">36</div></td>
                 <td class="right"><div align="center">2.1.9.7</div></td>
                
             </tr>
             <tr>
-                <td>Zahnradfr&#228;smaschinen</td>
+                <td>
+                    Zahnradfr&#228;smaschinen
+
+                        <br/><small>
+                            (siehe Zahnrad-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">42</div></td>
                 <td class="right"><div align="center">1.8.5</div></td>
                
             </tr>
             <tr>
-                <td>Zahntechniker</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">31</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Zangen, Gest&#228;nge-</td>
+                <td>
+                    Zangen, Gest&#228;nge-
+
+                        <br/><small>
+                            (siehe Werkzeuge, z.B. Rohr- und Gest&#228;ngezangen, Mitnehmer-, Schwerstangen, Gest&#228;nge, Kernwerkzeuge, Fang- und Schneidewerkzeuge, Richt- und Ablenkwerkzeuge, Me&#223;ger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">1.13</div></td>
                
             </tr>
             <tr>
-                <td>Zangen, Greif-</td>
+                <td>
+                    Zangen, Greif-
+
+                        <br/><small>
+                            (siehe Greifzangen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">27</div></td>
                 <td class="right"><div align="center">6.4</div></td>
                
             </tr>
             <tr>
-                <td>Zangen, Klauen-</td>
+                <td>
+                    Zangen, Klauen-
+
+                        <br/><small>
+                            (siehe Klauenzangen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">39</div></td>
                
             </tr>
             <tr>
-                <td>Zangen, Rohr-</td>
+                <td>
+                    Zangen, Rohr-
+
+                        <br/><small>
+                            (siehe Werkzeuge, z.B. Rohr- und Gest&#228;ngezangen, Mitnehmer-, Schwerstangen, Gest&#228;nge, Kernwerkzeuge, Fang- und Schneidewerkzeuge, Richt- und Ablenkwerkzeuge, Me&#223;ger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">1.13</div></td>
                
             </tr>
             <tr>
-                <td>Zapfanlagen</td>
+                <td>
+                    Zapfanlagen
+
+                        <br/><small>
+                            (siehe Tank- und Zapfanlagen f&#252;r Treibstoffe, Heiz&#246;l usw.)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">19</div></td>
                 <td class="right"><div align="center">17.5</div></td>
                
             </tr>
             <tr>
-                <td>Zapfanlagen (f. Farben, Verschnitt u. Verd&#252;nnung)</td>
+                <td>
+                    Zapfanlagen (f. Farben, Verschnitt u. Verd&#252;nnung)
+
+                        <br/><small>
+                            (siehe Tank- und Zapfanlagen f&#252;r Farbe, Verschnitt u. Verd&#252;nnung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">5.3.7</div></td>
                
             </tr>
             <tr>
-                <td>Zapfanlagen, Theken-</td>
+                <td>
+                    Zapfanlagen, Theken-
+
+                        <br/><small>
+                            (siehe Thekenzapfanlagen, Premixger&#228;te und Postmixger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">75</div></td>
                 <td class="right"><div align="center">6.9</div></td>
                
             </tr>
             <tr>
-                <td>Zapfanlagen, Treib- und Schmierstoff-</td>
+                <td>
+                    Zapfanlagen, Treib- und Schmierstoff-
+
+                        <br/><small>
+                            (siehe Tank- und Zapfanlagen f&#252;r Treib- und Schmierstoffe)
+                        </small>
+                </td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">3.10.2</div></td>
                
             </tr>
             <tr>
-                <td>Zapfenschneidmaschinen</td>
+                <td>
+                    Zapfenschneidmaschinen
+
+                        <br/><small>
+                            (siehe Zapfenschneid- und Schlitzmaschinen, auch kombinierte)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">6.3</div></td>
                
             </tr>
             <tr>
-                <td>Zapfer, Sahne-</td>
+                <td>
+                    Zapfer, Sahne-
+
+                        <br/><small>
+                            (siehe Sahneautomaten/Sahnezapfer)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">65</div></td>
                 <td class="right"><div align="center">23</div></td>
                
             </tr>
             <tr>
-                <td>Zapfger&#228;te</td>
+                <td>
+                    Zapfger&#228;te
+
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">15.21</div></td>
                
             </tr>
             <tr>
-                <td>Zapfs&#228;ulen (f. Treib- u. Schmierstoffe)</td>
+                <td>
+                    Zapfs&#228;ulen (f. Treib- u. Schmierstoffe)
+
+                        <br/><small>
+                            (siehe Zapfs&#228;ulen f&#252;r Treib- und Schmierstoffe einschl. mechan. oder elektron. Rechenwerk)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">84</div></td>
                 <td class="right"><div align="center">2.2.1</div></td>
                
             </tr>
             <tr>
-                <td>Zapfwelleneggen</td>
+                <td>
+                    Zapfwelleneggen
+
+                        <br/><small>
+                            (siehe Zapfwelleneggen (Kreisel-, R&#252;ttel-, Taumeleggen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">4.15</div></td>
                
             </tr>
             <tr>
-                <td>Zargen-Stanzmaschinen</td>
+                <td>
+                    Zargen-Stanzmaschinen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">45</div></td>
                 <td class="right"><div align="center">2.27</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;une, Kultur-</td>
+                <td>
+                    Z&#228;une, Kultur-
+
+                        <br/><small>
+                            (siehe Kulturz&#228;une)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">4.2.2</div></td>
                
             </tr>
             <tr>
-                <td>Z&#228;une, Wildschutz- (bewegl.)</td>
+                <td>
+                    Z&#228;une, Wildschutz- (bewegl.)
+
+                        <br/><small>
+                            (siehe Wildschutzz&#228;une (beweglich))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">1.2</div></td>
                
             </tr>
             <tr>
-                <td>Zeichenband-Einlegemaschinen</td>
+                <td>
+                    Zeichenband-Einlegemaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">51</div></td>
                 <td class="right"><div align="center">113</div></td>
                
             </tr>
             <tr>
-                <td>Zeichenblockherstellungsmaschinen</td>
+                <td>
+                    Zeichenblockherstellungsmaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">51</div></td>
                 <td class="right"><div align="center">114</div></td>
                
             </tr>
             <tr>
-                <td>Zeichenger&#228;te (elektron.)</td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center">81</div></td>
-                <td class="right"><div align="center">8.14.2</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zeichenger&#228;te (mechan.)</td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">81</div></td>
-                <td class="right"><div align="center">8.14.1</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zeichenger&#228;te, elektronisch</td>
+                <td>
+                    Zeichenger&#228;te, elektronisch
+
+                        <br/><small>
+                            (siehe elektronisch)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.14.9.1</div></td>
                
             </tr>
             <tr>
-                <td>Zeichenger&#228;te, Herst. v.</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">44</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Zeichenger&#228;te, mechanisch</td>
+                <td>
+                    Zeichenger&#228;te, mechanisch
+
+                        <br/><small>
+                            (siehe mechanisch)
+                        </small>
+                </td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.14.9.2</div></td>
                
             </tr>
             <tr>
-                <td>Zeichenschneidsysteme (elektron.)</td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center">52</div></td>
-                <td class="right"><div align="center">3.2</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zeichenschneidsysteme (elektron.)</td>
+                <td>
+                    Zeichenschneidsysteme (elektron.)
+
+                        <br/><small>
+                            (siehe Elektron. Zeichen- und Maskenschneidsysteme)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">2.2.3</div></td>
                
             </tr>
             <tr>
-                <td>Zeigerannahmewaagen</td>
+                <td>
+                    Zeichenschneidsysteme (elektron.)
+
+                        <br/><small>
+                            (siehe Elektron. Zeichen- und Maskenschneidsysteme)
+                        </small>
+                </td>
+                <td class="right"><div align="center">5</div></td>
+                <td class="right"><div align="center">52</div></td>
+                <td class="right"><div align="center">3.2</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zeigerannahmewaagen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">1.7</div></td>
                
             </tr>
             <tr>
-                <td>Zeigersetzmaschinen</td>
+                <td>
+                    Zeigersetzmaschinen
+
+                        <br/><small>
+                            (siehe Montage- und F&#252;gemaschinen, spezielle (z.B. Steinsetzmaschinen, Stiftsetzmaschinen, Pitoniermaschinen, Virolagemaschinen, Zeigersetzmaschinen, Uhrenaufzugmaschinen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">3.3</div></td>
                
             </tr>
             <tr>
-                <td>Zeilengie&#223;maschinen</td>
+                <td>
+                    Zeilengie&#223;maschinen
+
+                        <br/><small>
+                            (siehe Zeilengie&#223;maschinen, lochbandgesteuert)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">1.1.15</div></td>
                
             </tr>
             <tr>
-                <td>Zeilengie&#223;maschinen (manuell)</td>
+                <td>
+                    Zeilengie&#223;maschinen (manuell)
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">1.1.16</div></td>
                
             </tr>
             <tr>
-                <td>Zeilenr&#228;umger&#228;te</td>
+                <td>
+                    Zeilenr&#228;umger&#228;te
+
+                        <br/><small>
+                            (siehe Zeilenr&#228;umger&#228;te (Stockr&#228;umer))
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">4.10</div></td>
                
             </tr>
             <tr>
-                <td>Zeiterfassungsger&#228;te</td>
+                <td>
+                    Zeiterfassungsger&#228;te
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.14.11</div></td>
                
             </tr>
             <tr>
-                <td>Zeitmessanlagen</td>
+                <td>
+                    Zeitmessanlagen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">95</div></td>
                 <td class="right"><div align="center">59</div></td>
                
             </tr>
             <tr>
-                <td>Zeitungsdruckerei</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">52</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Zellen, Klima-</td>
+                <td>
+                    Zellen, Klima-
+
+                        <br/><small>
+                            (siehe Klima- und K&#252;hlzellen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">20.2</div></td>
                
             </tr>
             <tr>
-                <td>Zellen, K&#252;hl-</td>
+                <td>
+                    Zellen, K&#252;hl-
+
+                        <br/><small>
+                            (siehe Klima- und K&#252;hlzellen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">20.2</div></td>
                
             </tr>
             <tr>
-                <td>Zellen, Tiefk&#252;hl-</td>
+                <td>
+                    Zellen, Tiefk&#252;hl-
+
+                        <br/><small>
+                            (siehe Tiefk&#252;hlschr&#228;nke, Tiefk&#252;hltruhen, Tiefk&amp;uuml;hlzellen (transportabel) und &#228;hnliche Verkaufseinrichtungen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">68</div></td>
                 <td class="right"><div align="center">4.18</div></td>
                
             </tr>
             <tr>
-                <td>Zellenpontons</td>
+                <td>
+                    Zellenpontons
+
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">7.16</div></td>
                
             </tr>
             <tr>
-                <td>Zellstoff&#228;stef&#228;nger</td>
+                <td>
+                    Zellstoff&#228;stef&#228;nger
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.4.2</div></td>
                
             </tr>
             <tr>
-                <td>Zellstoffaufl&#246;ser</td>
+                <td>
+                    Zellstoffaufl&#246;ser
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.4.1</div></td>
                
             </tr>
             <tr>
-                <td>Zellstoffb&#252;tten</td>
+                <td>
+                    Zellstoffb&#252;tten
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.3.3</div></td>
                
             </tr>
             <tr>
-                <td>Zellstoffdrucksortierer</td>
+                <td>
+                    Zellstoffdrucksortierer
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.4.3</div></td>
                
             </tr>
             <tr>
-                <td>Zellstoffeindicker</td>
+                <td>
+                    Zellstoffeindicker
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.4.5</div></td>
                
             </tr>
             <tr>
-                <td>Zellstofferzeugung</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">50</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Zellstoffkocher</td>
+                <td>
+                    Zellstoffkocher
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.3.1</div></td>
                
             </tr>
             <tr>
-                <td>Zellstoffmischer</td>
+                <td>
+                    Zellstoffmischer
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.5.6</div></td>
                
             </tr>
             <tr>
-                <td>Zellstoffrefiner</td>
+                <td>
+                    Zellstoffrefiner
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.4.7</div></td>
                
             </tr>
             <tr>
-                <td>Zelte</td>
+                <td>
+                    Zelte
+
+                        <br/><small>
+                            (siehe Schutzh&#252;tten und Zelte)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">1.1</div></td>
                
             </tr>
             <tr>
-                <td>Zelte, Arbeits-</td>
-                <td class="right"><div align="center">6</div></td>
-                <td class="right"><div align="center">81</div></td>
-                <td class="right"><div align="center">5.17</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zelte, Arbeits-</td>
+                <td>
+                    Zelte, Arbeits-
+
+                        <br/><small>
+                            (siehe Arbeitszelte)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.12</div></td>
                
             </tr>
             <tr>
-                <td>Zelte, Bier-</td>
+                <td>
+                    Zelte, Arbeits-
+
+                        <br/><small>
+                            (siehe Arbeitszelte, Sonnenschutzd&#228;cher)
+                        </small>
+                </td>
+                <td class="right"><div align="center">6</div></td>
+                <td class="right"><div align="center">81</div></td>
+                <td class="right"><div align="center">5.17</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zelte, Bier-
+
+                        <br/><small>
+                            (siehe Bierzelte)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">1.7</div></td>
                
             </tr>
             <tr>
-                <td>Zelte, Bier-</td>
+                <td>
+                    Zelte, Bier-
+
+                        <br/><small>
+                            (siehe Bierzelte)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">11.12</div></td>
                
             </tr>
             <tr>
-                <td>Zelte, Schwei&#223;-</td>
+                <td>
+                    Zelte, Schwei&#223;-
+
+                        <br/><small>
+                            (siehe Schwei&#223;zelte)
+                        </small>
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">39</div></td>
                 <td class="right"><div align="center">22</div></td>
                
             </tr>
             <tr>
-                <td>Zementf&#246;rdereinrichtungen</td>
+                <td>
+                    Zementf&#246;rdereinrichtungen
+
+                        <br/><small>
+                            (siehe Mischanlagen mit dazugeh&#246;riger Zementsilo-, Zementf&#246;rder- und Wiegeeinrichtung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">23</div></td>
                 <td class="right"><div align="center">2.1</div></td>
                
             </tr>
             <tr>
-                <td>Zementiermaschinen, Buggkanten-</td>
+                <td>
+                    Zementiermaschinen, Buggkanten-
+
+                        <br/><small>
+                            (siehe Buggkanten-Zementiermaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">3.2.6</div></td>
                
             </tr>
             <tr>
-                <td>Zementiermaschinen, Rei&#223;verschluss-Thermo-</td>
+                <td>
+                    Zementiermaschinen, Rei&#223;verschluss-Thermo-
+
+                        <br/><small>
+                            (siehe Rei&#223;verschlu&#223;-Thermo- Zementiermaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">3.2.20</div></td>
                
             </tr>
             <tr>
-                <td>Zementiermaschinen, Riss-</td>
+                <td>
+                    Zementiermaschinen, Riss-
+
+                        <br/><small>
+                            (siehe Ri&#223;-Zementiermaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">6.3.21</div></td>
                
             </tr>
             <tr>
-                <td>Zementiermaschinen, Zwischenfutter-</td>
+                <td>
+                    Zementiermaschinen, Zwischenfutter-
+
+                        <br/><small>
+                            (siehe Zwischenfutter-Zementiermaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">3.2.25</div></td>
                
             </tr>
             <tr>
-                <td>Zementierungsaggregate</td>
+                <td>
+                    Zementierungsaggregate
+
+                        <br/><small>
+                            (siehe Aggregate f&#252;r Strom, Wasser, Pre&#223;luft-Hydraulik, Sp&#252;lung und Zementierung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">1.7</div></td>
                
             </tr>
             <tr>
-                <td>Zementindustrie</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">25</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Zementpumpen</td>
+                <td>
+                    Zementpumpen
+
+                        <br/><small>
+                            (siehe Zementpumpen und Zubeh&#246;r)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">2.24</div></td>
                
             </tr>
             <tr>
-                <td>Zementsilos</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">81</div></td>
-                <td class="right"><div align="center">1.13</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zementsilos</td>
+                <td>
+                    Zementsilos
+
+                        <br/><small>
+                            (siehe Mischanlagen mit dazugeh&#246;riger Zementsilo-, Zementf&#246;rder- und Wiegeeinrichtung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">23</div></td>
                 <td class="right"><div align="center">2.1</div></td>
                
             </tr>
             <tr>
-                <td>Zementsilos (aus Metall)</td>
+                <td>
+                    Zementsilos
+
+                        <br/><small>
+                            (siehe St&#228;hlerne Silos f&#252;r Zuschlagstoffe u. Zement, einschl. Silozubeh&#246;r (Verschl&#252;sse, Abluftfilter, Bunkerstandsanzeiger))
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">81</div></td>
+                <td class="right"><div align="center">1.13</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zementsilos (aus Metall)
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">47</div></td>
                 <td class="right"><div align="center">7</div></td>
                
             </tr>
             <tr>
-                <td>Zementstreuger&#228;te</td>
+                <td>
+                    Zementstreuger&#228;te
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">5.22</div></td>
                
             </tr>
             <tr>
-                <td>Zementwaagen</td>
+                <td>
+                    Zementwaagen
+
+                        <br/><small>
+                            (siehe Waagen aller Art f&#252;r Zement)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">1.8</div></td>
                
             </tr>
             <tr>
-                <td>Zentralreinigungsanlagen (f. Leitungen u. Gef&#228;&#223;e)</td>
+                <td>
+                    Zentralreinigungsanlagen (f. Leitungen u. Gef&#228;&#223;e)
+
+                        <br/><small>
+                            (siehe Zentralreinigungsanlagen f&#252;r Leitungen und Gef&#228;&#223;e)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">11.10</div></td>
                
             </tr>
             <tr>
-                <td>Zentrierautomaten</td>
+                <td>
+                    Zentrierautomaten
+
+                        <br/><small>
+                            (siehe -automaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">2.6.1</div></td>
                
             </tr>
             <tr>
-                <td>Zentriereinrichtungen, Laser-</td>
+                <td>
+                    Zentriereinrichtungen, Laser-
+
+                        <br/><small>
+                            (siehe Richtapparate, Laser-Zentriereinrichtungen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">2.8</div></td>
                
             </tr>
             <tr>
-                <td>Zentriermaschinen</td>
+                <td>
+                    Zentriermaschinen
+
+                        <br/><small>
+                            (siehe Glasurabputzmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">2.6</div></td>
                
             </tr>
             <tr>
-                <td>Zentriermaschinen</td>
+                <td>
+                    Zentriermaschinen
+
+                        <br/><small>
+                            (siehe S&#228;gen-, Feil-, Trenn-, Abl&#228;ngu. Zentriermaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">38</div></td>
                 <td class="right"><div align="center">1.8</div></td>
                
             </tr>
             <tr>
-                <td>Zentriermaschinen, Diamant-</td>
+                <td>
+                    Zentriermaschinen, Diamant-
+
+                        <br/><small>
+                            (siehe Diamantzentriermaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">2.7</div></td>
                
             </tr>
             <tr>
-                <td>Zentrifugen</td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center">93</div></td>
-                <td class="right"><div align="center">9</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zentrifugen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">99</div></td>
-                <td class="right"><div align="center">107</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zentrifugen</td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">7.12</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zentrifugen</td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">16</div></td>
-                <td class="right"><div align="center">1.3</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zentrifugen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">40</div></td>
-                <td class="right"><div align="center">1.5.10</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zentrifugen</td>
+                <td>
+                    Zentrifugen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">63</div></td>
                 <td class="right"><div align="center">1.26</div></td>
                
             </tr>
             <tr>
-                <td>Zentrifugen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">60</div></td>
-                <td class="right"><div align="center">15</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zentrifugen</td>
-                <td class="right"><div align="center">7</div></td>
-                <td class="right"><div align="center">59</div></td>
-                <td class="right"><div align="center">2.13</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zentrifugen</td>
+                <td>
+                    Zentrifugen
+
+                        <br/><small>
+                            (siehe Separatoren (Zentrifugen) einschl. R&#252;ttelsieb und Drehb&#252;rstensieb)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">67</div></td>
                 <td class="right"><div align="center">1.4</div></td>
                
             </tr>
             <tr>
-                <td>Zentrifugen</td>
+                <td>
+                    Zentrifugen
+
+                        <br/><small>
+                            (siehe Schleudermaschinen (Zentrifugen))
+                        </small>
+                </td>
+                <td class="right"><div align="center">5</div></td>
+                <td class="right"><div align="center">93</div></td>
+                <td class="right"><div align="center">9</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zentrifugen
+
+                        <br/><small>
+                            (siehe Schleudern, Zentrifugen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">62</div></td>
                 <td class="right"><div align="center">2.9</div></td>
                
             </tr>
             <tr>
-                <td>Zentrifugen</td>
+                <td>
+                    Zentrifugen
+
+                </td>
+                <td class="right"><div align="center">7</div></td>
+                <td class="right"><div align="center">59</div></td>
+                <td class="right"><div align="center">2.13</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zentrifugen
+
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">40</div></td>
+                <td class="right"><div align="center">1.5.10</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zentrifugen
+
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">60</div></td>
+                <td class="right"><div align="center">15</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zentrifugen
+
+                        <br/><small>
+                            (siehe Zentrifugen, Bactofugen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">4.4</div></td>
                
             </tr>
             <tr>
-                <td>Zentrifugen (bewegl.)</td>
+                <td>
+                    Zentrifugen
+
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">99</div></td>
+                <td class="right"><div align="center">107</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zentrifugen
+
+                </td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">0</div></td>
+                <td class="right"><div align="center">7.12</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zentrifugen
+
+                        <br/><small>
+                            (siehe Maschinen f&#252;r mechanische Fl&#252;ssigkeitsabtrennung (z.B. Zentrifugen, Abpre&#223;schnecken))
+                        </small>
+                </td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">16</div></td>
+                <td class="right"><div align="center">1.3</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zentrifugen (bewegl.)
+
+                        <br/><small>
+                            (siehe beweglich)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">96</div></td>
                 <td class="right"><div align="center">2.6.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Zentrifugen (station&#228;r)</td>
+                <td>
+                    Zentrifugen (station&#228;r)
+
+                        <br/><small>
+                            (siehe station&#228;r)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">96</div></td>
                 <td class="right"><div align="center">2.6.3.1</div></td>
                
             </tr>
             <tr>
-                <td>Zentrifugen (zum Entfetten vom Minen)</td>
+                <td>
+                    Zentrifugen (zum Entfetten vom Minen)
+
+                        <br/><small>
+                            (siehe Zentrifugen zum Entfetten von Minen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">44</div></td>
                 <td class="right"><div align="center">57</div></td>
                
             </tr>
             <tr>
-                <td>Zentrifugen, Blut-, f&#252;r Plasma</td>
+                <td>
+                    Zentrifugen, Blut-, f&#252;r Plasma
+
+                        <br/><small>
+                            (siehe Blutzentrifugen f&#252;r Plasma)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">9</div></td>
                
             </tr>
             <tr>
-                <td>Zentrifugen, Laval-</td>
+                <td>
+                    Zentrifugen, Laval-
+
+                        <br/><small>
+                            (siehe Lavalzentrifugen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">78</div></td>
                 <td class="right"><div align="center">1.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Zerhacker, Holz- (grob)</td>
+                <td>
+                    Zerhacker, Holz- (grob)
+
+                        <br/><small>
+                            (siehe Holzzerhacker (zur Erzeugung von Brennsp&#228;nen, grobe))
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">3.16</div></td>
                
             </tr>
             <tr>
-                <td>Zerkleinerer</td>
+                <td>
+                    Zerkleinerer
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">96</div></td>
                 <td class="right"><div align="center">2.1</div></td>
                
             </tr>
             <tr>
-                <td>Zerkleinerer, Gefrierfleisch-</td>
+                <td>
+                    Zerkleinerer, Gefrierfleisch-
+
+                        <br/><small>
+                            (siehe Gefrierfleischzerkleinerer)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">31</div></td>
                
             </tr>
             <tr>
-                <td>Zerkleinerungsanlagen, Abfall-</td>
+                <td>
+                    Zerkleinerungsanlagen, Abfall-
+
+                        <br/><small>
+                            (siehe Abfallzerkleinerungsanlagen (Shredder))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">51</div></td>
                 <td class="right"><div align="center">2</div></td>
                
             </tr>
             <tr>
-                <td>Zerkleinerungsger&#228;te, Rebholz-</td>
+                <td>
+                    Zerkleinerungsger&#228;te, Rebholz-
+
+                        <br/><small>
+                            (siehe Ger&#228;te f&#252;r Rebholzzerkleinerung und Mulchen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">1.6</div></td>
                
             </tr>
             <tr>
-                <td>Zerkleinerungsmaschinen</td>
+                <td>
+                    Zerkleinerungsmaschinen
+
+                        <br/><small>
+                            (siehe Zerkleinerungsmaschinen (z.B. M&#252;hlen, Bandgranulatoren, Stranggranulatoren) und Regenerierungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">1.1</div></td>
                
             </tr>
             <tr>
-                <td>Zerkleinerungsmaschinen</td>
+                <td>
+                    Zerkleinerungsmaschinen
+
+                        <br/><small>
+                            (siehe Rohgummispalter u.a. Zerkleinerungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">17</div></td>
                 <td class="right"><div align="center">1.2</div></td>
                
             </tr>
             <tr>
-                <td>Zerkleinerungsmaschinen</td>
+                <td>
+                    Zerkleinerungsmaschinen
+
+                        <br/><small>
+                            (siehe Zerkleinerungsmaschinen (Brecher, Scheibenm&#252;hlen, Riffelwalzenst&#252;hle, Diagonalwalzenst&amp;uuml;hle, Perplexm&amp;uuml;hlen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">1.6.31</div></td>
                
             </tr>
             <tr>
-                <td>Zerkleinerungsmaschinen, Abfall-</td>
+                <td>
+                    Zerkleinerungsmaschinen, Abfall-
+
+                        <br/><small>
+                            (siehe Schneidm&#252;hlen (Abfallzerkleinerungsmaschinen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">1.5.4</div></td>
                
             </tr>
             <tr>
-                <td>Zerkleinerungsmaschinen, Fleisch-, sonstige</td>
+                <td>
+                    Zerkleinerungsmaschinen, Fleisch-, sonstige
+
+                        <br/><small>
+                            (siehe sonstige)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">28.2</div></td>
                
             </tr>
             <tr>
-                <td>Zerkleinerungsmaschinen, Holz-</td>
+                <td>
+                    Zerkleinerungsmaschinen, Holz-
+
+                        <br/><small>
+                            (siehe Holz-und Rindenzerkleinerungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">1.13</div></td>
                
             </tr>
             <tr>
-                <td>Zerkleinerungsmaschinen, Rinden-</td>
+                <td>
+                    Zerkleinerungsmaschinen, Rinden-
+
+                        <br/><small>
+                            (siehe Holz-und Rindenzerkleinerungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">1.13</div></td>
                
             </tr>
             <tr>
-                <td>Zerkleinerungsm&#252;hlen</td>
+                <td>
+                    Zerkleinerungsm&#252;hlen
+
+                        <br/><small>
+                            (siehe M&#252;hlen f&#252;r Semmel- und Brotzerkleinerung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">65</div></td>
                 <td class="right"><div align="center">21</div></td>
                
             </tr>
             <tr>
-                <td>Zerlegeb&#228;nder</td>
+                <td>
+                    Zerlegeb&#228;nder
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">97</div></td>
                
             </tr>
             <tr>
-                <td>Zerlegehilfen</td>
+                <td>
+                    Zerlegehilfen
+
+                        <br/><small>
+                            (siehe Zerlegehilfen, -Maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">98</div></td>
                
             </tr>
             <tr>
-                <td>Zerlegemaschinen</td>
+                <td>
+                    Zerlegemaschinen
+
+                        <br/><small>
+                            (siehe Zerlegehilfen, -Maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">98</div></td>
                
             </tr>
             <tr>
-                <td>Zerleges&#228;gen</td>
+                <td>
+                    Zerleges&#228;gen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">99</div></td>
                
             </tr>
             <tr>
-                <td>Zerrei&#223;er, Sp&#228;ne-</td>
+                <td>
+                    Zerrei&#223;er, Sp&#228;ne-
+
+                        <br/><small>
+                            (siehe Sp&#228;nezerrei&#223;er)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">2.16</div></td>
                
             </tr>
             <tr>
-                <td>Zerrei&#223;wolf</td>
+                <td>
+                    Zerrei&#223;wolf
+
+                        <br/><small>
+                            (siehe Br&#252;denabzugsanlagen mit Exhaustor und Zerrei&#223;wolf)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">78</div></td>
                 <td class="right"><div align="center">1.1.7</div></td>
                
             </tr>
             <tr>
-                <td>Zersetzungsbeh&#228;lter, Seifen-</td>
+                <td>
+                    Zersetzungsbeh&#228;lter, Seifen-
+
+                        <br/><small>
+                            (siehe Seifenzersetzungsbeh&#228;lter)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">1.4.22</div></td>
                
             </tr>
             <tr>
-                <td>Zerst&#228;uberanlagen</td>
+                <td>
+                    Zerst&#228;uberanlagen
+
+                        <br/><small>
+                            (siehe Spr&#252;ht&#252;rme (Zerst&#228;uberanlagen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">14.5</div></td>
                
             </tr>
             <tr>
-                <td>Zertr&#252;mmerungsger&#228;te, Beton-</td>
+                <td>
+                    Zertr&#252;mmerungsger&#228;te, Beton-
+
+                        <br/><small>
+                            (siehe Felsmei&#223;eleinrichtungen, Betonzertr&#252;mmerungsger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">3.20</div></td>
                
             </tr>
             <tr>
-                <td>Zettelanlagen (einfach)</td>
+                <td>
+                    Zettelanlagen (einfach)
+
+                        <br/><small>
+                            (siehe einfach)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">56</div></td>
                 <td class="right"><div align="center">6.3.1</div></td>
                
             </tr>
             <tr>
-                <td>Zickzackmaschinen</td>
+                <td>
+                    Zickzackmaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">8.4</div></td>
                
             </tr>
             <tr>
-                <td>Zick-Zack-N&#228;hmaschinen</td>
+                <td>
+                    Zick-Zack-N&#228;hmaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">54</div></td>
                 <td class="right"><div align="center">84</div></td>
                
             </tr>
             <tr>
-                <td>Zickzack&#246;fen</td>
+                <td>
+                    Zickzack&#246;fen
+
+                        <br/><small>
+                            (siehe Zickzack- und Ring&#246;fen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">30</div></td>
                 <td class="right"><div align="center">5.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Ziegelindustrie</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">30</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Ziegelmauer</td>
+                <td>
+                    Ziegelmauer
+
+                        <br/><small>
+                            (siehe Sonstige)
+                        </small>
+                </td>
                 <td class="right"><div align="center">17</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">2.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Ziehautomaten, Folien-</td>
+                <td>
+                    Ziehautomaten, Folien-
+
+                        <br/><small>
+                            (siehe Folienzieh-, Pre&#223;-, Gl&#228;tteu. Klebemaschinen (einschlie&#223;lich Automaten))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">43</div></td>
                 <td class="right"><div align="center">2.9</div></td>
                
             </tr>
             <tr>
-                <td>Ziehmaschinen</td>
+                <td>
+                    Ziehmaschinen
+
+                        <br/><small>
+                            (siehe Form-, Streck- und Ziehmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">62</div></td>
                 <td class="right"><div align="center">2.7.1</div></td>
                
             </tr>
             <tr>
-                <td>Ziehmaschinen (autom.)</td>
+                <td>
+                    Ziehmaschinen (autom.)
+
+                        <br/><small>
+                            (siehe automatische Form-, Streck- und Ziehmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">62</div></td>
                 <td class="right"><div align="center">2.7.2</div></td>
                
             </tr>
             <tr>
-                <td>Ziehmaschinen (f. Tafelglas)</td>
+                <td>
+                    Ziehmaschinen (f. Tafelglas)
+
+                        <br/><small>
+                            (siehe Ziehmaschinen f&#252;r Tafelglas 1))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">33</div></td>
                 <td class="right"><div align="center">2.9.1</div></td>
                
             </tr>
             <tr>
-                <td>Ziehmaschinen, Draht-</td>
+                <td>
+                    Ziehmaschinen, Draht-
+
+                        <br/><small>
+                            (siehe Drahtzieh- und Spulmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">42</div></td>
                 <td class="right"><div align="center">2.5</div></td>
                
             </tr>
             <tr>
-                <td>Ziehmaschinen, Folien-</td>
+                <td>
+                    Ziehmaschinen, Folien-
+
+                        <br/><small>
+                            (siehe Folienzieh-, Pre&#223;-, Gl&#228;tteu. Klebemaschinen (einschlie&#223;lich Automaten))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">43</div></td>
                 <td class="right"><div align="center">2.9</div></td>
                
             </tr>
             <tr>
-                <td>Ziehmaschinen, Mitteldraht-</td>
+                <td>
+                    Ziehmaschinen, Mitteldraht-
+
+                        <br/><small>
+                            (siehe Mitteldrahtziehmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">34</div></td>
                 <td class="right"><div align="center">28.4</div></td>
                
             </tr>
             <tr>
-                <td>Ziehmaschinen, Rohr-</td>
+                <td>
+                    Ziehmaschinen, Rohr-
+
+                        <br/><small>
+                            (siehe Rohrziehmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">34</div></td>
                 <td class="right"><div align="center">28.5</div></td>
                
             </tr>
             <tr>
-                <td>Ziehmaschinen, Zucker-</td>
+                <td>
+                    Ziehmaschinen, Zucker-
+
+                        <br/><small>
+                            (siehe Zuckerziehmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">68</div></td>
                 <td class="right"><div align="center">2.14</div></td>
                
             </tr>
             <tr>
-                <td>Ziehpressen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">45</div></td>
-                <td class="right"><div align="center">3.1.1.4</div></td>
-               
-            </tr>
-            <tr>
-                <td>Ziehpressen</td>
+                <td>
+                    Ziehpressen
+
+                        <br/><small>
+                            (siehe Zieh-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">42</div></td>
                 <td class="right"><div align="center">2.21.3</div></td>
                
             </tr>
             <tr>
-                <td>Ziehpressen, R&#228;der-</td>
+                <td>
+                    Ziehpressen
+
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">45</div></td>
+                <td class="right"><div align="center">3.1.1.4</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Ziehpressen, R&#228;der-
+
+                        <br/><small>
+                            (siehe R&#228;derziehpressen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">34</div></td>
                 <td class="right"><div align="center">15.5</div></td>
                
             </tr>
             <tr>
-                <td>Zierpflanzenbau</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Zifferblattdruckmaschinen</td>
+                <td>
+                    Zifferblattdruckmaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">4.15</div></td>
                
             </tr>
             <tr>
-                <td>Ziffernblatt-Pr&#228;gemaschinen</td>
+                <td>
+                    Ziffernblatt-Pr&#228;gemaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">2.5.3</div></td>
                
             </tr>
             <tr>
-                <td>Zigarettenaufrei&#223;maschinen</td>
+                <td>
+                    Zigarettenaufrei&#223;maschinen
+
+                        <br/><small>
+                            (siehe Zigarettenaufreissmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">80</div></td>
                 <td class="right"><div align="center">39</div></td>
                
             </tr>
             <tr>
-                <td>Zigarettenautomaten</td>
+                <td>
+                    Zigarettenautomaten
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">7.4.3</div></td>
                
             </tr>
             <tr>
-                <td>Zigarettenindustrie</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">80</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Zigarettenspeichersysteme</td>
+                <td>
+                    Zigarettenspeichersysteme
+
+                        <br/><small>
+                            (siehe Speichersysteme (Zigaretten, (Packungen, Gebinde))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">80</div></td>
                 <td class="right"><div align="center">35</div></td>
                
             </tr>
             <tr>
-                <td>Zigarettenstrangmaschinen</td>
+                <td>
+                    Zigarettenstrangmaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">80</div></td>
                 <td class="right"><div align="center">40</div></td>
                
             </tr>
             <tr>
-                <td>Zigarillo-Abschneidemaschinen</td>
+                <td>
+                    Zigarillo-Abschneidemaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">79</div></td>
                 <td class="right"><div align="center">38</div></td>
                
             </tr>
             <tr>
-                <td>Zigarrenfabrikation</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">79</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Zimmerm&#228;dchenwagen</td>
+                <td>
+                    Zimmerm&#228;dchenwagen
+
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">92</div></td>
                 <td class="right"><div align="center">53</div></td>
                
             </tr>
             <tr>
-                <td>Zinkdruckpressen</td>
+                <td>
+                    Zinkdruckpressen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">5.2.16</div></td>
                
             </tr>
             <tr>
-                <td>Zinkeneggen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center">4.3</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zinkeneggen</td>
+                <td>
+                    Zinkeneggen
+
+                        <br/><small>
+                            (siehe Feingrubber und Zinkeneggen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Zinkenfr&#228;sen</td>
+                <td>
+                    Zinkeneggen
+
+                        <br/><small>
+                            (siehe Feingrubber und Zinkeneggen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">5</div></td>
+                <td class="right"><div align="center">4.3</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zinkenfr&#228;sen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">2.3.13</div></td>
                
             </tr>
             <tr>
-                <td>Zinkens&#228;gen</td>
+                <td>
+                    Zinkens&#228;gen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">2.1.20</div></td>
                
             </tr>
             <tr>
-                <td>Zinkographieanlagen</td>
+                <td>
+                    Zinkographieanlagen
+
+                        <br/><small>
+                            (siehe )
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">43</div></td>
                 <td class="right"><div align="center">5.3</div></td>
                
             </tr>
             <tr>
-                <td>Zirkularstreifenscheren</td>
+                <td>
+                    Zirkularstreifenscheren
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">34</div></td>
                 <td class="right"><div align="center">20.6</div></td>
                
             </tr>
             <tr>
-                <td>ZK-Tanks</td>
+                <td>
+                    ZK-Tanks
+
+                        <br/><small>
+                            (siehe G&#228;rtanks, einzelisoliert (Outdoorund ZK-Tanks))
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">4.6</div></td>
                
             </tr>
             <tr>
-                <td>Zuchtb&#246;cke</td>
+                <td>
+                    Zuchtb&#246;cke
+
+                        <br/><small>
+                            (siehe Zuchtb&#246;cke und -schafe)
+                        </small>
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2.1.7</div></td>
                
             </tr>
             <tr>
-                <td>Zuchtbullen</td>
+                <td>
+                    Zuchtbullen
+
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2.1.3</div></td>
                
             </tr>
             <tr>
-                <td>Zuchteber</td>
+                <td>
+                    Zuchteber
+
+                        <br/><small>
+                            (siehe Zuchteber und -sauen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2.1.6</div></td>
                
             </tr>
             <tr>
-                <td>Zuchthengste</td>
+                <td>
+                    Zuchthengste
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2.1.1</div></td>
                
             </tr>
             <tr>
-                <td>Zuchtsauen</td>
+                <td>
+                    Zuchtsauen
+
+                        <br/><small>
+                            (siehe Zuchteber und -sauen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2.1.6</div></td>
                
             </tr>
             <tr>
-                <td>Zuchtschafe</td>
+                <td>
+                    Zuchtschafe
+
+                        <br/><small>
+                            (siehe Zuchtb&#246;cke und -schafe)
+                        </small>
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2.1.7</div></td>
                
             </tr>
             <tr>
-                <td>Zuchtstuten</td>
+                <td>
+                    Zuchtstuten
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2.1.2</div></td>
                
             </tr>
             <tr>
-                <td>Zuckerf&#246;rderanlagen (pneumat.)</td>
+                <td>
+                    Zuckerf&#246;rderanlagen (pneumat.)
+
+                        <br/><small>
+                            (siehe F&#246;rderanlagen (pneumatisch) f&#252;r Mehl, Zucker)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">68</div></td>
                 <td class="right"><div align="center">3.3</div></td>
                
             </tr>
             <tr>
-                <td>Zuckerm&#252;hlen</td>
+                <td>
+                    Zuckerm&#252;hlen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">68</div></td>
                 <td class="right"><div align="center">1.30</div></td>
                
             </tr>
             <tr>
-                <td>Zuckerr&#252;benverladeeinrichtungen</td>
+                <td>
+                    Zuckerr&#252;benverladeeinrichtungen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.7.2.7</div></td>
                
             </tr>
             <tr>
-                <td>Zuckersiloanlagen</td>
+                <td>
+                    Zuckersiloanlagen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">75</div></td>
                 <td class="right"><div align="center">3.3</div></td>
                
             </tr>
             <tr>
-                <td>Zuckersilos</td>
+                <td>
+                    Zuckersilos
+
+                </td>
                 <td class="right"><div align="center">20</div></td>
                 <td class="right"><div align="center">74</div></td>
                 <td class="right"><div align="center">1.4</div></td>
                
             </tr>
             <tr>
-                <td>Zuckerwaren (Herst. v.)</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">68</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Zuckerziehmaschinen</td>
+                <td>
+                    Zuckerziehmaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">68</div></td>
                 <td class="right"><div align="center">2.14</div></td>
                
             </tr>
             <tr>
-                <td>Zuf&#252;hrungseinrichtungen (autom.)</td>
+                <td>
+                    Zuf&#252;hrungseinrichtungen (autom.)
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">4.16</div></td>
                
             </tr>
             <tr>
-                <td>Z&#252;ge, Druckluft-</td>
+                <td>
+                    Z&#252;ge, Druckluft-
+
+                        <br/><small>
+                            (siehe bewegliche Hebezeuge (Aufz&#252;ge und Hebeb&#252;hnen, Lastenaufz&amp;uuml;ge, Rollenbahnen, Schwenklifte, Druckluft- und Elektroz&amp;uuml;ge)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">39</div></td>
                 <td class="right"><div align="center">8.2</div></td>
                
             </tr>
             <tr>
-                <td>Z&#252;ge, Elektro-</td>
+                <td>
+                    Z&#252;ge, Elektro-
+
+                        <br/><small>
+                            (siehe bewegliche Hebezeuge (Aufz&#252;ge und Hebeb&#252;hnen, Lastenaufz&amp;uuml;ge, Rollenbahnen, Schwenklifte, Druckluft- und Elektroz&amp;uuml;ge)
+                        </small>
+                </td>
+                <td class="right"><div align="center">5</div></td>
+                <td class="right"><div align="center">39</div></td>
+                <td class="right"><div align="center">8.2</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Z&#252;ge, Elektro-
+
+                        <br/><small>
+                            (siehe Elektroz&#252;ge)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">35</div></td>
                 <td class="right"><div align="center">10.8</div></td>
                
             </tr>
             <tr>
-                <td>Z&#252;ge, Elektro-</td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center">39</div></td>
-                <td class="right"><div align="center">8.2</div></td>
-               
-            </tr>
-            <tr>
-                <td>Z&#252;ge, Flaschen-</td>
+                <td>
+                    Z&#252;ge, Flaschen-
+
+                        <br/><small>
+                            (siehe Kr&#228;ne, Bauaufz&#252;ge, Winden, Flaschenz&#252;ge und Hubger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">37</div></td>
                 <td class="right"><div align="center">28</div></td>
                
             </tr>
             <tr>
-                <td>Z&#252;ge, Greif-</td>
+                <td>
+                    Z&#252;ge, Greif-
+
+                        <br/><small>
+                            (siehe Greifz&#252;ge)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">8.12</div></td>
                
             </tr>
             <tr>
-                <td>Z&#252;ge, Hochgeschwindigkeits-</td>
+                <td>
+                    Z&#252;ge, Hochgeschwindigkeits-
+
+                        <br/><small>
+                            (siehe Hochgeschwindigkeitsz&#252;ge)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">90</div></td>
                 <td class="right"><div align="center">16.1.1</div></td>
                
             </tr>
             <tr>
-                <td>Z&#252;ge, Hochgeschwindigkeits-</td>
+                <td>
+                    Z&#252;ge, Hochgeschwindigkeits-
+
+                        <br/><small>
+                            (siehe Schienenfahrzeuge)
+                        </small>
+                </td>
                 <td class="right"><div align="center">25</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">4.1</div></td>
                
             </tr>
             <tr>
-                <td>Zugfahrzeuge</td>
+                <td>
+                    Zugfahrzeuge
+
+                        <br/><small>
+                            (siehe R&#252;ckeschlepper, Zug- und Tr&#228;gerfahrzeuge)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">4.3.3</div></td>
                
             </tr>
             <tr>
-                <td>Zuglaufkatze, dieselhydraulisch</td>
+                <td>
+                    Zuglaufkatze, dieselhydraulisch
+
+                        <br/><small>
+                            (siehe Dieselhydraulische Zuglaufkatze)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">1.7.6</div></td>
                
             </tr>
             <tr>
-                <td>Zugmaschinen</td>
+                <td>
+                    Zugmaschinen
+
+                        <br/><small>
+                            (siehe Zugmaschinen usw.)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">2.8.6</div></td>
                
             </tr>
             <tr>
-                <td>Zugmaschinen, Tieflader-</td>
+                <td>
+                    Zugmaschinen, Tieflader-
+
+                        <br/><small>
+                            (siehe Tiefladerzugmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">82</div></td>
                 <td class="right"><div align="center">2.13</div></td>
                
             </tr>
             <tr>
-                <td>Zugsicherungsanlagen (f&#252;r den Bahnbereich)</td>
+                <td>
+                    Zugsicherungsanlagen (f&#252;r den Bahnbereich)
+
+                        <br/><small>
+                            (siehe Zugsicherungs- und Signalanlagen f&#252;r den Bahnbereich)
+                        </small>
+                </td>
                 <td class="right"><div align="center">20</div></td>
                 <td class="right"><div align="center">90</div></td>
                 <td class="right"><div align="center">10</div></td>
                
             </tr>
             <tr>
-                <td>Zug-Spindeldrehmaschinen</td>
+                <td>
+                    Zug-Spindeldrehmaschinen
+
+                        <br/><small>
+                            (siehe Leit- und Zug-Spindel-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">1.1.4.5</div></td>
                
             </tr>
             <tr>
-                <td>Zulagen, Schwei&#223;-</td>
+                <td>
+                    Zulagen, Schwei&#223;-
+
+                        <br/><small>
+                            (siehe Schwei&#223;pl&#228;ne, Schwei&#223;zulagen, Schwei&#223;roste und Schwei&#223;lehren)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">39</div></td>
                 <td class="right"><div align="center">23</div></td>
                
             </tr>
             <tr>
-                <td>Zuluftanlagen (ortsfest)</td>
+                <td>
+                    Zuluftanlagen (ortsfest)
+
+                        <br/><small>
+                            (siehe Zuluftanlagen, ortsfest)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">83</div></td>
                 <td class="right"><div align="center">6.4.2</div></td>
                
             </tr>
             <tr>
-                <td>Zupfmaschinen, Borsten-</td>
+                <td>
+                    Zupfmaschinen, Borsten-
+
+                        <br/><small>
+                            (siehe Borstenzupfmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">49</div></td>
                 <td class="right"><div align="center">1.5</div></td>
                
             </tr>
             <tr>
-                <td>Zurichteger&#228;te</td>
+                <td>
+                    Zurichteger&#228;te
+
+                        <br/><small>
+                            (siehe Zurichteger&#228;te und -maschinen (3-M, Aliter u.a.))
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">5.1.5</div></td>
                
             </tr>
             <tr>
-                <td>Zusammensetzmaschinen, Furnier-</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">46</div></td>
-                <td class="right"><div align="center">3.15</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zusammensetzmaschinen, Furnier-</td>
+                <td>
+                    Zusammensetzmaschinen, Furnier-
+
+                        <br/><small>
+                            (siehe Furnierzusammensetz- und Furnierklebemaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">3.1.4</div></td>
                
             </tr>
             <tr>
-                <td>Zusammentragmaschinen</td>
+                <td>
+                    Zusammensetzmaschinen, Furnier-
+
+                        <br/><small>
+                            (siehe Furnierzusammensetzmaschinen (l&#228;ngs und quer))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">52</div></td>
-                <td class="right"><div align="center">6.83</div></td>
+                <td class="right"><div align="center">46</div></td>
+                <td class="right"><div align="center">3.15</div></td>
                
             </tr>
             <tr>
-                <td>Zusammentragmaschinen</td>
-                <td class="right"><div align="center">12</div></td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">5.24</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zusammentragmaschinen</td>
+                <td>
+                    Zusammentragmaschinen
+
+                        <br/><small>
+                            (siehe Zusammentragmaschinen und -automaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">51</div></td>
                 <td class="right"><div align="center">115</div></td>
                
             </tr>
             <tr>
-                <td>Zusatzaggregate</td>
+                <td>
+                    Zusammentragmaschinen
+
+                        <br/><small>
+                            (siehe Zusammentrag- und Zusammenf&#252;hrmaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">52</div></td>
+                <td class="right"><div align="center">6.83</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zusammentragmaschinen
+
+                </td>
+                <td class="right"><div align="center">12</div></td>
+                <td class="right"><div align="center">0</div></td>
+                <td class="right"><div align="center">5.24</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zusatzaggregate
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">3.1.3</div></td>
                
             </tr>
             <tr>
-                <td>Zusatzeinrichtungen</td>
+                <td>
+                    Zusatzeinrichtungen
+
+                        <br/><small>
+                            (siehe Zusatzeinrichtungen (Laser, Drucker, Waagen) )
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">80</div></td>
                 <td class="right"><div align="center">41</div></td>
                
             </tr>
             <tr>
-                <td>Zusatzmaschinen (d. Ausr&#252;stung)</td>
+                <td>
+                    Zusatzmaschinen (d. Ausr&#252;stung)
+
+                        <br/><small>
+                            (siehe Zusatzanlagen und Zusatzmaschinen der Ausr&#252;stung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">3.4.5</div></td>
                
             </tr>
             <tr>
-                <td>Zuschneideanlagen (Halbautomaten)</td>
+                <td>
+                    Zuschneideanlagen (Halbautomaten)
+
+                        <br/><small>
+                            (siehe Halbautomaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">3.1</div></td>
                
             </tr>
             <tr>
-                <td>Zuschneideanlagen (Vollautomaten)</td>
+                <td>
+                    Zuschneideanlagen (Vollautomaten)
+
+                        <br/><small>
+                            (siehe Vollautomaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">3.2</div></td>
                
             </tr>
             <tr>
-                <td>Zuschneidemaschinen</td>
+                <td>
+                    Zuschneidemaschinen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">58</div></td>
                 <td class="right"><div align="center">8</div></td>
                
             </tr>
             <tr>
-                <td>Zuschneidemaschinen (bis 2 800 U&amp;#47;min)</td>
+                <td>
+                    Zuschneidemaschinen (bis 2 800 U&amp;#47;min)
+
+                        <br/><small>
+                            (siehe Langsam laufende Maschinen (bis 2800 U/min))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">62</div></td>
                 <td class="right"><div align="center">3.1</div></td>
                
             </tr>
             <tr>
-                <td>Zuschneidemaschinen (&#252;ber 2 800 U&amp;#47;min)</td>
+                <td>
+                    Zuschneidemaschinen (&#252;ber 2 800 U&amp;#47;min)
+
+                        <br/><small>
+                            (siehe Hochtourige Maschinen (z.B. N&#228;hmaschinen ab 2800 U/min))
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">62</div></td>
                 <td class="right"><div align="center">3.2</div></td>
                
             </tr>
             <tr>
-                <td>Zuschneidemaschinen, Bandmesser-</td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center">61</div></td>
-                <td class="right"><div align="center">2.1</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zuschneidemaschinen, Bandmesser-</td>
+                <td>
+                    Zuschneidemaschinen, Bandmesser-
+
+                        <br/><small>
+                            (siehe Bandmesserzuschneidemaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">54</div></td>
                 <td class="right"><div align="center">9</div></td>
                
             </tr>
             <tr>
-                <td>Zuschneidemaschinen, Glas-</td>
+                <td>
+                    Zuschneidemaschinen, Bandmesser-
+
+                        <br/><small>
+                            (siehe Bandmesser-)
+                        </small>
+                </td>
+                <td class="right"><div align="center">5</div></td>
+                <td class="right"><div align="center">61</div></td>
+                <td class="right"><div align="center">2.1</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zuschneidemaschinen, Glas-
+
+                        <br/><small>
+                            (siehe Glaszuschneidemaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">33</div></td>
                 <td class="right"><div align="center">2.14.8</div></td>
                
             </tr>
             <tr>
-                <td>Zuschneidemaschinen, Kreismesser-</td>
+                <td>
+                    Zuschneidemaschinen, Kreismesser-
+
+                        <br/><small>
+                            (siehe Kreismesser-)
+                        </small>
+                </td>
+                <td class="right"><div align="center">5</div></td>
+                <td class="right"><div align="center">61</div></td>
+                <td class="right"><div align="center">2.2</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zuschneidemaschinen, Kreismesser-
+
+                        <br/><small>
+                            (siehe Kreismesser-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">45</div></td>
                 <td class="right"><div align="center">1.18.2</div></td>
                
             </tr>
             <tr>
-                <td>Zuschneidemaschinen, Kreismesser-</td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center">61</div></td>
-                <td class="right"><div align="center">2.2</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zuschneidemaschinen, Textil- (Bandmesser)</td>
+                <td>
+                    Zuschneidemaschinen, Textil- (Bandmesser)
+
+                        <br/><small>
+                            (siehe Bandmesser-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">45</div></td>
                 <td class="right"><div align="center">1.18.1</div></td>
                
             </tr>
             <tr>
-                <td>Zuschneidemaschinen, Vertikalmesser-</td>
+                <td>
+                    Zuschneidemaschinen, Vertikalmesser-
+
+                        <br/><small>
+                            (siehe Vertikalmesser)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Zuteiler</td>
+                <td>
+                    Zuteiler
+
+                        <br/><small>
+                            (siehe F&#246;rderanlagen (z.B. Kastenbeschicker, B&#228;nder, Rutschen, Schnecken, Kettenund Vibrationsf&#246;rderer, Zuteiler))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">29</div></td>
                 <td class="right"><div align="center">2.4</div></td>
                
             </tr>
             <tr>
-                <td>Zuteilschnecken</td>
+                <td>
+                    Zuteilschnecken
+
+                        <br/><small>
+                            (siehe )
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">20</div></td>
                 <td class="right"><div align="center">3.1</div></td>
                
             </tr>
             <tr>
-                <td>Zwangsmischer</td>
+                <td>
+                    Zwangsmischer
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">26</div></td>
                 <td class="right"><div align="center">2.1</div></td>
                
             </tr>
             <tr>
-                <td>Zwangsmischer (bis 100 l)</td>
+                <td>
+                    Zwangsmischer (bis 100 l)
+
+                        <br/><small>
+                            (siehe Mischmaschinen mit Waagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">83</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Zweigstelle, mobil (Container)</td>
+                <td>
+                    Zweigstelle, mobil (Container)
+
+                        <br/><small>
+                            (siehe Container)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">91</div></td>
                 <td class="right"><div align="center">10.2</div></td>
                
             </tr>
             <tr>
-                <td>Zweigstelle, mobil (Kfz)</td>
+                <td>
+                    Zweigstelle, mobil (Kfz)
+
+                        <br/><small>
+                            (siehe Kraftfahrzeug)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">91</div></td>
                 <td class="right"><div align="center">10.1</div></td>
                
             </tr>
             <tr>
-                <td>Zweinadel-Armabw&#228;rtsmaschinen</td>
+                <td>
+                    Zweinadel-Armabw&#228;rtsmaschinen
+
+                        <br/><small>
+                            (siehe Zweinadel- Armabw&#228;rtsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">8.12</div></td>
                
             </tr>
             <tr>
-                <td>Zwickereiautomaten</td>
+                <td>
+                    Zwickereiautomaten
+
+                        <br/><small>
+                            (siehe Automaten mit numerischer Steuerung (CAD-/CAM-Systeme))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">5.1</div></td>
                
             </tr>
             <tr>
-                <td>Zwickereimaschinen (sonstige)</td>
+                <td>
+                    Zwickereimaschinen (sonstige)
+
+                        <br/><small>
+                            (siehe Sonstige)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">5.5</div></td>
                
             </tr>
             <tr>
-                <td>Zwickmaschinen</td>
+                <td>
+                    Zwickmaschinen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">54</div></td>
                 <td class="right"><div align="center">85</div></td>
                
             </tr>
             <tr>
-                <td>Zwickmaschinen, Faden-</td>
+                <td>
+                    Zwickmaschinen, Faden-
+
+                        <br/><small>
+                            (siehe Fadenzwickmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">5.4.2</div></td>
                
             </tr>
             <tr>
-                <td>Zwickmaschinen, Fersen-</td>
+                <td>
+                    Zwickmaschinen, Fersen-
+
+                        <br/><small>
+                            (siehe Fersenzwickmaschinen (auch hydraulisch))
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">5.4.4</div></td>
                
             </tr>
             <tr>
-                <td>Zwickmaschinen, Innenrand-</td>
+                <td>
+                    Zwickmaschinen, Innenrand-
+
+                        <br/><small>
+                            (siehe Innenrandzwickmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">5.4.7</div></td>
                
             </tr>
             <tr>
-                <td>Zwickmaschinen, Spitzen-</td>
-                <td class="right"><div align="center">7</div></td>
-                <td class="right"><div align="center">55</div></td>
-                <td class="right"><div align="center">5.4.10</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zwickmaschinen, Spitzen-</td>
+                <td>
+                    Zwickmaschinen, Spitzen-
+
+                        <br/><small>
+                            (siehe Einbinde- und Spitzenzwickmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">5.4.1</div></td>
                
             </tr>
             <tr>
-                <td>Zwickmaschinen, Tacks-</td>
+                <td>
+                    Zwickmaschinen, Spitzen-
+
+                        <br/><small>
+                            (siehe Spitzenzwickmaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">7</div></td>
+                <td class="right"><div align="center">55</div></td>
+                <td class="right"><div align="center">5.4.10</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zwickmaschinen, Tacks-
+
+                        <br/><small>
+                            (siehe Tackszwick- und Einbindemaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">5.4.11</div></td>
                
             </tr>
             <tr>
-                <td>Zwiebackpackmaschinen</td>
+                <td>
+                    Zwiebackpackmaschinen
+
+                        <br/><small>
+                            (siehe Packmaschinen f&#252;r Hartgeb&#228;ck und Zwieback)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">68</div></td>
                 <td class="right"><div align="center">3.14</div></td>
                
             </tr>
             <tr>
-                <td>Zwiebackschneidemaschinen</td>
+                <td>
+                    Zwiebackschneidemaschinen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">68</div></td>
                 <td class="right"><div align="center">3.24</div></td>
                
             </tr>
             <tr>
-                <td>Zwiebelschneidemaschinen</td>
+                <td>
+                    Zwiebelschneidemaschinen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">72</div></td>
                 <td class="right"><div align="center">1.10</div></td>
                
             </tr>
             <tr>
-                <td>Zwillingsmaschinen</td>
+                <td>
+                    Zwillingsmaschinen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">71</div></td>
                 <td class="right"><div align="center">100</div></td>
                
             </tr>
             <tr>
-                <td>Zwillingspressen</td>
+                <td>
+                    Zwillingspressen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">6.84</div></td>
                
             </tr>
             <tr>
-                <td>Zwirnerei</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">57</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Zwirnmaschinen (doppeldr&#228;htige)</td>
+                <td>
+                    Zwirnmaschinen (doppeldr&#228;htige)
+
+                        <br/><small>
+                            (siehe doppeldr&#228;htige)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">57</div></td>
                 <td class="right"><div align="center">2.4</div></td>
                
             </tr>
             <tr>
-                <td>Zwirnmaschinen (einfach, Nassverfahren)</td>
+                <td>
+                    Zwirnmaschinen (einfach, Nassverfahren)
+
+                        <br/><small>
+                            (siehe einfache, im Na&#223;verfahren laufend)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">57</div></td>
                 <td class="right"><div align="center">2.2</div></td>
                
             </tr>
             <tr>
-                <td>Zwirnmaschinen (einfach, Trockenverfahren)</td>
+                <td>
+                    Zwirnmaschinen (einfach, Trockenverfahren)
+
+                        <br/><small>
+                            (siehe einfache, im Trockenverfahren laufend)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">57</div></td>
                 <td class="right"><div align="center">2.1</div></td>
                
             </tr>
             <tr>
-                <td>Zwirnmaschinen (hochtourig)</td>
+                <td>
+                    Zwirnmaschinen (hochtourig)
+
+                        <br/><small>
+                            (siehe hochtourige)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">57</div></td>
                 <td class="right"><div align="center">2.3</div></td>
                
             </tr>
             <tr>
-                <td>Zwischenbeh&#228;lter, Emulsions- (m. R&#252;hrwerk)</td>
+                <td>
+                    Zwischenbeh&#228;lter, Emulsions- (m. R&#252;hrwerk)
+
+                        <br/><small>
+                            (siehe Emulsionszwischenbeh&#228;lter (m. R&#252;hrwerk))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">2.4.3</div></td>
                
             </tr>
             <tr>
-                <td>Zwischenfutter-Zementiermaschinen</td>
+                <td>
+                    Zwischenfutter-Zementiermaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">3.2.25</div></td>
                
             </tr>
             <tr>
-                <td>Zwischengutbehandlung</td>
+                <td>
+                    Zwischengutbehandlung
+
+                        <br/><small>
+                            (siehe Behandlung des Zwischenguts)
+                        </small>
+                </td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">2.13</div></td>
                
             </tr>
             <tr>
-                <td>Zwischenk&#252;hler</td>
+                <td>
+                    Zwischenk&#252;hler
+
+                        <br/><small>
+                            (siehe Gask&#252;hler, Zwischenk&#252;hler, Umlaufregler, Naphtalin-, Ammoniak- und Benzolw&#228;scher, Reinigungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">2.5</div></td>
                
             </tr>
             <tr>
-                <td>Zwischenstationen</td>
+                <td>
+                    Zwischenstationen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">1.17.3</div></td>
                
             </tr>
             <tr>
-                <td>Zwischenstockger&#228;te</td>
+                <td>
+                    Zwischenstockger&#228;te
+
+                        <br/><small>
+                            (siehe Zwischenstockger&#228;t)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">1.4.2</div></td>
                
             </tr>
             <tr>
-                <td>Zyklone</td>
+                <td>
+                    Zyklone
+
+                        <br/><small>
+                            (siehe Entstaubungsanlagen (z.B. Staubfilter, Zyklone, Rohrleitungen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">1.4</div></td>
                
             </tr>
             <tr>
-                <td>Zylinder, Sieb-</td>
+                <td>
+                    Zylinder, Sieb-
+
+                        <br/><small>
+                            (siehe Siebzylinder)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">64</div></td>
                 <td class="right"><div align="center">3.63</div></td>
                
             </tr>
             <tr>
-                <td>Zylinderhei&#223;mangeln</td>
+                <td>
+                    Zylinderhei&#223;mangeln
+
+                        <br/><small>
+                            (siehe Zylinder-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">93</div></td>
                 <td class="right"><div align="center">11.1</div></td>
                
             </tr>
             <tr>
-                <td>Zylindermacherei</td>
+                <td>
+                    Zylindermacherei
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">56</div></td>
                 <td class="right"><div align="center">1.14</div></td>
                
             </tr>
             <tr>
-                <td>Zylindermaschinen</td>
+                <td>
+                    Zylindermaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">8.13</div></td>
                
             </tr>
             <tr>
-                <td>Zylinder-Messerschleifmaschinen</td>
+                <td>
+                    Zylinder-Messerschleifmaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">60</div></td>
                 <td class="right"><div align="center">16</div></td>
                
             </tr>
             <tr>
-                <td>Zylinderpoliermaschinen</td>
+                <td>
+                    Zylinderpoliermaschinen
+
+                        <br/><small>
+                            (siehe Zylinderschleif- und -poliermaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">4.3.16</div></td>
                
             </tr>
             <tr>
-                <td>Zylinders&#228;gen</td>
+                <td>
+                    Zylinders&#228;gen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">2.1.21</div></td>
                
             </tr>
             <tr>
-                <td>Zylinderschleifmaschinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">52</div></td>
-                <td class="right"><div align="center">4.3.16</div></td>
-               
-            </tr>
-            <tr>
-                <td>Zylinderschleifmaschinen</td>
+                <td>
+                    Zylinderschleifmaschinen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">2.7.12</div></td>
                
             </tr>
             <tr>
-                <td>Zylinderschleifmaschinen, Mehr-</td>
+                <td>
+                    Zylinderschleifmaschinen
+
+                        <br/><small>
+                            (siehe Zylinderschleif- und -poliermaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">52</div></td>
+                <td class="right"><div align="center">4.3.16</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Zylinderschleifmaschinen, Mehr-
+
+                        <br/><small>
+                            (siehe Mehrzylinderschleifmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">2.12</div></td>
                
             </tr>
             <tr>
-                <td>Zylinderschleifmaschinen, Mehr-</td>
+                <td>
+                    Zylinderschleifmaschinen, Mehr-
+
+                        <br/><small>
+                            (siehe Mehrzylinderschleifmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">45</div></td>
                 <td class="right"><div align="center">2.14</div></td>

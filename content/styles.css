@@ -85,7 +85,7 @@ table {
 	margin: 0px; padding: 0px;
 }
 #prices th {
-	background: url("../img/tabletop.png") repeat-x top rgb(172, 172, 172); margin: 0px; padding: 6px; border: 2px solid rgb(172, 172, 172); text-align: left; white-space: nowrap;
+	background: url("../content/tabletop.png") repeat-x top rgb(172, 172, 172); margin: 0px; padding: 6px; border: 2px solid rgb(172, 172, 172); text-align: left; white-space: nowrap;
 }
 #prices .right {
 	text-align: right;
@@ -231,7 +231,7 @@ table {
 	margin-bottom: 32px;
 }
 .search {
-	background: url("../img/lupe.gif") no-repeat left;
+	background: url("../../content/lupe.gif") no-repeat left;
 }
 #searchtext {
 	margin-right: 6px;

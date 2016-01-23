@@ -10,10 +10,12 @@
     <title>AfA-Tabellen.de —&nbsp;Abschreibungstabellen</title>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+    <script src="scripts/augment.min.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/app.js"></script>
 </head>
 
-<body onLoad="document.searchform.n.focus();">
+<body>
     <div id="head">
         <div id="container">
             <div id="title">
@@ -61,24 +63,22 @@
                 <p></p>
             </div>
         </div>
-        <form method="get" name="searchform" action="search.php">
+        <form id="searchForm">
             <div class="menu">
                 <div id="listy" class="search">
                     <div id="searchtext">
                         Anlagegegenstand:
-                        <input id="s-nazwa" name="n" type="text"
-                               autocomplete="off">
+                        <input id="searchTxt" name="searchTxt" type="text" autocomplete="off">
                     </div>
-                    <input value="Suchen" type="submit">
+                    <button type="submit">Suchen</button>
                 </div>
             </div>
         </form>
+
     </div>
 
     <div id="content">
         
-<h2 class="direct">Alle Anlagengüter beginnend mit </h2>
-<div id="timespan" class="direct">Letzte Aktualisierung: <span class="date"><strong>12/12/2015</strong></span></div>
 <table id="prices">
     <tbody>
         <tr class="top">
@@ -89,1088 +89,1821 @@
         
         </tr>
             <tr>
-                <td>Nachbearbeitungsmaschinen, Kanten-</td>
+                <td>
+                    Nachbearbeitungsmaschinen, Kanten-
+
+                        <br/><small>
+                            (siehe Kantenverleihmaschinen und Nachbearbeitungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">6.5</div></td>
                
             </tr>
             <tr>
-                <td>Nachbearbeitungsmaschinen, Stein-</td>
+                <td>
+                    Nachbearbeitungsmaschinen, Stein-
+
+                        <br/><small>
+                            (siehe Steinnachbearbeitungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">26</div></td>
                 <td class="right"><div align="center">5.4</div></td>
                
             </tr>
             <tr>
-                <td>Nachdrehmaschinen</td>
+                <td>
+                    Nachdrehmaschinen
+
+                        <br/><small>
+                            (siehe Feinst- und Nach-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">1.1.4.2</div></td>
                
             </tr>
             <tr>
-                <td>Nachkl&#228;ranlagen (Beton)</td>
+                <td>
+                    Nachkl&#228;ranlagen (Beton)
+
+                        <br/><small>
+                            (siehe Beton)
+                        </small>
+                </td>
                 <td class="right"><div align="center">20</div></td>
                 <td class="right"><div align="center">9</div></td>
                 <td class="right"><div align="center">1.9.1</div></td>
                
             </tr>
             <tr>
-                <td>Nachkl&#228;ranlagen (Holz, Kunststoff)</td>
+                <td>
+                    Nachkl&#228;ranlagen (Holz, Kunststoff)
+
+                        <br/><small>
+                            (siehe Holz, Kunststoff)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">9</div></td>
                 <td class="right"><div align="center">1.9.2</div></td>
                
             </tr>
             <tr>
-                <td>Nachl&#228;ufer, Pflug-</td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center">4.6</div></td>
-               
-            </tr>
-            <tr>
-                <td>Nachl&#228;ufer, Pflug-</td>
+                <td>
+                    Nachl&#228;ufer, Pflug-
+
+                        <br/><small>
+                            (siehe Pflugnachl&#228;ufer (Packer, Kr&#252;mler))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.3.5</div></td>
                
             </tr>
             <tr>
-                <td>Nachrei&#223;maschinen</td>
+                <td>
+                    Nachl&#228;ufer, Pflug-
+
+                        <br/><small>
+                            (siehe Pflugnachl&#228;ufer (Packer, Kr&#252;mler))
+                        </small>
+                </td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">5</div></td>
+                <td class="right"><div align="center">4.6</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Nachrei&#223;maschinen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">1.8.3</div></td>
                
             </tr>
             <tr>
-                <td>Nachrichtenwesen, Ger&#228;te des -</td>
+                <td>
+                    Nachrichtenwesen, Ger&#228;te des -
+
+                        <br/><small>
+                            (siehe Ger&#228;te des Nachrichtenwesens usw.)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">2.4.2.4</div></td>
                
             </tr>
             <tr>
-                <td>Nachschermaschinen</td>
+                <td>
+                    Nachschermaschinen
+
+                        <br/><small>
+                            (siehe Schermaschinen (Vor- u. Nachschermaschinen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">63</div></td>
                 <td class="right"><div align="center">1.19</div></td>
                
             </tr>
             <tr>
-                <td>Nachtrockner</td>
+                <td>
+                    Nachtrockner
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">78</div></td>
                 <td class="right"><div align="center">1.1.2</div></td>
                
             </tr>
             <tr>
-                <td>Nachttische</td>
+                <td>
+                    Nachttische
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">66</div></td>
                
             </tr>
             <tr>
-                <td>Nachttresoranlagen</td>
+                <td>
+                    Nachttresoranlagen
+
+                        <br/><small>
+                            (siehe Nachttresoranlage)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">91</div></td>
                 <td class="right"><div align="center">4</div></td>
                
             </tr>
             <tr>
-                <td>Nachverbrennungsanlagen</td>
+                <td>
+                    Nachverbrennungsanlagen
+
+                        <br/><small>
+                            (siehe Abluftreinigungsanlagen (Nachverbrennungsanlagen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">5.2.1</div></td>
                
             </tr>
             <tr>
-                <td>Nadelmaschinen</td>
+                <td>
+                    Nadelmaschinen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">56</div></td>
                 <td class="right"><div align="center">6.18</div></td>
                
             </tr>
             <tr>
-                <td>Nadelpistolen, Druckluft-</td>
+                <td>
+                    Nadelpistolen, Druckluft-
+
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">83</div></td>
                 <td class="right"><div align="center">1.3.1</div></td>
                
             </tr>
             <tr>
-                <td>Nagelautomaten (alter Art)</td>
+                <td>
+                    Nagelautomaten (alter Art)
+
+                        <br/><small>
+                            (siehe alter Art)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">79</div></td>
                 <td class="right"><div align="center">17.1</div></td>
                
             </tr>
             <tr>
-                <td>Nagelautomaten (elektr.)</td>
+                <td>
+                    Nagelautomaten (elektr.)
+
+                        <br/><small>
+                            (siehe elektrischer Antrieb)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">79</div></td>
                 <td class="right"><div align="center">17.2</div></td>
                
             </tr>
             <tr>
-                <td>Nagelbiegemaschinen</td>
+                <td>
+                    Nagelbiegemaschinen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">49</div></td>
                 <td class="right"><div align="center">2.5</div></td>
                
             </tr>
             <tr>
-                <td>Nagelger&#228;te (tragbar)</td>
+                <td>
+                    Nagelger&#228;te (tragbar)
+
+                        <br/><small>
+                            (siehe Nagel- und Klammerger&#228;te (tragbar))
+                        </small>
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">3.2.4</div></td>
                
             </tr>
             <tr>
-                <td>Nagelmaschinen</td>
+                <td>
+                    Nagelmaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">54</div></td>
                 <td class="right"><div align="center">55</div></td>
                
             </tr>
             <tr>
-                <td>Nagelmaschinen</td>
+                <td>
+                    Nagelmaschinen
+
+                        <br/><small>
+                            (siehe Fersenanschlag-, Nagel- und Beschneidmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">6.3.7</div></td>
                
             </tr>
             <tr>
-                <td>Nagelmaschinen (autom.)</td>
+                <td>
+                    Nagelmaschinen (autom.)
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">49</div></td>
                 <td class="right"><div align="center">2.4</div></td>
                
             </tr>
             <tr>
-                <td>Nagelmaschinen, Anschlag-</td>
+                <td>
+                    Nagelmaschinen, Anschlag-
+
+                        <br/><small>
+                            (siehe Anschlagnagelmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">6.3.1</div></td>
                
             </tr>
             <tr>
-                <td>Nagelmaschinen, Kisten-</td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">72</div></td>
-                <td class="right"><div align="center">4.5</div></td>
-               
-            </tr>
-            <tr>
-                <td>Nagelmaschinen, Kisten-</td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">45</div></td>
-                <td class="right"><div align="center">1.8</div></td>
-               
-            </tr>
-            <tr>
-                <td>Nagelmaschinen, Kisten-</td>
+                <td>
+                    Nagelmaschinen, Kisten-
+
+                        <br/><small>
+                            (siehe Kistennagelmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">3.2.2</div></td>
                
             </tr>
             <tr>
-                <td>Nagelmaschinen, Paletten-</td>
+                <td>
+                    Nagelmaschinen, Kisten-
+
+                        <br/><small>
+                            (siehe Kistennagelmaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">45</div></td>
+                <td class="right"><div align="center">1.8</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Nagelmaschinen, Kisten-
+
+                        <br/><small>
+                            (siehe Kistennagelmaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">72</div></td>
+                <td class="right"><div align="center">4.5</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Nagelmaschinen, Paletten-
+
+                        <br/><small>
+                            (siehe Palettennagelmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">3.2.5</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;h-Auszackmaschinen</td>
+                <td>
+                    N&#228;h-Auszackmaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">8.15</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hb&#252;gelmaschinen</td>
+                <td>
+                    N&#228;hb&#252;gelmaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">8.14</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;her, Schnell-</td>
+                <td>
+                    N&#228;her, Schnell-
+
+                        <br/><small>
+                            (siehe Schnelln&#228;her)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">54</div></td>
                 <td class="right"><div align="center">71</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;her, Schnell-</td>
+                <td>
+                    N&#228;her, Schnell-
+
+                        <br/><small>
+                            (siehe Schnelln&#228;her)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">7.1</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;her, Schnell- (m. Zusatzvorrichtung)</td>
+                <td>
+                    N&#228;her, Schnell- (m. Zusatzvorrichtung)
+
+                        <br/><small>
+                            (siehe Schnelln&#228;her m. Zusatzvorrichtung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">7.2</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen</td>
+                <td>
+                    N&#228;hmaschinen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">13</div></td>
                 <td class="right"><div align="center">4.10.1</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">51</div></td>
-                <td class="right"><div align="center">68</div></td>
-               
-            </tr>
-            <tr>
-                <td>N&#228;hmaschinen</td>
+                <td>
+                    N&#228;hmaschinen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">7.1.3</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen (bis 2800 U&amp;#47;min)</td>
+                <td>
+                    N&#228;hmaschinen
+
+                        <br/><small>
+                            (siehe N&#228;h-, Stepp- und S&#228;ummaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">51</div></td>
+                <td class="right"><div align="center">68</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    N&#228;hmaschinen (bis 2800 U&amp;#47;min)
+
+                        <br/><small>
+                            (siehe Langsam laufende Maschinen (bis 2800 U/min))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">62</div></td>
                 <td class="right"><div align="center">3.1</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen (einfach)</td>
+                <td>
+                    N&#228;hmaschinen (einfach)
+
+                        <br/><small>
+                            (siehe einfache)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">58</div></td>
                 <td class="right"><div align="center">7.1</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen (elektr.)</td>
+                <td>
+                    N&#228;hmaschinen (elektr.)
+
+                        <br/><small>
+                            (siehe mit elektr. Antrieb)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">45</div></td>
                 <td class="right"><div align="center">1.10.2</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen (&#252;ber 2800 U&amp;#47;min)</td>
+                <td>
+                    N&#228;hmaschinen (&#252;ber 2800 U&amp;#47;min)
+
+                        <br/><small>
+                            (siehe Hochtourige Maschinen (z.B. N&#228;hmaschinen ab 2800 U/min))
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">62</div></td>
                 <td class="right"><div align="center">3.2</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen, Durch-</td>
+                <td>
+                    N&#228;hmaschinen, Durch-
+
+                        <br/><small>
+                            (siehe Durchn&#228;hmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">6.3.5</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen, Flach-</td>
+                <td>
+                    N&#228;hmaschinen, Flach-
+
+                        <br/><small>
+                            (siehe Flachn&#228;hmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">63</div></td>
                 <td class="right"><div align="center">2.2</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen, Hochleistungs-</td>
+                <td>
+                    N&#228;hmaschinen, Hochleistungs-
+
+                        <br/><small>
+                            (siehe Hochleistungs- und Spezialn&#228;hmaschinen sowie Hochleistungskettelmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">58</div></td>
                 <td class="right"><div align="center">7.2</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen, Kanten-</td>
+                <td>
+                    N&#228;hmaschinen, Kanten-
+
+                        <br/><small>
+                            (siehe Kantenn&#228;hmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">54</div></td>
                 <td class="right"><div align="center">33</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen, Kettenstichdurch-</td>
+                <td>
+                    N&#228;hmaschinen, Kettenstichdurch-
+
+                        <br/><small>
+                            (siehe Kettenstichdurchn&#228;hmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">6.3.10</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen, Langarm-</td>
+                <td>
+                    N&#228;hmaschinen, Langarm-
+
+                        <br/><small>
+                            (siehe Langarmn&#228;hmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">54</div></td>
                 <td class="right"><div align="center">47</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen, Lederhut- (Damenhutindustrie)</td>
+                <td>
+                    N&#228;hmaschinen, Lederhut- (Damenhutindustrie)
+
+                        <br/><small>
+                            (siehe Spezialmaschinen der Damenhutindustrie (z.B. Einfa&#223;-, Bridier-, Heft-, Stepp-, Lederhutn&#228;hund Garniermaschinen) sowie Stickund Strickmaschinen, soweit sie einem besonderen Moderisiko unterworfen sind)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">62</div></td>
                 <td class="right"><div align="center">3.4</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen, Pelz-</td>
-                <td class="right"><div align="center">7</div></td>
-                <td class="right"><div align="center">63</div></td>
-                <td class="right"><div align="center">2.5</div></td>
-               
-            </tr>
-            <tr>
-                <td>N&#228;hmaschinen, Pelz-</td>
+                <td>
+                    N&#228;hmaschinen, Pelz-
+
+                        <br/><small>
+                            (siehe Pelzn&#228;hmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">63</div></td>
                 <td class="right"><div align="center">1.16</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen, Rand-</td>
+                <td>
+                    N&#228;hmaschinen, Pelz-
+
+                        <br/><small>
+                            (siehe Pelzn&#228;hmaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">7</div></td>
+                <td class="right"><div align="center">63</div></td>
+                <td class="right"><div align="center">2.5</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    N&#228;hmaschinen, Rand-
+
+                        <br/><small>
+                            (siehe Randn&#228;hmaschinen (S&#228;umer))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">54</div></td>
                 <td class="right"><div align="center">60</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen, Spezial-</td>
+                <td>
+                    N&#228;hmaschinen, Spezial-
+
+                        <br/><small>
+                            (siehe Hochleistungs- und Spezialn&#228;hmaschinen sowie Hochleistungskettelmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">58</div></td>
                 <td class="right"><div align="center">7.2</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen, Spindelband-</td>
+                <td>
+                    N&#228;hmaschinen, Spindelband-
+
+                        <br/><small>
+                            (siehe Spindelbandn&#228;hmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">56</div></td>
                 <td class="right"><div align="center">1.11</div></td>
                
             </tr>
             <tr>
-                <td>N&#228;hmaschinen, Zick-Zack-</td>
+                <td>
+                    N&#228;hmaschinen, Zick-Zack-
+
+                        <br/><small>
+                            (siehe Zick-Zack-N&#228;hmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">54</div></td>
                 <td class="right"><div align="center">84</div></td>
                
             </tr>
             <tr>
-                <td>Nahtausb&#252;gelmaschinen</td>
+                <td>
+                    Nahtausb&#252;gelmaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">10.2.8</div></td>
                
             </tr>
             <tr>
-                <td>Nahtausreibmaschinen</td>
+                <td>
+                    Nahtausreibmaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">3.3.6</div></td>
                
             </tr>
             <tr>
-                <td>Nahtimpr&#228;gnier-Maschinen</td>
+                <td>
+                    Nahtimpr&#228;gnier-Maschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">7.1.3</div></td>
                
             </tr>
             <tr>
-                <td>Nahtmaschinen, Innenrand-</td>
+                <td>
+                    Nahtmaschinen, Innenrand-
+
+                        <br/><small>
+                            (siehe Innenrandnahtmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">5.4.6</div></td>
                
             </tr>
             <tr>
-                <td>Nahverkehrsunternehmen</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">90</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Naphtalinw&#228;scher</td>
+                <td>
+                    Naphtalinw&#228;scher
+
+                        <br/><small>
+                            (siehe Gask&#252;hler, Zwischenk&#252;hler, Umlaufregler, Naphtalin-, Ammoniak- und Benzolw&#228;scher, Reinigungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">2.5</div></td>
                
             </tr>
             <tr>
-                <td>Narbenglasmaschinen</td>
+                <td>
+                    Narbenglasmaschinen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">4.2.2.15</div></td>
                
             </tr>
             <tr>
-                <td>Narbenglasmaschinen, Ledersohlen-</td>
+                <td>
+                    Narbenglasmaschinen, Ledersohlen-
+
+                        <br/><small>
+                            (siehe Ledersohlennarbenglasmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">4.2.2.2</div></td>
                
             </tr>
             <tr>
-                <td>Narbenplattenpressen</td>
+                <td>
+                    Narbenplattenpressen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">53</div></td>
                 <td class="right"><div align="center">30</div></td>
                
             </tr>
             <tr>
-                <td>Narkoseger&#228;te</td>
+                <td>
+                    Narkoseger&#228;te
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">67</div></td>
                
             </tr>
             <tr>
-                <td>Nassabscheider</td>
-                <td class="right"><div align="center">5</div></td>
-                <td class="right"><div align="center">55</div></td>
-                <td class="right"><div align="center">9.5</div></td>
-               
-            </tr>
-            <tr>
-                <td>Nassabscheider</td>
+                <td>
+                    Nassabscheider
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.9</div></td>
                
             </tr>
             <tr>
-                <td>Nassabscheider</td>
+                <td>
+                    Nassabscheider
+
+                        <br/><small>
+                            (siehe Na&#223;abscheider)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">3.3.10</div></td>
                
             </tr>
             <tr>
-                <td>Nassaufbereitung</td>
+                <td>
+                    Nassabscheider
+
+                        <br/><small>
+                            (siehe Na&#223;abscheider)
+                        </small>
+                </td>
+                <td class="right"><div align="center">5</div></td>
+                <td class="right"><div align="center">55</div></td>
+                <td class="right"><div align="center">9.5</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Nassaufbereitung
+
+                        <br/><small>
+                            (siehe Na&#223;aufbereitung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">2.9</div></td>
                
             </tr>
             <tr>
-                <td>Nassdienst</td>
+                <td>
+                    Nassdienst
+
+                        <br/><small>
+                            (siehe Na&#223;dienst)
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">11</div></td>
                 <td class="right"><div align="center">19</div></td>
                
             </tr>
             <tr>
-                <td>Nasskollerg&#228;nge</td>
+                <td>
+                    Nasskollerg&#228;nge
+
+                        <br/><small>
+                            (siehe Na&#223;kollerg&#228;nge)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">30</div></td>
                 <td class="right"><div align="center">2.12</div></td>
                
             </tr>
             <tr>
-                <td>Nasskratzmaschinen (autom.)</td>
+                <td>
+                    Nasskratzmaschinen (autom.)
+
+                        <br/><small>
+                            (siehe Sp&#252;l- und Na&#223;kratzmaschinen (autom.))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">49</div></td>
                 <td class="right"><div align="center">1.10</div></td>
                
             </tr>
             <tr>
-                <td>Nassm&#246;rtelmischanlagen</td>
+                <td>
+                    Nassm&#246;rtelmischanlagen
+
+                        <br/><small>
+                            (siehe Na&#223;m&#246;rtel-Mischanlagen einschl. Silos, Siloausl&#228;ufe, F&#246;rderrinnen, -b&#228;nder, Schnecken, Pumpen u.a.)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">20</div></td>
                 <td class="right"><div align="center">2.1</div></td>
                
             </tr>
             <tr>
-                <td>Nassputzanlagen (vollautom.)</td>
+                <td>
+                    Nassputzanlagen (vollautom.)
+
+                        <br/><small>
+                            (siehe Autom. Trocken- und Na&#223;putzanlagen (Strahlanlagen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">35</div></td>
                 <td class="right"><div align="center">6.1</div></td>
                
             </tr>
             <tr>
-                <td>Nassschrotm&#252;hlen</td>
+                <td>
+                    Nassschrotm&#252;hlen
+
+                        <br/><small>
+                            (siehe Na&#223;schrotm&#252;hlen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">1.10</div></td>
                
             </tr>
             <tr>
-                <td>Nassspinnmaschinen</td>
+                <td>
+                    Nassspinnmaschinen
+
+                        <br/><small>
+                            (siehe Na&#223;spinnmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">56</div></td>
                 <td class="right"><div align="center">4.12</div></td>
                
             </tr>
             <tr>
-                <td>Nasstrebersiloanlagen</td>
+                <td>
+                    Nasstrebersiloanlagen
+
+                        <br/><small>
+                            (siehe Na&#223;trebersiloanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">2.9</div></td>
                
             </tr>
             <tr>
-                <td>Nassveredlungsmaschinen</td>
+                <td>
+                    Nassveredlungsmaschinen
+
+                        <br/><small>
+                            (siehe Beiztrockenapparate (f. Schweife u. St&#252;cke))
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">59</div></td>
                 <td class="right"><div align="center">2</div></td>
                
             </tr>
             <tr>
-                <td>Naturkorkmaschinen</td>
+                <td>
+                    Naturkorkmaschinen
+
+                        <br/><small>
+                            (siehe Natur- und Polykorkmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">74</div></td>
                 <td class="right"><div align="center">3.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Natursteinindustrie</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">19</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Naturwerksteinindustrie</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">28</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>NC-Maschinen</td>
+                <td>
+                    NC-Maschinen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">40</div></td>
                 <td class="right"><div align="center">2.12</div></td>
                
             </tr>
             <tr>
-                <td>Nebelger&#228;te</td>
+                <td>
+                    Nebelger&#228;te
+
+                        <br/><small>
+                            (siehe Motorspritzen und Nebelger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">7.3</div></td>
                
             </tr>
             <tr>
-                <td>Nebenfahrzeuge</td>
+                <td>
+                    Nebenfahrzeuge
+
+                        <br/><small>
+                            (siehe Bahndienstfahrzeuge, Nebenfahrzeuge)
+                        </small>
+                </td>
                 <td class="right"><div align="center">20</div></td>
                 <td class="right"><div align="center">90</div></td>
                 <td class="right"><div align="center">16.1.8</div></td>
                
             </tr>
             <tr>
-                <td>Nebenstellenanlagen, Fernsprech-</td>
+                <td>
+                    Nebenstellenanlagen, Fernsprech-
+
+                        <br/><small>
+                            (siehe Fernsprechnebenstellenanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">6.13.1</div></td>
                
             </tr>
             <tr>
-                <td>Nebitype</td>
+                <td>
+                    Nebitype
+
+                        <br/><small>
+                            (siehe Schriftgie&#223;maschinen, sonstige (Ludlow, Nebitype u.a.))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">1.1.10</div></td>
                
             </tr>
             <tr>
-                <td>NE-Metallhalbzeugindustrie</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">34</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Netze</td>
+                <td>
+                    Netze
+
+                        <br/><small>
+                            (siehe Netze u.&#228;.)
+                        </small>
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">9</div></td>
                 <td class="right"><div align="center">4.3.1</div></td>
                
             </tr>
             <tr>
-                <td>Netze, Breitbandverteil-</td>
+                <td>
+                    Netze, Breitbandverteil-
+
+                        <br/><small>
+                            (siehe Technische Einrichtungen f&#252;r Breitbandverteilnetze)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">89</div></td>
                 <td class="right"><div align="center">2.6</div></td>
                
             </tr>
             <tr>
-                <td>Netzeggen</td>
+                <td>
+                    Netzeggen
+
+                        <br/><small>
+                            (siehe Kartoffelpflegeger&#228;te (H&#228;ufler, Striegel, Netzeggen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">1.6.5</div></td>
                
             </tr>
             <tr>
-                <td>Netzgalgen</td>
+                <td>
+                    Netzgalgen
+
+                        <br/><small>
+                            (siehe Fischpumpen, F&#246;rderanlagen, Netzwinden, Netzgalgen u.&#228;.)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">9</div></td>
                 <td class="right"><div align="center">4.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Netzgehege</td>
+                <td>
+                    Netzgehege
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">9</div></td>
                 <td class="right"><div align="center">1.5</div></td>
                
             </tr>
             <tr>
-                <td>Netzsch&#228;ler</td>
+                <td>
+                    Netzsch&#228;ler
+
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">64</div></td>
                 <td class="right"><div align="center">3.45</div></td>
                
             </tr>
             <tr>
-                <td>Netztrockenanlagen</td>
+                <td>
+                    Netztrockenanlagen
+
+                        <br/><small>
+                            (siehe Netztrockenanlagen im Freien)
+                        </small>
+                </td>
                 <td class="right"><div align="center">13</div></td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">6</div></td>
                
             </tr>
             <tr>
-                <td>Netzwinden</td>
+                <td>
+                    Netzwinden
+
+                        <br/><small>
+                            (siehe Fischpumpen, F&#246;rderanlagen, Netzwinden, Netzgalgen u.&#228;.)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">9</div></td>
                 <td class="right"><div align="center">4.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Neutralisationsanlagen</td>
+                <td>
+                    Neutralisationsanlagen
+
+                        <br/><small>
+                            (siehe Ablaugenspeicherungs- und Neutralisationsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.7.1</div></td>
                
             </tr>
             <tr>
-                <td>Neutralisationsanlagen, Laugen-</td>
+                <td>
+                    Neutralisationsanlagen, Laugen-
+
+                        <br/><small>
+                            (siehe Laugen-Neutralisations- und -aufbereitungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">8.20</div></td>
                
             </tr>
             <tr>
-                <td>Neutralisierungsanlagen</td>
+                <td>
+                    Neutralisierungsanlagen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">75</div></td>
                 <td class="right"><div align="center">2.3.1</div></td>
                
             </tr>
             <tr>
-                <td>Neutralisierungsanlagen, Abwasser-</td>
+                <td>
+                    Neutralisierungsanlagen, Abwasser-
+
+                        <br/><small>
+                            (siehe Abwasserneutralisierungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">15.28</div></td>
                
             </tr>
             <tr>
-                <td>Neutralisierungsanlagen, Laugen-</td>
+                <td>
+                    Neutralisierungsanlagen, Laugen-
+
+                        <br/><small>
+                            (siehe Galvanotechnische Anlagen (z.B. Galvanobadbeh&#228;lter, Galvanogleichrichter, Motor-Dynamoaggregate, S&#228;uren- und Laugenneutralisierungsanlagen, Trockenschleudern, Trocken&#246;fen, Vergoldungsanlagen, Vernickelungsanlagen, Beizanlagen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">4.3</div></td>
                
             </tr>
             <tr>
-                <td>Neutralisierungsanlagen, S&#228;uren-</td>
+                <td>
+                    Neutralisierungsanlagen, S&#228;uren-
+
+                        <br/><small>
+                            (siehe Galvanotechnische Anlagen (z.B. Galvanobadbeh&#228;lter, Galvanogleichrichter, Motor-Dynamoaggregate, S&#228;uren- und Laugenneutralisierungsanlagen, Trockenschleudern, Trocken&#246;fen, Vergoldungsanlagen, Vernickelungsanlagen, Beizanlagen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">4.3</div></td>
                
             </tr>
             <tr>
-                <td>Niederdruck-Dampfkessel</td>
+                <td>
+                    Niederdruck-Dampfkessel
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">5.5</div></td>
                
             </tr>
             <tr>
-                <td>Niederdruck&#246;fen</td>
+                <td>
+                    Niederdruck&#246;fen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">34</div></td>
                 <td class="right"><div align="center">14.15</div></td>
                
             </tr>
             <tr>
-                <td>Niederdruckpressen, Falz-</td>
+                <td>
+                    Niederdruckpressen, Falz-
+
+                        <br/><small>
+                            (siehe Falzniederdruckpressen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">6.24</div></td>
                
             </tr>
             <tr>
-                <td>Niederdruckspritzger&#228;te</td>
+                <td>
+                    Niederdruckspritzger&#228;te
+
+                        <br/><small>
+                            (siehe Airlessger&#228;te, Hochdruck- und Niederdruckspritzger&#228;te)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">83</div></td>
                 <td class="right"><div align="center">3.1.1</div></td>
                
             </tr>
             <tr>
-                <td>Niederdruck-W&#228;rmeaustauscher</td>
+                <td>
+                    Niederdruck-W&#228;rmeaustauscher
+
+                        <br/><small>
+                            (siehe Niederdruck- W&#228;rmeaustauscher)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">1.13.5</div></td>
                
             </tr>
             <tr>
-                <td>Niederspannungsfreileitungen (&#252;berw. Holzmasten)</td>
+                <td>
+                    Niederspannungsfreileitungen (&#252;berw. Holzmasten)
+
+                        <br/><small>
+                            (siehe Niederspannungsfreileitungen mit &#252;berwiegend Holzmasten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">25</div></td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">1.2.11</div></td>
                
             </tr>
             <tr>
-                <td>Nierenlithotripter</td>
+                <td>
+                    Nierenlithotripter
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">68</div></td>
                
             </tr>
             <tr>
-                <td>Nietautomaten</td>
-                <td class="right"><div align="center">7</div></td>
-                <td class="right"><div align="center">40</div></td>
-                <td class="right"><div align="center">1.2.4.1</div></td>
-               
-            </tr>
-            <tr>
-                <td>Nietautomaten</td>
+                <td>
+                    Nietautomaten
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">2.4.2</div></td>
                
             </tr>
             <tr>
-                <td>Nietenautomaten</td>
+                <td>
+                    Nietautomaten
+
+                        <br/><small>
+                            (siehe -automaten)
+                        </small>
+                </td>
+                <td class="right"><div align="center">7</div></td>
+                <td class="right"><div align="center">40</div></td>
+                <td class="right"><div align="center">1.2.4.1</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Nietenautomaten
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">36</div></td>
                 <td class="right"><div align="center">2.2.27</div></td>
                
             </tr>
             <tr>
-                <td>Nietenautomaten</td>
+                <td>
+                    Nietenautomaten
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">42</div></td>
                 <td class="right"><div align="center">2.19</div></td>
                
             </tr>
             <tr>
-                <td>Nietenmaschinen</td>
+                <td>
+                    Nietenmaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">42</div></td>
                 <td class="right"><div align="center">2.20</div></td>
                
             </tr>
             <tr>
-                <td>Nietenschlagmaschinen</td>
+                <td>
+                    Nietenschlagmaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">36</div></td>
                 <td class="right"><div align="center">2.2.26</div></td>
                
             </tr>
             <tr>
-                <td>Nietenstanzen</td>
+                <td>
+                    Nietenstanzen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">36</div></td>
                 <td class="right"><div align="center">2.2.29</div></td>
                
             </tr>
             <tr>
-                <td>Nieth&#228;mmer</td>
+                <td>
+                    Nieth&#228;mmer
+
+                        <br/><small>
+                            (siehe Nieth&#228;mmer, Nietmaschinen, W&#228;rmevorrichtungen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">37</div></td>
                 <td class="right"><div align="center">29</div></td>
                
             </tr>
             <tr>
-                <td>Nietmaschinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">52</div></td>
-                <td class="right"><div align="center">6.49</div></td>
-               
-            </tr>
-            <tr>
-                <td>Nietmaschinen</td>
+                <td>
+                    Nietmaschinen
+
+                        <br/><small>
+                            (siehe Nieth&#228;mmer, Nietmaschinen, W&#228;rmevorrichtungen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">4</div></td>
                 <td class="right"><div align="center">37</div></td>
                 <td class="right"><div align="center">29</div></td>
                
             </tr>
             <tr>
-                <td>Nietmaschinen</td>
-                <td class="right"><div align="center">13</div></td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">5.27</div></td>
-               
-            </tr>
-            <tr>
-                <td>Nietmaschinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">40</div></td>
-                <td class="right"><div align="center">1.2.4</div></td>
-               
-            </tr>
-            <tr>
-                <td>Nietmaschinen</td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">38</div></td>
-                <td class="right"><div align="center">1.2.5</div></td>
-               
-            </tr>
-            <tr>
-                <td>Nietmaschinen</td>
+                <td>
+                    Nietmaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">36</div></td>
                 <td class="right"><div align="center">2.2.28</div></td>
                
             </tr>
             <tr>
-                <td>Nietmaschinen</td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">41</div></td>
-                <td class="right"><div align="center">2.4.1</div></td>
+                <td>
+                    Nietmaschinen
+
+                        <br/><small>
+                            (siehe Paketier- und Schrott-)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">40</div></td>
+                <td class="right"><div align="center">1.2.4</div></td>
                
             </tr>
             <tr>
-                <td>Nietmaschinen</td>
+                <td>
+                    Nietmaschinen
+
+                        <br/><small>
+                            (siehe Loch-, &#214;s- und Nietmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">51</div></td>
                 <td class="right"><div align="center">65</div></td>
                
             </tr>
             <tr>
-                <td>Nietmaschinen, Bodenschutz-</td>
+                <td>
+                    Nietmaschinen
+
+                        <br/><small>
+                            (siehe &#214;sen- und Nietmaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">52</div></td>
+                <td class="right"><div align="center">6.49</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Nietmaschinen
+
+                        <br/><small>
+                            (siehe Schmiede-, Niet-, Biege-, Richtund Festwalzmaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">38</div></td>
+                <td class="right"><div align="center">1.2.5</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Nietmaschinen
+
+                </td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">41</div></td>
+                <td class="right"><div align="center">2.4.1</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Nietmaschinen
+
+                        <br/><small>
+                            (siehe )
+                        </small>
+                </td>
+                <td class="right"><div align="center">13</div></td>
+                <td class="right"><div align="center">0</div></td>
+                <td class="right"><div align="center">5.27</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Nietmaschinen, Bodenschutz-
+
+                        <br/><small>
+                            (siehe Bodenschutznietmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">54</div></td>
                 <td class="right"><div align="center">12</div></td>
                
             </tr>
             <tr>
-                <td>Nietmaschinen, Gurten-</td>
+                <td>
+                    Nietmaschinen, Gurten-
+
+                        <br/><small>
+                            (siehe Gurtennietmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">54</div></td>
                 <td class="right"><div align="center">29</div></td>
                
             </tr>
             <tr>
-                <td>Nietmaschinen, Stahlgelenk-</td>
+                <td>
+                    Nietmaschinen, Stahlgelenk-
+
+                        <br/><small>
+                            (siehe Stahlgelenk-Nietmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">4.2.1.7</div></td>
                
             </tr>
             <tr>
-                <td>Nietstanzen</td>
+                <td>
+                    Nietstanzen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">45</div></td>
                 <td class="right"><div align="center">3.1.2.1</div></td>
                
             </tr>
             <tr>
-                <td>Nippelanlage, Tr&#228;nke-</td>
+                <td>
+                    Nippelanlage, Tr&#228;nke-
+
+                        <br/><small>
+                            (siehe Tr&#228;nkebecken und -nippelanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">2</div></td>
                 <td class="right"><div align="center">2.3.11</div></td>
                
             </tr>
             <tr>
-                <td>Notbeleuchtungsanlagen</td>
+                <td>
+                    Notbeleuchtungsanlagen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">95</div></td>
                 <td class="right"><div align="center">29</div></td>
                
             </tr>
             <tr>
-                <td>Notebooks</td>
-                <td class="right"><div align="center">3</div></td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">6.14.3.2</div></td>
-               
-            </tr>
-            <tr>
-                <td>Notenkissen</td>
+                <td>
+                    Notenkissen
+
+                        <br/><small>
+                            (siehe Notenpulte und Notenkissen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">98</div></td>
                 <td class="right"><div align="center">7.2</div></td>
                
             </tr>
             <tr>
-                <td>Notenpulte</td>
+                <td>
+                    Notenpulte
+
+                        <br/><small>
+                            (siehe Notenpulte und Notenkissen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">98</div></td>
                 <td class="right"><div align="center">7.2</div></td>
                
             </tr>
             <tr>
-                <td>Notfallbehandlungssatz (m. Sauerstoff)</td>
+                <td>
+                    Notfallbehandlungssatz (m. Sauerstoff)
+
+                        <br/><small>
+                            (siehe Notfallbehandlungssatz (mit Sauerstoff))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">69</div></td>
                
             </tr>
             <tr>
-                <td>Notfallkoffer</td>
+                <td>
+                    Notfallkoffer
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">70</div></td>
                
             </tr>
             <tr>
-                <td>Notrufanlagen</td>
+                <td>
+                    Notrufanlagen
+
+                        <br/><small>
+                            (siehe Alarm-, Notruf- und Feuermeldeanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">95</div></td>
                 <td class="right"><div align="center">2</div></td>
                
             </tr>
             <tr>
-                <td>Notstromaggregate</td>
-                <td class="right"><div align="center">15</div></td>
-                <td class="right"><div align="center">95</div></td>
-                <td class="right"><div align="center">30</div></td>
-               
-            </tr>
-            <tr>
-                <td>Notstromaggregate</td>
-                <td class="right"><div align="center">15</div></td>
-                <td class="right"><div align="center">78</div></td>
-                <td class="right"><div align="center">2.8</div></td>
-               
-            </tr>
-            <tr>
-                <td>Notstromaggregate</td>
-                <td class="right"><div align="center">19</div></td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">3.1.2</div></td>
-               
-            </tr>
-            <tr>
-                <td>Notstromaggregate</td>
-                <td class="right"><div align="center">20</div></td>
-                <td class="right"><div align="center">2</div></td>
-                <td class="right"><div align="center">2.7.5</div></td>
-               
-            </tr>
-            <tr>
-                <td>Notstromaggregate</td>
+                <td>
+                    Notstromaggregate
+
+                        <br/><small>
+                            (siehe Stromversorgungsanlagen, Notstromaggregate (beweglich))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">9</div></td>
                 <td class="right"><div align="center">3.13</div></td>
                
             </tr>
             <tr>
-                <td>Notstromanlagen</td>
+                <td>
+                    Notstromaggregate
+
+                </td>
+                <td class="right"><div align="center">15</div></td>
+                <td class="right"><div align="center">78</div></td>
+                <td class="right"><div align="center">2.8</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Notstromaggregate
+
+                </td>
+                <td class="right"><div align="center">15</div></td>
+                <td class="right"><div align="center">95</div></td>
+                <td class="right"><div align="center">30</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Notstromaggregate
+
+                        <br/><small>
+                            (siehe Stromerzeugung (Gleichrichter, Ladeaggregate, Notstromaggregate, Stromgeneratoren, Stromumformer usw.))
+                        </small>
+                </td>
+                <td class="right"><div align="center">19</div></td>
+                <td class="right"><div align="center">0</div></td>
+                <td class="right"><div align="center">3.1.2</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Notstromaggregate
+
+                </td>
+                <td class="right"><div align="center">20</div></td>
+                <td class="right"><div align="center">2</div></td>
+                <td class="right"><div align="center">2.7.5</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Notstromanlagen
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">98</div></td>
                 <td class="right"><div align="center">1.14</div></td>
                
             </tr>
             <tr>
-                <td>Nukleare Kontrollger&#228;te</td>
+                <td>
+                    Nukleare Kontrollger&#228;te
+
+                        <br/><small>
+                            (siehe Nukleare Kontrollger&#228;te zur Einhaltung des Sollgewichts an Strangmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">80</div></td>
                 <td class="right"><div align="center">25</div></td>
                
             </tr>
             <tr>
-                <td>Nuklear-Therapieger&#228;te</td>
+                <td>
+                    Nuklear-Therapieger&#228;te
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">71</div></td>
                
             </tr>
             <tr>
-                <td>Numeriermaschinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">52</div></td>
-                <td class="right"><div align="center">6.48</div></td>
-               
-            </tr>
-            <tr>
-                <td>Numeriermaschinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">51</div></td>
-                <td class="right"><div align="center">69</div></td>
-               
-            </tr>
-            <tr>
-                <td>Numeriermaschinen</td>
+                <td>
+                    Numeriermaschinen
+
+                        <br/><small>
+                            (siehe Etikettier- u. Numeriermaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">61</div></td>
                 <td class="right"><div align="center">5</div></td>
                
             </tr>
             <tr>
-                <td>Numerierwerke</td>
+                <td>
+                    Numeriermaschinen
+
+                        <br/><small>
+                            (siehe Numerier- und Paginiermaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">51</div></td>
+                <td class="right"><div align="center">69</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Numeriermaschinen
+
+                        <br/><small>
+                            (siehe Numerier- und Paginiermaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">52</div></td>
+                <td class="right"><div align="center">6.48</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Numerierwerke
+
+                        <br/><small>
+                            (siehe Numerier- und Paginierwerke)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">52</div></td>
                 <td class="right"><div align="center">5.5.14</div></td>
                
             </tr>
             <tr>
-                <td>Nussklassierung und -verladung</td>
+                <td>
+                    Nussklassierung und -verladung
+
+                        <br/><small>
+                            (siehe Nu&#223;klassierung und -verladung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">100</div></td>
                 <td class="right"><div align="center">2.10</div></td>
                
             </tr>
             <tr>
-                <td>Nusssch&#228;lmaschinen</td>
+                <td>
+                    Nusssch&#228;lmaschinen
+
+                        <br/><small>
+                            (siehe Nu&#223;-, Mandelsch&#228;lmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">68</div></td>
                 <td class="right"><div align="center">1.18</div></td>
                
             </tr>
             <tr>
-                <td>Nutautomaten</td>
+                <td>
+                    Nutautomaten
+
+                        <br/><small>
+                            (siehe Doppelabk&#252;rz-, Nut- und Federautomaten)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">2.5</div></td>
                
             </tr>
             <tr>
-                <td>Nutenfr&#228;smaschinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">40</div></td>
-                <td class="right"><div align="center">1.1.6.4</div></td>
-               
-            </tr>
-            <tr>
-                <td>Nutenfr&#228;smaschinen</td>
+                <td>
+                    Nutenfr&#228;smaschinen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">4.2.2.16</div></td>
                
             </tr>
             <tr>
-                <td>Nuthobelmaschinen (f. Staylog)</td>
+                <td>
+                    Nutenfr&#228;smaschinen
+
+                        <br/><small>
+                            (siehe Nuten-)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">40</div></td>
+                <td class="right"><div align="center">1.1.6.4</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Nuthobelmaschinen (f. Staylog)
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">3.17</div></td>
                
             </tr>
             <tr>
-                <td>Nutmaschinen</td>
-                <td class="right"><div align="center">8</div></td>
-                <td class="right"><div align="center">52</div></td>
-                <td class="right"><div align="center">6.53</div></td>
-               
-            </tr>
-            <tr>
-                <td>Nutmaschinen</td>
+                <td>
+                    Nutmaschinen
+
+                        <br/><small>
+                            (siehe Hobel- und Nutmaschine)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">44</div></td>
                 <td class="right"><div align="center">17</div></td>
                
             </tr>
             <tr>
-                <td>Nutmaschinen</td>
+                <td>
+                    Nutmaschinen
+
+                        <br/><small>
+                            (siehe Rill-, Nut- und Ritzmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">51</div></td>
                 <td class="right"><div align="center">70</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Nutmaschinen
+
+                        <br/><small>
+                            (siehe Perforier-, Nut-, Rill- und Ritzmaschinen)
+                        </small>
+                </td>
+                <td class="right"><div align="center">8</div></td>
+                <td class="right"><div align="center">52</div></td>
+                <td class="right"><div align="center">6.53</div></td>
                
             </tr>
     </tbody>

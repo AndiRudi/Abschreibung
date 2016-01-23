@@ -10,10 +10,12 @@
     <title>AfA-Tabellen.de —&nbsp;Abschreibungstabellen</title>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+    <script src="scripts/augment.min.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/app.js"></script>
 </head>
 
-<body onLoad="document.searchform.n.focus();">
+<body>
     <div id="head">
         <div id="container">
             <div id="title">
@@ -61,24 +63,22 @@
                 <p></p>
             </div>
         </div>
-        <form method="get" name="searchform" action="search.php">
+        <form id="searchForm">
             <div class="menu">
                 <div id="listy" class="search">
                     <div id="searchtext">
                         Anlagegegenstand:
-                        <input id="s-nazwa" name="n" type="text"
-                               autocomplete="off">
+                        <input id="searchTxt" name="searchTxt" type="text" autocomplete="off">
                     </div>
-                    <input value="Suchen" type="submit">
+                    <button type="submit">Suchen</button>
                 </div>
             </div>
         </form>
+
     </div>
 
     <div id="content">
         
-<h2 class="direct">Alle Anlagengüter beginnend mit </h2>
-<div id="timespan" class="direct">Letzte Aktualisierung: <span class="date"><strong>12/12/2015</strong></span></div>
 <table id="prices">
     <tbody>
         <tr class="top">
@@ -89,175 +89,304 @@
         
         </tr>
             <tr>
-                <td>Qualit&#228;tsmessger&#228;te</td>
+                <td>
+                    Qualit&#228;tsmessger&#228;te
+
+                        <br/><small>
+                            (siehe Qualit&#228;ts-Messger&#228;te (Sodimaten))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">80</div></td>
                 <td class="right"><div align="center">27</div></td>
                
             </tr>
             <tr>
-                <td>Quarkabf&#252;llmaschinen</td>
+                <td>
+                    Quarkabf&#252;llmaschinen
+
+                        <br/><small>
+                            (siehe Quarkabf&#252;llmaschinen u. -verpackungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">8.32</div></td>
                
             </tr>
             <tr>
-                <td>Quarkerhitzungsanlagen</td>
+                <td>
+                    Quarkerhitzungsanlagen
+
+                        <br/><small>
+                            (siehe Quarkmischmaschinen u. -erhitzungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">8.31</div></td>
                
             </tr>
             <tr>
-                <td>Quarkfertiger (Alu)</td>
+                <td>
+                    Quarkfertiger (Alu)
+
+                        <br/><small>
+                            (siehe Alu)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">8.28.1</div></td>
                
             </tr>
             <tr>
-                <td>Quarkfertiger (Niro)</td>
+                <td>
+                    Quarkfertiger (Niro)
+
+                        <br/><small>
+                            (siehe Niro)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">8.28.2</div></td>
                
             </tr>
             <tr>
-                <td>Quarkk&#252;hler</td>
+                <td>
+                    Quarkk&#252;hler
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">8.30</div></td>
                
             </tr>
             <tr>
-                <td>Quarkmischmaschinen</td>
+                <td>
+                    Quarkmischmaschinen
+
+                        <br/><small>
+                            (siehe Quarkmischmaschinen u. -erhitzungsanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">8.31</div></td>
                
             </tr>
             <tr>
-                <td>Quarkm&#252;hlen</td>
+                <td>
+                    Quarkm&#252;hlen
+
+                        <br/><small>
+                            (siehe Quarkpressen, Quarkm&#252;hlen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">8.23</div></td>
                
             </tr>
             <tr>
-                <td>Quarkpressen</td>
+                <td>
+                    Quarkpressen
+
+                        <br/><small>
+                            (siehe Quarkpressen, Quarkm&#252;hlen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">8.23</div></td>
                
             </tr>
             <tr>
-                <td>Quarkseparator</td>
+                <td>
+                    Quarkseparator
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">8.29</div></td>
                
             </tr>
             <tr>
-                <td>Quarkverpackungsmaschinen</td>
+                <td>
+                    Quarkverpackungsmaschinen
+
+                        <br/><small>
+                            (siehe Quarkabf&#252;llmaschinen u. -verpackungsmaschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">69</div></td>
                 <td class="right"><div align="center">8.32</div></td>
                
             </tr>
             <tr>
-                <td>Quellen</td>
+                <td>
+                    Quellen
+
+                        <br/><small>
+                            (siehe Quellen und Brunnenanlagen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">75</div></td>
                 <td class="right"><div align="center">1</div></td>
                
             </tr>
             <tr>
-                <td>Quellenpumpen</td>
+                <td>
+                    Quellenpumpen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">75</div></td>
                 <td class="right"><div align="center">2.1</div></td>
                
             </tr>
             <tr>
-                <td>Quellfasspumpen</td>
+                <td>
+                    Quellfasspumpen
+
+                        <br/><small>
+                            (siehe Quellfa&#223;-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">20</div></td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">4.5.3</div></td>
                
             </tr>
             <tr>
-                <td>Querkreiss&#228;gen</td>
+                <td>
+                    Querkreiss&#228;gen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">48</div></td>
                 <td class="right"><div align="center">2.1.16</div></td>
                
             </tr>
             <tr>
-                <td>Querkreiss&#228;gen (f. Schnittholzstra&#223;en)</td>
+                <td>
+                    Querkreiss&#228;gen (f. Schnittholzstra&#223;en)
+
+                        <br/><small>
+                            (siehe Querkreiss&#228;gen f&#252;r Schnittholzstra&#223;en einschl. Mehrfachabl&#228;ngs&#228;gen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">1.16</div></td>
                
             </tr>
             <tr>
-                <td>Querschneideeinrichtungen</td>
+                <td>
+                    Querschneideeinrichtungen
+
+                        <br/><small>
+                            (siehe L&#228;ngs- und Querschneideeinrichtungen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">50</div></td>
                 <td class="right"><div align="center">2.6.3</div></td>
                
             </tr>
             <tr>
-                <td>Querschneider</td>
+                <td>
+                    Querschneider
+
+                        <br/><small>
+                            (siehe Schneidemaschinen (Folienschneidemaschinen, Rollenabschneider, Querschneider, Spaltmaschinen, Sch&#228;lmaschinen, Schlagschermaschinen und Entgratungsmaschinen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">3.1</div></td>
                
             </tr>
             <tr>
-                <td>Querschneider</td>
+                <td>
+                    Querschneider
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">43</div></td>
                 <td class="right"><div align="center">2.5</div></td>
                
             </tr>
             <tr>
-                <td>Quetschen</td>
+                <td>
+                    Quetschen
+
+                        <br/><small>
+                            (siehe Wasserkalander (Quetschen))
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">59</div></td>
                 <td class="right"><div align="center">2.12</div></td>
                
             </tr>
             <tr>
-                <td>Quetschpressen</td>
+                <td>
+                    Quetschpressen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">45</div></td>
                 <td class="right"><div align="center">3.1.1.3</div></td>
                
             </tr>
             <tr>
-                <td>Quetschwalzenst&#252;hle</td>
+                <td>
+                    Quetschwalzenst&#252;hle
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">1.6.16</div></td>
                
             </tr>
             <tr>
-                <td>Quirle, Gips-</td>
+                <td>
+                    Quirle, Gips-
+
+                        <br/><small>
+                            (siehe Gipsquirle)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">45</div></td>
                 <td class="right"><div align="center">1.5</div></td>
                
             </tr>
             <tr>
-                <td>Quirle, Misch-</td>
+                <td>
+                    Quirle, Misch-
+
+                        <br/><small>
+                            (siehe Schrauben- und Mischquirle)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">32</div></td>
                 <td class="right"><div align="center">1.10</div></td>
                
             </tr>
             <tr>
-                <td>Quirle, Schrauben-</td>
+                <td>
+                    Quirle, Schrauben-
+
+                        <br/><small>
+                            (siehe Schrauben- und Mischquirle)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">32</div></td>
                 <td class="right"><div align="center">1.10</div></td>

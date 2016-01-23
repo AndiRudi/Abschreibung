@@ -10,10 +10,12 @@
     <title>AfA-Tabellen.de —&nbsp;Abschreibungstabellen</title>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+    <script src="scripts/augment.min.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/app.js"></script>
 </head>
 
-<body onLoad="document.searchform.n.focus();">
+<body>
     <div id="head">
         <div id="container">
             <div id="title">
@@ -61,24 +63,22 @@
                 <p></p>
             </div>
         </div>
-        <form method="get" name="searchform" action="search.php">
+        <form id="searchForm">
             <div class="menu">
                 <div id="listy" class="search">
                     <div id="searchtext">
                         Anlagegegenstand:
-                        <input id="s-nazwa" name="n" type="text"
-                               autocomplete="off">
+                        <input id="searchTxt" name="searchTxt" type="text" autocomplete="off">
                     </div>
-                    <input value="Suchen" type="submit">
+                    <button type="submit">Suchen</button>
                 </div>
             </div>
         </form>
+
     </div>
 
     <div id="content">
         
-<h2 class="direct">Alle Anlagengüter beginnend mit </h2>
-<div id="timespan" class="direct">Letzte Aktualisierung: <span class="date"><strong>12/12/2015</strong></span></div>
 <table id="prices">
     <tbody>
         <tr class="top">
@@ -89,371 +89,570 @@
         
         </tr>
             <tr>
-                <td>Imbisshallen</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">92</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Impedanzmessger&#228;te</td>
+                <td>
+                    Impedanzmessger&#228;te
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">43</div></td>
                
             </tr>
             <tr>
-                <td>Impr&#228;gnieranlagen</td>
+                <td>
+                    Impr&#228;gnieranlagen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">29</div></td>
                 <td class="right"><div align="center">9.2</div></td>
                
             </tr>
             <tr>
-                <td>Impr&#228;gnieranlagen</td>
+                <td>
+                    Impr&#228;gnieranlagen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">36</div></td>
                 <td class="right"><div align="center">2.3.12</div></td>
                
             </tr>
             <tr>
-                <td>Impr&#228;gnieranlagen</td>
-                <td class="right"><div align="center">10</div></td>
-                <td class="right"><div align="center">17</div></td>
-                <td class="right"><div align="center">1.1</div></td>
-               
-            </tr>
-            <tr>
-                <td>Impr&#228;gnieranlagen</td>
+                <td>
+                    Impr&#228;gnieranlagen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">8.25</div></td>
                
             </tr>
             <tr>
-                <td>Impr&#228;gnieranlagen</td>
+                <td>
+                    Impr&#228;gnieranlagen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">75</div></td>
                 <td class="right"><div align="center">9</div></td>
                
             </tr>
             <tr>
-                <td>Impr&#228;gnierkessel</td>
+                <td>
+                    Impr&#228;gnieranlagen
+
+                        <br/><small>
+                            (siehe Gewebetr&#228;nkanlagen (Impr&#228;gnieranlagen))
+                        </small>
+                </td>
+                <td class="right"><div align="center">10</div></td>
+                <td class="right"><div align="center">17</div></td>
+                <td class="right"><div align="center">1.1</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Impr&#228;gnierkessel
+
+                        <br/><small>
+                            (siehe Beiz- und Impr&#228;gnier-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">44</div></td>
                 <td class="right"><div align="center">21.2</div></td>
                
             </tr>
             <tr>
-                <td>Impr&#228;gnierkessel</td>
+                <td>
+                    Impr&#228;gnierkessel
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">4.3</div></td>
                
             </tr>
             <tr>
-                <td>Impr&#228;gniermaschinen</td>
+                <td>
+                    Impr&#228;gniermaschinen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">3.5</div></td>
                
             </tr>
             <tr>
-                <td>Impr&#228;gniermaschinen, Naht-</td>
+                <td>
+                    Impr&#228;gniermaschinen, Naht-
+
+                        <br/><small>
+                            (siehe Nahtimpr&#228;gnier-Maschinen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">7.1.3</div></td>
                
             </tr>
             <tr>
-                <td>Impr&#228;gnierpumpen</td>
+                <td>
+                    Impr&#228;gnierpumpen
+
+                        <br/><small>
+                            (siehe Maschinen der F&#252;llstra&#223;e (Reinigen, F&#252;llen, Verschlie&#223;en, Pasteurisieren, Verdrahten, Entleeren, Verpacken, Ausstatten, Etikettieren) einschl. Erhitzer und R&amp;uuml;ckk&amp;uuml;hler, Impr&#228;gnierpumpen)
+                        </small>
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">67</div></td>
                 <td class="right"><div align="center">2.5</div></td>
                
             </tr>
             <tr>
-                <td>Impr&#228;gniertr&#246;ge</td>
+                <td>
+                    Impr&#228;gniertr&#246;ge
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">46</div></td>
                 <td class="right"><div align="center">4.4</div></td>
                
             </tr>
             <tr>
-                <td>Indemvisusautomaten</td>
+                <td>
+                    Indemvisusautomaten
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">44</div></td>
                
             </tr>
             <tr>
-                <td>Index-Automaten</td>
+                <td>
+                    Index-Automaten
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">45</div></td>
                 <td class="right"><div align="center">3.1.5.3</div></td>
                
             </tr>
             <tr>
-                <td>Induktionsanlagen</td>
+                <td>
+                    Induktionsanlagen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">41</div></td>
                 <td class="right"><div align="center">4.5</div></td>
                
             </tr>
             <tr>
-                <td>Induktionsh&#228;rtemaschinen</td>
+                <td>
+                    Induktionsh&#228;rtemaschinen
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">36</div></td>
                 <td class="right"><div align="center">2.3.13</div></td>
                
             </tr>
             <tr>
-                <td>Induktions&#246;fen</td>
+                <td>
+                    Induktions&#246;fen
+
+                </td>
                 <td class="right"><div align="center">6</div></td>
                 <td class="right"><div align="center">34</div></td>
                 <td class="right"><div align="center">14.12</div></td>
                
             </tr>
             <tr>
-                <td>Induktionsw&#228;rmeanlagen</td>
+                <td>
+                    Induktionsw&#228;rmeanlagen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">38</div></td>
                 <td class="right"><div align="center">1.9</div></td>
                
             </tr>
             <tr>
-                <td>Industrieroboter</td>
+                <td>
+                    Industrieroboter
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">35</div></td>
                 <td class="right"><div align="center">10.13.1</div></td>
                
             </tr>
             <tr>
-                <td>Industriestaubsauger</td>
-                <td class="right"><div align="center">4</div></td>
-                <td class="right"><div align="center">93</div></td>
-                <td class="right"><div align="center">17.2</div></td>
-               
-            </tr>
-            <tr>
-                <td>Industriestaubsauger</td>
+                <td>
+                    Industriestaubsauger
+
+                        <br/><small>
+                            (siehe Staubsauger, Industrie-)
+                        </small>
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">83</div></td>
                 <td class="right"><div align="center">1.2.4</div></td>
                
             </tr>
             <tr>
-                <td>Industriestaubsauger</td>
+                <td>
+                    Industriestaubsauger
+
+                        <br/><small>
+                            (siehe sonstige, u.a. Industriesauger (wie nicht branchegebunden))
+                        </small>
+                </td>
+                <td class="right"><div align="center">4</div></td>
+                <td class="right"><div align="center">93</div></td>
+                <td class="right"><div align="center">17.2</div></td>
+               
+            </tr>
+            <tr>
+                <td>
+                    Industriestaubsauger
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">0</div></td>
                 <td class="right"><div align="center">7.2.5</div></td>
                
             </tr>
             <tr>
-                <td>Informationssysteme, Fahrgast-</td>
+                <td>
+                    Informationssysteme, Fahrgast-
+
+                        <br/><small>
+                            (siehe Fahrgastinformations- und -leitsysteme)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">90</div></td>
                 <td class="right"><div align="center">14</div></td>
                
             </tr>
             <tr>
-                <td>Informationssysteme, Fluggast-</td>
+                <td>
+                    Informationssysteme, Fluggast-
+
+                        <br/><small>
+                            (siehe Dampferzeugung zur Sterilisierung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">88</div></td>
                 <td class="right"><div align="center">3.3.2</div></td>
                
             </tr>
             <tr>
-                <td>Infrarotheizungen (bewegl.)</td>
+                <td>
+                    Infrarotheizungen (bewegl.)
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">92</div></td>
                 <td class="right"><div align="center">19</div></td>
                
             </tr>
             <tr>
-                <td>Infrarottrockenanlagen</td>
+                <td>
+                    Infrarottrockenanlagen
+
+                        <br/><small>
+                            (siehe Trockenanlagen, Infrarot u. Ultra)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">9.9</div></td>
                
             </tr>
             <tr>
-                <td>Infrarottrockner (fahrbare)</td>
+                <td>
+                    Infrarottrockner (fahrbare)
+
+                        <br/><small>
+                            (siehe Infrarottrockner, fahrbar)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">83</div></td>
                 <td class="right"><div align="center">6.3.3</div></td>
                
             </tr>
             <tr>
-                <td>Infratrockner</td>
+                <td>
+                    Infratrockner
+
+                        <br/><small>
+                            (siehe Trockenapparate und -einrichtungen (auch Infratrockner))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">62</div></td>
                 <td class="right"><div align="center">2.10</div></td>
                
             </tr>
             <tr>
-                <td>Infusionsger&#228;te</td>
+                <td>
+                    Infusionsger&#228;te
+
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">45</div></td>
                
             </tr>
             <tr>
-                <td>Inhalationsger&#228;te</td>
+                <td>
+                    Inhalationsger&#228;te
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">46</div></td>
                
             </tr>
             <tr>
-                <td>Inlinemaschinen (f. d. Wellpappenverarbeitung)</td>
+                <td>
+                    Inlinemaschinen (f. d. Wellpappenverarbeitung)
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">51</div></td>
                 <td class="right"><div align="center">48</div></td>
                
             </tr>
             <tr>
-                <td>Innenkocher</td>
+                <td>
+                    Innenkocher
+
+                        <br/><small>
+                            (siehe Br&#252;denverdichter, Au&#223;en- und Innenkocher, Pfannendunstkondensatoren)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">2.2</div></td>
                
             </tr>
             <tr>
-                <td>Innenmischer</td>
+                <td>
+                    Innenmischer
+
+                        <br/><small>
+                            (siehe Mischer f&#252;r pulverf&#246;rmige und k&#246;rnige Stoffe (z.B. Turbinenmischer, Trommelmischer, Schneckenbandmischer, Taumelmischer) und z&#228;hfl&#252;ssige und pasteuse Stoffe (z.B. Innenmischer, Hei&#223;mischer, Walzwerke))
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">16</div></td>
                 <td class="right"><div align="center">1.5</div></td>
                
             </tr>
             <tr>
-                <td>Innenmischer</td>
+                <td>
+                    Innenmischer
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">17</div></td>
                 <td class="right"><div align="center">2.6</div></td>
                
             </tr>
             <tr>
-                <td>Innenrandbeschneidmaschinen</td>
+                <td>
+                    Innenrandbeschneidmaschinen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">5.4.5</div></td>
                
             </tr>
             <tr>
-                <td>Innenrandnahtmaschinen</td>
+                <td>
+                    Innenrandnahtmaschinen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">5.4.6</div></td>
                
             </tr>
             <tr>
-                <td>Innenrandzwickmaschinen</td>
+                <td>
+                    Innenrandzwickmaschinen
+
+                </td>
                 <td class="right"><div align="center">7</div></td>
                 <td class="right"><div align="center">55</div></td>
                 <td class="right"><div align="center">5.4.7</div></td>
                
             </tr>
             <tr>
-                <td>Innenr&#252;ttler</td>
+                <td>
+                    Innenr&#252;ttler
+
+                </td>
                 <td class="right"><div align="center">3</div></td>
                 <td class="right"><div align="center">81</div></td>
                 <td class="right"><div align="center">1.24</div></td>
                
             </tr>
             <tr>
-                <td>Innenschleifautomaten</td>
+                <td>
+                    Innenschleifautomaten
+
+                        <br/><small>
+                            (siehe Honmaschinen (Innenschleifautomaten))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">38</div></td>
                 <td class="right"><div align="center">1.5.2</div></td>
                
             </tr>
             <tr>
-                <td>Installationskeramik, Herst. v.</td>
-                <td class="right"><div align="center">0</div></td>
-                <td class="right"><div align="center">32</div></td>
-                <td class="right"><div align="center"></div></td>
-               
-            </tr>
-            <tr>
-                <td>Instrumentenlandesystemanlagen</td>
+                <td>
+                    Instrumentenlandesystemanlagen
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">88</div></td>
                 <td class="right"><div align="center">3.4.4</div></td>
                
             </tr>
             <tr>
-                <td>Instrumentenschr&#228;nke</td>
+                <td>
+                    Instrumentenschr&#228;nke
+
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">47</div></td>
                
             </tr>
             <tr>
-                <td>Instrumententische</td>
+                <td>
+                    Instrumententische
+
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">48</div></td>
                
             </tr>
             <tr>
-                <td>Instrumentenwagen</td>
+                <td>
+                    Instrumentenwagen
+
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">49</div></td>
                
             </tr>
             <tr>
-                <td>Intensivbetten</td>
+                <td>
+                    Intensivbetten
+
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">99</div></td>
                 <td class="right"><div align="center">50</div></td>
                
             </tr>
             <tr>
-                <td>Intensivnetzer</td>
+                <td>
+                    Intensivnetzer
+
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">64</div></td>
                 <td class="right"><div align="center">3.25</div></td>
                
             </tr>
             <tr>
-                <td>Inventar, Gastst&#228;tten- (Leihinventar)</td>
+                <td>
+                    Inventar, Gastst&#228;tten- (Leihinventar)
+
+                        <br/><small>
+                            (siehe Gastst&#228;tteninventar (Leihinventar im wechselnden Einsatz) z.B. Flaschenbierk&#252;hlschr&#228;nke, K&#252;hlm&#246;bel, Messest&#228;nde))
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">11.14</div></td>
                
             </tr>
             <tr>
-                <td>Isobarometer</td>
+                <td>
+                    Isobarometer
+
+                        <br/><small>
+                            (siehe Fa&#223;f&#252;ller (Isobarometer))
+                        </small>
+                </td>
                 <td class="right"><div align="center">12</div></td>
                 <td class="right"><div align="center">73</div></td>
                 <td class="right"><div align="center">7.2</div></td>
                
             </tr>
             <tr>
-                <td>Isolierbeh&#228;lter</td>
+                <td>
+                    Isolierbeh&#228;lter
+
+                        <br/><small>
+                            (siehe Isolierbeh&#228;lter mit K&#252;hlschlangen zur Herstellung von Eiswasser)
+                        </small>
+                </td>
                 <td class="right"><div align="center">10</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">2.1.2</div></td>
                
             </tr>
             <tr>
-                <td>Isolierlagerbeh&#228;lter</td>
+                <td>
+                    Isolierlagerbeh&#228;lter
+
+                        <br/><small>
+                            (siehe Isol. Lagerbeh&#228;lter mit K&#252;hl- und W&#228;rmevorrichtung)
+                        </small>
+                </td>
                 <td class="right"><div align="center">14</div></td>
                 <td class="right"><div align="center">70</div></td>
                 <td class="right"><div align="center">2.7.5</div></td>
                
             </tr>
             <tr>
-                <td>Isomerisationsanlagen</td>
+                <td>
+                    Isomerisationsanlagen
+
+                        <br/><small>
+                            (siehe Benzinveredelungsanlagen (Reformierung, z.B. Platformer; Polymerisation, Isomerisation Alkylierung, Extraktion))
+                        </small>
+                </td>
                 <td class="right"><div align="center">8</div></td>
                 <td class="right"><div align="center">15</div></td>
                 <td class="right"><div align="center">1.5</div></td>
                
             </tr>
             <tr>
-                <td>IV-Anlagen f&#252;r technische Zwecke</td>
+                <td>
+                    IV-Anlagen f&#252;r technische Zwecke
+
+                        <br/><small>
+                            (siehe IV-Anlagen (Hardware) f&#252;r technische Zwecke)
+                        </small>
+                </td>
                 <td class="right"><div align="center">5</div></td>
                 <td class="right"><div align="center">38</div></td>
                 <td class="right"><div align="center">2.5</div></td>
