@@ -14,7 +14,7 @@ $(document).ready(function () {
 
     //Build index
     //TODO: Save in Session storage
-    $.getJSON('/Output/searchIndex.json', function (response) {
+    $.getJSON('searchIndex.json', function (response) {
         console.log("Starting building index");
        
         $.each(response, function (index, element) {
