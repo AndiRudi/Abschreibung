@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "";
+    System.Data.DataTable dataTable = Model["DataTable"] as System.Data.DataTable;
+}
+   
+[
+@foreach (System.Data.DataRow row in dataTable.Rows)
+{
+    <text>
+    {  
+        "Id": "@row["Id"]", "Text": "@row["Text"]", "Nutzungsdauer" : "@row["Nutzungsdauer"]", "Tabelle" : "@row["Tabelle"]", "LfdNr" : "@row["LdfNr"]"
+    }
+    </text>
+    if (dataTable.Rows.IndexOf(row) != dataTable.Rows.Count - 1) { <text>,</text> }
+}
+]

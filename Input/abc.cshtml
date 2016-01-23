@@ -2,8 +2,6 @@
     System.Data.DataTable dataTable = Model["DataTable"] as System.Data.DataTable;
 
 }
-<h2 class="direct">Alle Anlagengüter beginnend mit </h2>
-<div id="timespan" class="direct">Letzte Aktualisierung: <span class="date"><strong>@System.DateTime.Now.ToShortDateString()</strong></span></div>
 <table id="prices">
     <tbody>
         <tr class="top">
@@ -16,7 +14,16 @@
         @foreach (System.Data.DataRow row in dataTable.Rows)
         {
             <tr>
-                <td>@row["Text"]</td>
+                <td>
+                    @row["Text"]
+
+                    @if (row["Text"].ToString() != row["Anlagegut"].ToString())
+                    {
+                        <br/><small>
+                            (siehe @row["Anlagegut"])
+                        </small>
+                    }
+                </td>
                 <td class="right"><div align="center">@row["Nutzungsdauer"]</div></td>
                 <td class="right"><div align="center">@row["Tabelle"]</div></td>
                 <td class="right"><div align="center">@row["LdfNr"]</div></td>
