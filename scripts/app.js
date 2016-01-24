@@ -58,13 +58,31 @@ $(document).ready(function () {
 
             // Show results
             resultdiv.empty();
+            
+            var html = "<table id='prices'>";
+            html += "<tbody>";
+            html += "   <tr class='top'>";
+            html += "       <th width='55%'>Anlagegut</th>";
+            html += "       <th width='15%' class='right'><div align='center'>Nutzungsdauer</div></th>";
+            html += "       <th width='15%' class='right'><div align='center'>Tabelle</div></th>";
+            html += "       <th width='15%' class='right'><div align='center'>Fundstelle</div></th>";  
+            html += "   </tr>";
+
             for (var item in result) {
               
                 var id = result[item].ref;
-              
-                var searchitem = store[id].Text +  " " + store[id].LfdNr + "<br/>";
-                resultdiv.append(searchitem);
-            }
+                html += " <tr>";
+                html += "   <td>" + store[id].Text + "</td>";
+                html += "   <td class='right'><div align='center'>" + store[id].Nutzungsdauer + "</div></td>";
+                html += "   <td class='right'><div align='center'>" + store[id].Tabelle + "</div></td>";
+                html += "   <td class='right'><div align='center'>" + store[id].LfdNr + "</div></td>";
+                html += "</tr>";
+            }            
+            html += "   </tbody>";
+            html += "</table>";
+
+            resultdiv.append(html);
+
             resultdiv.show();
         }
     });
