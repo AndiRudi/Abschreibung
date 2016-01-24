@@ -57,7 +57,7 @@ Pipelines.Add("branche",
 		}))),
 	SqlReader()
 		.Access4(@"Input\data\AFA.mdb")
-		.CommandText("SELECT * FROM [Überschriften] WHERE [Tabelle] = ?")
+		.CommandText("SELECT Überschriften.[Lfd-Nr] AS [Ü_LfdNr], Überschriften.Text AS [Ü_Text], Anlagegüter.[Lfd-Nr] AS [A_LfdNr], Anlagegüter.Anlagegut AS [A_Text], Anlagegüter.Nutzungsdauer AS [A_Nutzungsdauer], Anlagegüter.Tabelle AS [A_Tabelle]  FROM Überschriften LEFT JOIN (Anlagegüter RIGHT JOIN Zuordnung ON Anlagegüter.Id = Zuordnung.Anlagegut) ON Überschriften.Id = Zuordnung.Uberschrift WHERE [Überschriften].[Tabelle] = ?")
 		.AddParameter("?", @doc["Id"])
 		.DataTable(),
 	Razor(),

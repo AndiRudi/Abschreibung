@@ -1,20 +1,47 @@
 ﻿@{
     System.Data.DataTable dataTable = Model["DataTable"] as System.Data.DataTable;
+    string CurrentHeading = "";
+}
 
-}
-   
-@foreach (System.Data.DataRow row in dataTable.Rows)
-{
-    @switch (row["Lfd-Nr"].ToString().Split('.').Length)
-    {
-        case 0:
-            <h2>@row["Lfd-Nr"] @row["Text"]</h2>
-            break;
-        case 1:
-            <h3>@row["Lfd-Nr"] @row["Text"]</h3>
-            break;
-        case 2:
-            <h4>@row["Lfd-Nr"] @row["Text"]</h4>
-            break;
-    }
-}
+<table id="prices">
+    <tbody>
+        <tr class="top">
+            <th width="55%">Anlagegut</th>
+            <th width="15%" class="right"><div align="center">Nutzungsdauer</div></th>
+            <th width="15%" class="right"><div align="center">Tabelle</div></th>
+            <th width="15%" class="right"><div align="center">Fundstelle</div></th>
+        </tr>
+
+        @foreach (System.Data.DataRow row in dataTable.Rows)
+        {
+
+                @if (row["Ü_Text"].ToString() != CurrentHeading)
+                {
+                    CurrentHeading = row["Ü_Text"].ToString();
+
+                    <tr>
+                        <td colspan="4">
+                            @switch (row["Ü_LfdNr"].ToString().Split('.').Length)
+                            {
+                                case 0:
+                                    <h2>@row["Ü_LfdNr"] @row["Ü_Text"]</h2>
+                                    break;
+                                case 1:
+                                    <h3>@row["Ü_LfdNr"] @row["Ü_Text"]</h3>
+                                    break;
+                                case 2:
+                                    <h4>@row["Ü_LfdNr"] @row["Ü_Text"]</h4>
+                                    break;
+                            }
+                        </td>
+                    </tr>
+                }
+            <tr>
+                <td>@row["A_Text"]</td>
+                <td class="right"><div align="center">@row["A_Nutzungsdauer"]</div></td>
+                <td class="right"><div align="center">@row["A_Tabelle"]</div></td>
+                <td class="right"><div align="center">@row["A_LfdNr"]</div></td>
+            </tr>
+        }
+    </tbody>
+</table>
